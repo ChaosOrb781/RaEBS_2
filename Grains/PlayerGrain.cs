@@ -18,8 +18,10 @@ namespace Grains
     [StorageProvider(ProviderName = "OrleansStorage")]
     public class PlayerGrain : Grain<PlayerState>, IPlayer
     {
+        private static Tuple<int, int> waitPeriod = Tuple.Create(500, 4000);
+
         public override Task OnActivateAsync()
-        {
+        { 
             throw new NotImplementedException();
         }
 
@@ -30,6 +32,12 @@ namespace Grains
 
         Task IPlayer.Initialize(List<Guid> playerIds, bool isHoldingBall)
         {
+            foreach (Guid id in playerIds) {
+                IPlayer player = GrainFactory.GetGrain<IPlayer>(id);
+                if (isHoldingBall) {
+                    player.ReceiveBall();
+                }
+            }
             throw new NotImplementedException();
         }
 
