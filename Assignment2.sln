@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29519.87
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GrainInterfaces", "GrainInterfaces\GrainInterfaces.csproj", "{3D5DD85D-FA9D-4F65-9379-97CB1DBECC15}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Grains", "Grains\Grains.csproj", "{65AF2A57-8DED-4915-9C27-2D22C06FCEA8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests", "Tests\Tests.csproj", "{47882169-38F7-4754-ACC3-3B58D2F0B30A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3D5DD85D-FA9D-4F65-9379-97CB1DBECC15}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D5DD85D-FA9D-4F65-9379-97CB1DBECC15}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D5DD85D-FA9D-4F65-9379-97CB1DBECC15}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D5DD85D-FA9D-4F65-9379-97CB1DBECC15}.Release|Any CPU.Build.0 = Release|Any CPU
+		{65AF2A57-8DED-4915-9C27-2D22C06FCEA8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65AF2A57-8DED-4915-9C27-2D22C06FCEA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65AF2A57-8DED-4915-9C27-2D22C06FCEA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65AF2A57-8DED-4915-9C27-2D22C06FCEA8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47882169-38F7-4754-ACC3-3B58D2F0B30A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47882169-38F7-4754-ACC3-3B58D2F0B30A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47882169-38F7-4754-ACC3-3B58D2F0B30A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47882169-38F7-4754-ACC3-3B58D2F0B30A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CD6D728E-EC83-49E8-9F6C-CC99438DE64D}
+	EndGlobalSection
+EndGlobal
