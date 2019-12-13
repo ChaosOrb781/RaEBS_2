@@ -1,0 +1,13 @@
+/Users/christian/Documents/School/RaEBS/Week_51/Assignment_2/RaEBS_2/Tests/bin/Debug/netcoreapp2.2/Tests.deps.json
+/Users/christian/Documents/School/RaEBS/Week_51/Assignment_2/RaEBS_2/Tests/bin/Debug/netcoreapp2.2/Tests.runtimeconfig.json
+/Users/christian/Documents/School/RaEBS/Week_51/Assignment_2/RaEBS_2/Tests/bin/Debug/netcoreapp2.2/Tests.runtimeconfig.dev.json
+/Users/christian/Documents/School/RaEBS/Week_51/Assignment_2/RaEBS_2/Tests/bin/Debug/netcoreapp2.2/Tests.dll
+/Users/christian/Documents/School/RaEBS/Week_51/Assignment_2/RaEBS_2/Tests/bin/Debug/netcoreapp2.2/Tests.pdb
+/Users/christian/Documents/School/RaEBS/Week_51/Assignment_2/RaEBS_2/Tests/bin/Debug/netcoreapp2.2/GrainInterfaces.dll
+/Users/christian/Documents/School/RaEBS/Week_51/Assignment_2/RaEBS_2/Tests/bin/Debug/netcoreapp2.2/GrainInterfaces.pdb
+/Users/christian/Documents/School/RaEBS/Week_51/Assignment_2/RaEBS_2/Tests/obj/Debug/netcoreapp2.2/Tests.csprojAssemblyReference.cache
+/Users/christian/Documents/School/RaEBS/Week_51/Assignment_2/RaEBS_2/Tests/obj/Debug/netcoreapp2.2/Tests.AssemblyInfoInputs.cache
+/Users/christian/Documents/School/RaEBS/Week_51/Assignment_2/RaEBS_2/Tests/obj/Debug/netcoreapp2.2/Tests.AssemblyInfo.cs
+/Users/christian/Documents/School/RaEBS/Week_51/Assignment_2/RaEBS_2/Tests/obj/Debug/netcoreapp2.2/Tests.csproj.CopyComplete
+/Users/christian/Documents/School/RaEBS/Week_51/Assignment_2/RaEBS_2/Tests/obj/Debug/netcoreapp2.2/Tests.dll
+/Users/christian/Documents/School/RaEBS/Week_51/Assignment_2/RaEBS_2/Tests/obj/Debug/netcoreapp2.2/Tests.pdb

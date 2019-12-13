@@ -12,6 +12,7 @@ namespace Grains
     {
         public List<Guid> PlayerIds { set; get; }
         public List<Guid> BallIds { set; get; }
+        public Guid LatestBallReceived { set; get; }
     }
 
 
@@ -62,7 +63,19 @@ namespace Grains
 
         Task IPlayer.ReceiveBall(Guid ballId)
         {
-            throw new NotImplementedException();
+            State.BallIds.Add(ballId);
+            var i = State.BallIds.Count;
+            if (i > 1)
+            {
+                PassOtherBalls(ballId);
+            }
+            else
+            {
+                HoldOrPassBall(ballId);
+            }
+
+            return null;
+
         }
 
         Task<List<Guid>> IPlayer.GetBallIds()
@@ -81,9 +94,32 @@ namespace Grains
         ///  period or to pass the ball.
         /// </summary>
         private Task HoldOrPassBall(object arg)
-        { 
-            throw new NotImplementedException();
-            // Await that others receive balls
+        {
+            Random rndChoice = new Random();
+            int choice = rndChoice.Next(0, 1);
+            if (choice == 0)
+            {
+                // How long should the Actor sleep?
+                Random Sleep = new Random();
+                int SleepTime = Sleep.Next();
+
+                return null; // Bruh
+            }
+            else
+            {
+                // Deciding which player should have a ball and decide what ball to receive
+
+                Random rnd = new Random();
+                int randomindex = rnd.Next(0, State.PlayerIds.Count);
+                int randomballindex = rnd.Next(0, State.BallIds.Count);
+                Guid randomplayer = State.PlayerIds[randomindex];
+                Guid randomball = State.BallIds[randomballindex];
+                IPlayer player = GrainFactory.GetGrain<IPlayer>(randomplayer);
+                player.ReceiveBall(randomball);
+
+                return null; //Bruh
+                
+            }
         }
 
         /// <summary>
@@ -92,7 +128,26 @@ namespace Grains
         /// </summary>
         private Task PassOtherBalls(object arg)
         {
-            throw new NotImplementedException();
+            // Get to know whether the player has more than 1 ball
+            Guid LatestBall = State.LatestBallReceived;
+
+            foreach(Guid ball in State.BallIds)
+            {
+                if(LatestBall == ball)
+                {
+                    break;
+                }
+                else
+                {
+                    Random rnd = new Random();
+                    int randomindex = rnd.Next(0, State.PlayerIds.Count);
+                    Guid randomplayer = State.PlayerIds[randomindex];
+                    IPlayer player = GrainFactory.GetGrain<IPlayer>(randomplayer);
+                    player.ReceiveBall(ball);
+                }
+            }
+
+            return null;
         }
 
     }
