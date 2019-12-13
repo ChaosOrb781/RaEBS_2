@@ -7319,40 +7319,34 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\tobia\\.nuget\\packages\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "/Users/christian/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\tobia\\Google Drive\\UNIVERSITET - Datalogi\\Reactive and Event Based Systems\\RaEBS_2\\Tests\\Tests.csproj",
+      "projectUniqueName": "/Users/christian/Documents/School/RaEBS/Week_51/Assignment_2/RaEBS_2/Tests/Tests.csproj",
       "projectName": "Tests",
-      "projectPath": "C:\\Users\\tobia\\Google Drive\\UNIVERSITET - Datalogi\\Reactive and Event Based Systems\\RaEBS_2\\Tests\\Tests.csproj",
-      "packagesPath": "C:\\Users\\tobia\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\tobia\\Google Drive\\UNIVERSITET - Datalogi\\Reactive and Event Based Systems\\RaEBS_2\\Tests\\obj\\",
+      "projectPath": "/Users/christian/Documents/School/RaEBS/Week_51/Assignment_2/RaEBS_2/Tests/Tests.csproj",
+      "packagesPath": "/Users/christian/.nuget/packages/",
+      "outputPath": "/Users/christian/Documents/School/RaEBS/Week_51/Assignment_2/RaEBS_2/Tests/obj/",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-      ],
       "configFilePaths": [
-        "C:\\Users\\tobia\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "/Users/christian/.config/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.1"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "netcoreapp2.1": {
           "projectReferences": {
-            "C:\\Users\\tobia\\Google Drive\\UNIVERSITET - Datalogi\\Reactive and Event Based Systems\\RaEBS_2\\GrainInterfaces\\GrainInterfaces.csproj": {
-              "projectPath": "C:\\Users\\tobia\\Google Drive\\UNIVERSITET - Datalogi\\Reactive and Event Based Systems\\RaEBS_2\\GrainInterfaces\\GrainInterfaces.csproj"
+            "/Users/christian/Documents/School/RaEBS/Week_51/Assignment_2/RaEBS_2/GrainInterfaces/GrainInterfaces.csproj": {
+              "projectPath": "/Users/christian/Documents/School/RaEBS/Week_51/Assignment_2/RaEBS_2/GrainInterfaces/GrainInterfaces.csproj"
             },
-            "C:\\Users\\tobia\\Google Drive\\UNIVERSITET - Datalogi\\Reactive and Event Based Systems\\RaEBS_2\\Grains\\Grains.csproj": {
-              "projectPath": "C:\\Users\\tobia\\Google Drive\\UNIVERSITET - Datalogi\\Reactive and Event Based Systems\\RaEBS_2\\Grains\\Grains.csproj"
+            "/Users/christian/Documents/School/RaEBS/Week_51/Assignment_2/RaEBS_2/Grains/Grains.csproj": {
+              "projectPath": "/Users/christian/Documents/School/RaEBS/Week_51/Assignment_2/RaEBS_2/Grains/Grains.csproj"
             }
           }
         }
@@ -7371,6 +7365,7 @@
             "version": "[16.4.0, )"
           },
           "Microsoft.NETCore.App": {
+            "suppressParent": "All",
             "target": "Package",
             "version": "[2.1.0, )",
             "autoReferenced": true
@@ -7393,10 +7388,16 @@
           }
         },
         "imports": [
-          "net461"
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48"
         ],
         "assetTargetFallback": true,
-        "warn": true
+        "warn": true,
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.0.100/RuntimeIdentifierGraph.json"
       }
     }
   }
