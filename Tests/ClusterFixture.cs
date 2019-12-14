@@ -39,7 +39,7 @@ namespace XUnitTests
                .AddAdoNetGrainStorage("OrleansStorage", options =>
                {
                    options.Invariant = "Npgsql";
-                   options.ConnectionString = "dbname='Orleans' user='postgres' host='localhost' password='postgres' port='5432'";
+                   options.ConnectionString = "Server=127.0.0.1;Port=5432;Database=OrleansStora;User Id=postgres;Password=postgres;";
                    options.UseJsonFormat = true;
                })
                .UseInMemoryReminderService();

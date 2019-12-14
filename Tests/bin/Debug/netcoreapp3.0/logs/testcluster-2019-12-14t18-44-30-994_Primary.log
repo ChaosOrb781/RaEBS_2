@@ -1,0 +1,534 @@
+﻿[2019-12-14 18:44:31.236 GMT 10	Information	100404	Orleans.Runtime.Silo]	Silo starting with GC settings: ServerGC=False GCLatencyMode=Interactive	
+[2019-12-14 18:44:31.237 GMT 10	Warning	100405	Orleans.Runtime.Silo]	Note: Silo not running with ServerGC turned on - recommend checking app config : <configuration>-<runtime>-<gcServer enabled="true">	
+[2019-12-14 18:44:31.237 GMT 10	Warning	100405	Orleans.Runtime.Silo]	Note: ServerGC only kicks in on multi-core systems (settings enabling ServerGC have no effect on single-core machines).	
+[2019-12-14 18:44:31.238 GMT 10	Information	100403	Orleans.Runtime.Silo]	-------------- Initializing silo on host DESKTOP-GKPQB1U MachineName DESKTOP-GKPQB1U at 127.0.0.1:26470, gen 314045071 --------------	
+[2019-12-14 18:44:31.238 GMT 10	Information	100415	Orleans.Runtime.Silo]	Starting silo Primary	
+[2019-12-14 18:44:31.271 GMT 10	Information	0	Orleans.Runtime.Scheduler.OrleansTaskScheduler]	Starting OrleansTaskScheduler with 8 Max Active application Threads and 2 system thread.	
+[2019-12-14 18:44:31.293 GMT 10	Information	101010	Orleans.Runtime.Messaging.IncomingMessageAcceptor]	Opened a listening socket at address 127.0.0.1:26470	
+[2019-12-14 18:44:31.297 GMT 10	Information	101010	Orleans.Runtime.Messaging.IncomingMessageAcceptor]	Opened a listening socket at address 127.0.0.1:45790	
+[2019-12-14 18:44:31.338 GMT 10	Information	0	Orleans.Runtime.ConsistentRing.VirtualBucketsRingProvider]	Starting VirtualBucketsRingProvider on silo S127.0.0.1:26470:314045071/x6A338BC0.	
+[2019-12-14 18:44:31.353 GMT 10	Information	103003	Orleans.Runtime.ConsistentRing.VirtualBucketsRingProvider]	Added Server S127.0.0.1:26470:314045071/x6A338BC0. Current view: [S127.0.0.1:26470:314045071 -> <MultiRange: Size=x100000000, %Ring=100,000%>]	
+[2019-12-14 18:44:31.354 GMT 10	Information	103005	Orleans.Runtime.ConsistentRing.VirtualBucketsRingProvider]	-NotifyLocalRangeSubscribers about old <(0 0], Size=x100000000, %Ring=100,000%> new <MultiRange: Size=x100000000, %Ring=100,000%> increased? True	
+[2019-12-14 18:44:31.374 GMT 10	Information	0	Orleans.Runtime.Silo]	Skip multicluster oracle creation (no multicluster network configured)	
+[2019-12-14 18:44:31.392 GMT 10	Information	100422	Orleans.Runtime.Silo]	-------------- Started silo S127.0.0.1:26470:314045071, ConsistentHashCode 6A338BC0 --------------	
+[2019-12-14 18:44:31.397 GMT 10	Information	0	Runtime.Scheduler.OrleansSchedulerAsynchAgent/Scheduler.LevelOne.SystemQueue]	Starting AsyncAgent Runtime.Scheduler.OrleansSchedulerAsynchAgent/Scheduler.LevelOne.SystemQueue on managed thread 10	
+[2019-12-14 18:44:31.403 GMT 10	Information	0	Runtime.Scheduler.OrleansSchedulerAsynchAgent/Scheduler.LevelOne.MainQueue]	Starting AsyncAgent Runtime.Scheduler.OrleansSchedulerAsynchAgent/Scheduler.LevelOne.MainQueue on managed thread 10	
+[2019-12-14 18:44:31.403 GMT 27	Information	0	Orleans.Threading.ThreadPoolThread]	Starting thread Runtime.Scheduler.OrleansSchedulerAsynchAgent/Scheduler.LevelOne.SystemQueue1 on managed thread 27	
+[2019-12-14 18:44:31.404 GMT 26	Information	0	Orleans.Threading.ThreadPoolThread]	Starting thread Runtime.Scheduler.OrleansSchedulerAsynchAgent/Scheduler.LevelOne.SystemQueue0 on managed thread 26	
+[2019-12-14 18:44:31.404 GMT 28	Information	0	Orleans.Threading.ThreadPoolThread]	Starting thread Runtime.Scheduler.OrleansSchedulerAsynchAgent/Scheduler.LevelOne.MainQueue0 on managed thread 28	
+[2019-12-14 18:44:31.404 GMT 29	Information	0	Orleans.Threading.ThreadPoolThread]	Starting thread Runtime.Scheduler.OrleansSchedulerAsynchAgent/Scheduler.LevelOne.MainQueue1 on managed thread 29	
+[2019-12-14 18:44:31.404 GMT 30	Information	0	Orleans.Threading.ThreadPoolThread]	Starting thread Runtime.Scheduler.OrleansSchedulerAsynchAgent/Scheduler.LevelOne.MainQueue2 on managed thread 30	
+[2019-12-14 18:44:31.404 GMT 31	Information	0	Orleans.Threading.ThreadPoolThread]	Starting thread Runtime.Scheduler.OrleansSchedulerAsynchAgent/Scheduler.LevelOne.MainQueue3 on managed thread 31	
+[2019-12-14 18:44:31.404 GMT 32	Information	0	Orleans.Threading.ThreadPoolThread]	Starting thread Runtime.Scheduler.OrleansSchedulerAsynchAgent/Scheduler.LevelOne.MainQueue4 on managed thread 32	
+[2019-12-14 18:44:31.404 GMT 33	Information	0	Orleans.Threading.ThreadPoolThread]	Starting thread Runtime.Scheduler.OrleansSchedulerAsynchAgent/Scheduler.LevelOne.MainQueue5 on managed thread 33	
+[2019-12-14 18:44:31.404 GMT 34	Information	0	Orleans.Threading.ThreadPoolThread]	Starting thread Runtime.Scheduler.OrleansSchedulerAsynchAgent/Scheduler.LevelOne.MainQueue6 on managed thread 34	
+[2019-12-14 18:44:31.404 GMT 10	Information	100452	Orleans.Runtime.Silo]	Start Scheduler took 8 Milliseconds to finish	
+[2019-12-14 18:44:31.404 GMT 35	Information	0	Orleans.Threading.ThreadPoolThread]	Starting thread Runtime.Scheduler.OrleansSchedulerAsynchAgent/Scheduler.LevelOne.MainQueue7 on managed thread 35	
+[2019-12-14 18:44:31.418 GMT 26	Information	100453	Orleans.Runtime.SiloLifecycleSubject]	Stage First (-2147483648): Orleans.Runtime.SiloOptionsLogger	
+[2019-12-14 18:44:31.418 GMT 26	Information	100453	Orleans.Runtime.SiloLifecycleSubject]	Stage RuntimeInitialize (2000): Orleans.Runtime.InsideRuntimeClient, MembershipAgent, SiloStatusListenerManager, ClusterMembershipService, Orleans.Runtime.Silo	
+[2019-12-14 18:44:31.418 GMT 26	Information	100453	Orleans.Runtime.SiloLifecycleSubject]	Stage RuntimeServices (4000): Orleans.Runtime.Silo	
+[2019-12-14 18:44:31.418 GMT 26	Information	100453	Orleans.Runtime.SiloLifecycleSubject]	Stage RuntimeGrainServices (8000): MembershipTableManager, MembershipTableCleanupAgent, HostedClient, Orleans.Runtime.Silo	
+[2019-12-14 18:44:31.418 GMT 26	Information	100453	Orleans.Runtime.SiloLifecycleSubject]	Stage AfterRuntimeGrainServices (8100): MembershipAgent, SiloStatusListenerManager	
+[2019-12-14 18:44:31.418 GMT 26	Information	100453	Orleans.Runtime.SiloLifecycleSubject]	Stage ApplicationServices (10000): Orleans.Runtime.Versions.GrainVersionStore	
+[2019-12-14 18:44:31.418 GMT 26	Information	100453	Orleans.Runtime.SiloLifecycleSubject]	Stage BecomeActive (19999): ClusterHealthMonitor, MembershipAgent, Orleans.Runtime.Silo	
+[2019-12-14 18:44:31.418 GMT 26	Information	100453	Orleans.Runtime.SiloLifecycleSubject]	Stage Active (20000): Orleans.Runtime.Silo	
+[2019-12-14 18:44:31.428 GMT 26	Information	0	Orleans.Runtime.SiloOptionsLogger]	Configuration Orleans.Configuration.ActivationCountBasedPlacementOptions: 
+ChooseOutOf: 2
+	
+[2019-12-14 18:44:31.429 GMT 26	Information	0	Orleans.Runtime.SiloOptionsLogger]	Configuration Orleans.Configuration.ClusterMembershipOptions: 
+NumMissedTableIAmAliveLimit: 2
+LivenessEnabled: True
+ProbeTimeout: 00:00:10
+TableRefreshTimeout: 00:01:00
+DeathVoteExpirationTimeout: 00:02:00
+IAmAliveTablePublishTimeout: 00:05:00
+MaxJoinAttemptTime: 00:05:00
+ExpectedClusterSize: 2
+ValidateInitialConnectivity: True
+UseLivenessGossip: True
+NumProbedSilos: 3
+NumMissedProbesLimit: 3
+NumVotesForDeathDeclaration: 2
+DefunctSiloExpiration: 7.00:00:00
+DefunctSiloCleanupPeriod: 
+IsRunningAsUnitTest: False
+	
+[2019-12-14 18:44:31.429 GMT 26	Information	0	Orleans.Runtime.SiloOptionsLogger]	Configuration Orleans.Configuration.ConsistentRingOptions: 
+NumVirtualBucketsConsistentRing: 30
+UseVirtualBucketsConsistentRing: True
+	
+[2019-12-14 18:44:31.429 GMT 26	Information	0	Orleans.Runtime.SiloOptionsLogger]	Configuration Orleans.Configuration.EndpointOptions: 
+AdvertisedIPAddress: 127.0.0.1
+SiloPort: 26470
+GatewayPort: 45790
+SiloListeningEndpoint: 127.0.0.1:26470
+GatewayListeningEndpoint: 127.0.0.1:45790
+	
+[2019-12-14 18:44:31.429 GMT 26	Information	0	Orleans.Runtime.SiloOptionsLogger]	Configuration Orleans.Configuration.GrainCollectionOptions: 
+CollectionQuantum: 00:01:00
+CollectionAge: 02:00:00
+DeactivationTimeout: 00:00:30
+	
+[2019-12-14 18:44:31.430 GMT 26	Information	0	Orleans.Runtime.SiloOptionsLogger]	Configuration Orleans.Configuration.GrainDirectoryOptions: 
+CachingStrategy: Adaptive
+CacheSize: 1000000
+InitialCacheTTL: 00:00:30
+MaximumCacheTTL: 00:04:00
+CacheTTLExtensionFactor: 2
+LazyDeregistrationDelay: 00:01:00
+	
+[2019-12-14 18:44:31.430 GMT 26	Information	0	Orleans.Runtime.SiloOptionsLogger]	Configuration Orleans.Configuration.GrainVersioningOptions: 
+DefaultCompatibilityStrategy: BackwardCompatible
+DefaultVersionSelectorStrategy: AllCompatibleVersions
+	
+[2019-12-14 18:44:31.430 GMT 26	Information	0	Orleans.Runtime.SiloOptionsLogger]	Configuration Orleans.Configuration.LoadSheddingOptions: 
+LoadSheddingEnabled: False
+LoadSheddingLimit: 95
+	
+[2019-12-14 18:44:31.430 GMT 26	Information	0	Orleans.Runtime.SiloOptionsLogger]	Configuration Orleans.Configuration.MultiClusterOptions: 
+HasMultiClusterNetwork: False
+MaxMultiClusterGateways: 10
+BackgroundGossipInterval: 00:00:30
+UseGlobalSingleInstanceByDefault: True
+GlobalSingleInstanceNumberRetries: 10
+GlobalSingleInstanceRetryInterval: 00:00:30
+	
+[2019-12-14 18:44:31.430 GMT 26	Information	0	Orleans.Runtime.SiloOptionsLogger]	Configuration Orleans.Configuration.NetworkingOptions: 
+OpenConnectionTimeout: 00:00:05
+MaxSocketAge: 10675199.02:48:05.4775807
+MaxSockets: 500
+	
+[2019-12-14 18:44:31.430 GMT 26	Information	0	Orleans.Runtime.SiloOptionsLogger]	Configuration Orleans.Configuration.PerformanceTuningOptions: 
+DefaultConnectionLimit: 200
+Expect100Continue: False
+UseNagleAlgorithm: False
+MinDotNetThreadPoolSize: 200
+	
+[2019-12-14 18:44:31.430 GMT 26	Information	0	Orleans.Runtime.SiloOptionsLogger]	Configuration Orleans.Configuration.ProcessExitHandlingOptions: 
+FastKillOnProcessExit: True
+	
+[2019-12-14 18:44:31.430 GMT 26	Information	0	Orleans.Runtime.SiloOptionsLogger]	Configuration Orleans.Configuration.SchedulingOptions: 
+PerformDeadlockDetection: False
+AllowCallChainReentrancy: True
+MaxActiveThreads: 8
+DelayWarningThreshold: 00:00:10
+ActivationSchedulingQuantum: 00:00:00.1000000
+TurnWarningLengthThreshold: 00:00:00.2000000
+MaxPendingWorkItemsSoftLimit: 0
+EnableWorkerThreadInjection: False
+StoppedActivationWarningInterval: 00:01:00
+	
+[2019-12-14 18:44:31.430 GMT 26	Information	0	Orleans.Runtime.SiloOptionsLogger]	Configuration Orleans.Configuration.SerializationProviderOptions: 
+FallbackSerializationProvider: 
+	
+[2019-12-14 18:44:31.431 GMT 26	Information	0	Orleans.Runtime.SiloOptionsLogger]	Configuration Orleans.Configuration.SiloMessagingOptions: 
+SiloSenderQueues: 8
+GatewaySenderQueues: 8
+MaxForwardCount: 2
+ClientDropTimeout: 00:01:00
+ClientRegistrationRefresh: 00:05:00
+MaxEnqueuedRequestsSoftLimit: 0
+MaxEnqueuedRequestsHardLimit: 0
+MaxEnqueuedRequestsSoftLimit_StatelessWorker: 0
+MaxEnqueuedRequestsHardLimit_StatelessWorker: 0
+MaxRequestProcessingTime: 02:00:00
+AssumeHomogenousSilosForTesting: False
+DEFAULT_SHUTDOWN_REROUTE_TIMEOUT: 00:00:10
+ShutdownRerouteTimeout: 00:00:10
+ResponseTimeout: 00:00:30
+ResponseTimeoutWithDebugger: 00:30:00
+MaxResendCount: 0
+ResendOnTimeout: False
+DropExpiredMessages: True
+BufferPoolBufferSize: 4096
+BufferPoolMaxSize: 10000
+BufferPoolPreallocationSize: 250
+PropagateActivityId: False
+LargeMessageWarningThreshold: 85000
+MaxMessageHeaderSize: 10485760
+MaxMessageBodySize: 104857600
+	
+[2019-12-14 18:44:31.431 GMT 26	Information	0	Orleans.Runtime.SiloOptionsLogger]	Configuration Orleans.Configuration.SiloOptions: 
+SiloName: Primary
+	
+[2019-12-14 18:44:31.431 GMT 26	Information	0	Orleans.Runtime.SiloOptionsLogger]	Configuration Orleans.Configuration.StatisticsOptions: 
+PerfCountersWriteInterval: 00:00:30
+LogWriteInterval: 00:05:00
+CollectionLevel: Info
+	
+[2019-12-14 18:44:31.431 GMT 26	Information	0	Orleans.Runtime.SiloOptionsLogger]	Configuration Orleans.Configuration.TelemetryOptions: 
+	
+[2019-12-14 18:44:31.431 GMT 26	Information	0	Orleans.Runtime.SiloOptionsLogger]	Configuration Orleans.Configuration.TypeManagementOptions: 
+TypeMapRefreshInterval: 00:01:00
+	
+[2019-12-14 18:44:31.431 GMT 26	Information	100452	Orleans.Runtime.SiloLifecycleSubject]	Orleans.Runtime.SiloOptionsLogger started in stage First (-2147483648) in 8.516300000000001 Milliseconds	
+[2019-12-14 18:44:31.432 GMT 26	Information	100452	Orleans.Runtime.SiloLifecycleSubject]	SiloStatusListenerManager started in stage RuntimeInitialize (2000) in 0.0475 Milliseconds	
+[2019-12-14 18:44:31.433 GMT 23	Information	100401	Orleans.Runtime.Silo]	Silo Start()	
+[2019-12-14 18:44:31.433 GMT 23	Information	100430	Orleans.Runtime.Silo]	Configured ThreadPool.SetMinThreads() to values: 200,200. Previous values are: 8,8.	
+[2019-12-14 18:44:31.433 GMT 23	Information	100436	Orleans.Runtime.Silo]	Configured .NET ServicePointManager to Expect100Continue=False, DefaultConnectionLimit=200, UseNagleAlgorithm=False to improve Azure storage performance.	
+[2019-12-14 18:44:31.433 GMT 23	Information	100452	Orleans.Runtime.Silo]	ConfigureThreadPoolAndServicePointSettings took 0 Milliseconds to finish	
+[2019-12-14 18:44:31.440 GMT 26	Information	101711	Orleans.Runtime.GrainTypeManager]	Loaded grain type summary for 9 types: 
+Grain class Grains.Grains.PlayerGrain [612288788 (0x247EC914)] from Grains.dll implementing interfaces: GrainInterfaces.IPlayer [-1510907665 (0xA5F160EF)], Orleans.IRemindable [-831689659 (0xCE6D6C45)]
+Grain class Orleans.Providers.Orleans.Providers.MemoryStreamQueueGrain [1359359215 (0x51062CEF)] from OrleansProviders.dll implementing interfaces: Orleans.Providers.IMemoryStreamQueueGrain [1158152105 (0x4507FFA9)]
+Grain class Orleans.Runtime.Development.Orleans.Runtime.Development.DevelopmentLeaseProviderGrain [940524075 (0x380F422B)] from Orleans.Runtime.dll implementing interfaces: Orleans.Runtime.Development.IDevelopmentLeaseProviderGrain [-1234611069 (0xB6695483)]
+Grain class Orleans.Runtime.Management.Orleans.Runtime.Management.ManagementGrain [1954798034 (0x7483D9D2)] from Orleans.Runtime.dll implementing interfaces: Orleans.Runtime.IManagementGrain [-1734666656 (0x989B1660)]
+Grain class Orleans.Runtime.ReminderService.Orleans.Runtime.ReminderService.GrainBasedReminderTable [-55315191 (0xFCB3F509)] from Orleans.Runtime.dll implementing interfaces: Orleans.IReminderTableGrain [-1135060418 (0xBC585A3E)]
+Grain class Orleans.Runtime.Versions.Orleans.Runtime.Versions.VersionStoreGrain [331003096 (0x13BAB4D8)] from Orleans.Runtime.dll implementing interfaces: Orleans.Runtime.Versions.IVersionStoreGrain [-297600501 (0xEE42FA0B)], Orleans.IGrainWithStringKey [-1277021679 (0xB3E23211)]
+Grain class Orleans.Storage.Orleans.Storage.MemoryStorageGrain [819348208 (0x30D642F0)] from OrleansProviders.dll implementing interfaces: Orleans.Storage.IMemoryStorageGrain [577125491 (0x22663C73)]
+Grain class Orleans.Streams.Orleans.Streams.PubSubRendezvousGrain [1903070868 (0x716E8E94)] from Orleans.Runtime.dll implementing interfaces: Orleans.Streams.IPubSubRendezvousGrain [1746702088 (0x681C8F08)]
+Grain class Orleans.TestingHost.Orleans.TestingHost.StorageFaultGrain [165808213 (0x9E20855)] from Orleans.TestingHost.dll implementing interfaces: Orleans.TestingHost.IStorageFaultGrain [-1063077025 (0xC0A2BB5F)], Orleans.IGrainWithStringKey [-1277021679 (0xB3E23211)]
+	
+[2019-12-14 18:44:31.443 GMT 26	Information	100452	Orleans.Runtime.InsideRuntimeClient]	Start InsideRuntimeClient took 9 Milliseconds	
+[2019-12-14 18:44:31.443 GMT 26	Information	100452	Orleans.Runtime.SiloLifecycleSubject]	Orleans.Runtime.InsideRuntimeClient started in stage RuntimeInitialize (2000) in 9.706800000000001 Milliseconds	
+[2019-12-14 18:44:31.443 GMT 26	Information	100452	Orleans.Runtime.SiloLifecycleSubject]	MembershipAgent started in stage RuntimeInitialize (2000) in 0.0506 Milliseconds	
+[2019-12-14 18:44:31.443 GMT 26	Information	100452	Orleans.Runtime.SiloLifecycleSubject]	ClusterMembershipService started in stage RuntimeInitialize (2000) in 0.1227 Milliseconds	
+[2019-12-14 18:44:31.445 GMT 26	Information	100452	Orleans.Runtime.SiloLifecycleSubject]	Orleans.Runtime.Silo started in stage RuntimeInitialize (2000) in 13.370600000000001 Milliseconds	
+[2019-12-14 18:44:31.447 GMT 10	Information	0	Orleans.Runtime.Messaging.IncomingMessageAcceptor]	Starting AsyncAgent Runtime.Messaging.IncomingMessageAcceptor on managed thread 10	
+[2019-12-14 18:44:31.447 GMT 36	Information	0	Orleans.Threading.ThreadPoolThread]	Starting thread Runtime.Messaging.IncomingMessageAcceptor0 on managed thread 36	
+[2019-12-14 18:44:31.448 GMT 10	Information	0	Runtime.Messaging.SiloMessageSender/PingSender]	Starting AsyncAgent Runtime.Messaging.SiloMessageSender/PingSender on managed thread 10	
+[2019-12-14 18:44:31.448 GMT 10	Information	0	Runtime.Messaging.SiloMessageSender/SystemSender]	Starting AsyncAgent Runtime.Messaging.SiloMessageSender/SystemSender on managed thread 10	
+[2019-12-14 18:44:31.448 GMT 37	Information	0	Orleans.Threading.ThreadPoolThread]	Starting thread Runtime.Messaging.SiloMessageSender/PingSender0 on managed thread 37	
+[2019-12-14 18:44:31.448 GMT 38	Information	0	Orleans.Threading.ThreadPoolThread]	Starting thread Runtime.Messaging.SiloMessageSender/SystemSender0 on managed thread 38	
+[2019-12-14 18:44:31.448 GMT 10	Information	100452	Orleans.Runtime.Silo]	Start Message center took 1 Milliseconds to finish	
+[2019-12-14 18:44:31.449 GMT 10	Information	0	Runtime.Messaging.IncomingMessageAgent/Ping]	Starting AsyncAgent Runtime.Messaging.IncomingMessageAgent/Ping on managed thread 10	
+[2019-12-14 18:44:31.449 GMT 10	Information	0	Runtime.Messaging.IncomingMessageAgent/System]	Starting AsyncAgent Runtime.Messaging.IncomingMessageAgent/System on managed thread 10	
+[2019-12-14 18:44:31.449 GMT 39	Information	0	Orleans.Threading.ThreadPoolThread]	Starting thread Runtime.Messaging.IncomingMessageAgent/Ping0 on managed thread 39	
+[2019-12-14 18:44:31.449 GMT 10	Information	0	Runtime.Messaging.IncomingMessageAgent/Application]	Starting AsyncAgent Runtime.Messaging.IncomingMessageAgent/Application on managed thread 10	
+[2019-12-14 18:44:31.449 GMT 40	Information	0	Orleans.Threading.ThreadPoolThread]	Starting thread Runtime.Messaging.IncomingMessageAgent/System0 on managed thread 40	
+[2019-12-14 18:44:31.449 GMT 10	Information	100452	Orleans.Runtime.Silo]	Start Incoming message agents took 0 Milliseconds to finish	
+[2019-12-14 18:44:31.449 GMT 41	Information	0	Orleans.Threading.ThreadPoolThread]	Starting thread Runtime.Messaging.IncomingMessageAgent/Application0 on managed thread 41	
+[2019-12-14 18:44:31.449 GMT 10	Information	0	Orleans.Runtime.GrainDirectory.LocalGrainDirectory]	Start	
+[2019-12-14 18:44:31.450 GMT 10	Information	0	Runtime.GrainDirectory.AdaptiveDirectoryCacheMaintainer`1]	Starting AsyncAgent Runtime.GrainDirectory.AdaptiveDirectoryCacheMaintainer`1 on managed thread 10	
+[2019-12-14 18:44:31.450 GMT 42	Information	0	Orleans.Threading.ThreadPoolThread]	Starting thread Runtime.GrainDirectory.AdaptiveDirectoryCacheMaintainer`10 on managed thread 42	
+[2019-12-14 18:44:31.450 GMT 10	Information	0	Runtime.GrainDirectory.GlobalSingleInstanceActivationMaintainer]	Starting AsyncAgent Runtime.GrainDirectory.GlobalSingleInstanceActivationMaintainer on managed thread 10	
+[2019-12-14 18:44:31.451 GMT 10	Information	100452	Orleans.Runtime.Silo]	Start local grain directory took 1 Milliseconds to finish	
+[2019-12-14 18:44:31.451 GMT 43	Information	0	Orleans.Threading.ThreadPoolThread]	Starting thread Runtime.GrainDirectory.GlobalSingleInstanceActivationMaintainer0 on managed thread 43	
+[2019-12-14 18:44:31.454 GMT 10	Information	100452	Orleans.Runtime.Silo]	Init implicit stream subscribe table took 3 Milliseconds to finish	
+[2019-12-14 18:44:31.471 GMT 21	Information	100452	Orleans.Runtime.Silo]	Create system targets and inject dependencies took 16 Milliseconds to finish	
+[2019-12-14 18:44:31.472 GMT 27	Information	100452	Orleans.Runtime.SiloLifecycleSubject]	Orleans.Runtime.Silo started in stage RuntimeServices (4000) in 25.8325 Milliseconds	
+[2019-12-14 18:44:31.475 GMT 27	Information	100452	Orleans.Runtime.SiloLifecycleSubject]	MembershipTableCleanupAgent started in stage RuntimeGrainServices (8000) in 2.7919 Milliseconds	
+[2019-12-14 18:44:31.476 GMT 10	Information	100452	Orleans.Runtime.Silo]	Init grain services took 1 Milliseconds to finish	
+[2019-12-14 18:44:31.477 GMT 26	Information	100507	Orleans.Runtime.Catalog]	Before collection#1: memory=10MB, #activations=0, collector=<#Activations=0, #Buckets=0, buckets=[]>.	
+[2019-12-14 18:44:31.478 GMT 26	Information	100508	Orleans.Runtime.Catalog]	After collection#1: memory=10MB, #activations=0, collected 0 activations, collector=<#Activations=0, #Buckets=0, buckets=[]>, collection time=00:00:00.0046554.	
+[2019-12-14 18:44:31.481 GMT 27	Information	100452	Orleans.Runtime.SiloLifecycleSubject]	HostedClient started in stage RuntimeGrainServices (8000) in 5.6669 Milliseconds	
+[2019-12-14 18:44:31.482 GMT 10	Information	100603	Orleans.Runtime.MembershipService.MembershipTableManager]	MembershipOracle starting on host DESKTOP-GKPQB1U with SiloAddress S127.0.0.1:26470:314045071 at 2019-12-14 18:44:31.299 GMT	
+[2019-12-14 18:44:31.484 GMT 10	Information	100635	Orleans.Runtime.MembershipService.SystemTargetBasedMembershipTable]	Creating in-memory membership table	
+[2019-12-14 18:44:31.485 GMT 10	Information	100637	Orleans.Runtime.MembershipService.MembershipTableSystemTarget]	GrainBasedMembershipTable Activated.	
+[2019-12-14 18:44:31.491 GMT 24	Information	100452	Orleans.Runtime.Silo]	Init type manager took 15 Milliseconds to finish	
+[2019-12-14 18:44:31.493 GMT 24	Information	100702	Orleans.Runtime.CounterStatistic]	Starting Windows perf counter stats collection with frequency=00:00:30	
+[2019-12-14 18:44:31.493 GMT 24	Information	100452	Orleans.Runtime.Silo]	Start silo statistics took 1 Milliseconds to finish	
+[2019-12-14 18:44:31.494 GMT 26	Information	0	Orleans.Runtime.DeploymentLoadPublisher]	Starting DeploymentLoadPublisher.	
+[2019-12-14 18:44:31.505 GMT 26	Information	0	Orleans.Runtime.DeploymentLoadPublisher]	Started DeploymentLoadPublisher.	
+[2019-12-14 18:44:31.506 GMT 23	Information	100452	Orleans.Runtime.Silo]	Start deployment load collector took 12 Milliseconds to finish	
+[2019-12-14 18:44:31.506 GMT 23	Information	0	Orleans.Runtime.Watchdog]	Starting Silo Watchdog.	
+[2019-12-14 18:44:31.506 GMT 23	Information	0	Runtime.Watchdog]	Starting AsyncAgent Runtime.Watchdog on managed thread 23	
+[2019-12-14 18:44:31.506 GMT 45	Information	0	Orleans.Threading.ThreadPoolThread]	Starting thread Runtime.Watchdog0 on managed thread 45	
+[2019-12-14 18:44:31.506 GMT 27	Information	100452	Orleans.Runtime.SiloLifecycleSubject]	Orleans.Runtime.Silo started in stage RuntimeGrainServices (8000) in 34.6622 Milliseconds	
+[2019-12-14 18:44:31.580 GMT 23	Information	100631	Orleans.Runtime.MembershipService.SystemTargetBasedMembershipTable]	-Connected to membership table provider.	
+[2019-12-14 18:44:31.756 GMT 23	Information	100645	Orleans.Runtime.MembershipService.MembershipTableManager]	ProcessTableUpdate (called from Refresh) membership table: 0 silos, 0 are Active, 0 are Dead, Version=<0, 0>. All silos: []	
+[2019-12-14 18:44:31.763 GMT 26	Information	100452	Orleans.Runtime.SiloLifecycleSubject]	MembershipTableManager started in stage RuntimeGrainServices (8000) in 282.3661 Milliseconds	
+[2019-12-14 18:44:31.765 GMT 10	Information	100663	Orleans.Runtime.MembershipService.MembershipAgent]	-Joining	
+[2019-12-14 18:44:31.765 GMT 26	Information	100452	Orleans.Runtime.SiloLifecycleSubject]	SiloStatusListenerManager started in stage AfterRuntimeGrainServices (8100) in 0.1317 Milliseconds	
+[2019-12-14 18:44:31.789 GMT 25	Information	100645	Orleans.Runtime.MembershipService.MembershipTableManager]	ProcessTableUpdate (called from TryUpdateMyStatusGlobalOnce) membership table: 1 silos, 0 are Active, 0 are Dead, 1 are Joining, Version=<1, 0>. All silos: [SiloAddress=S127.0.0.1:26470:314045071 SiloName=Primary Status=Joining]	
+[2019-12-14 18:44:31.793 GMT 27	Information	100452	Orleans.Runtime.SiloLifecycleSubject]	MembershipAgent started in stage AfterRuntimeGrainServices (8100) in 30.105600000000003 Milliseconds	
+[2019-12-14 18:44:31.793 GMT 27	Information	100452	Orleans.Runtime.SiloLifecycleSubject]	Orleans.Runtime.Versions.GrainVersionStore started in stage ApplicationServices (10000) in 0.1009 Milliseconds	
+[2019-12-14 18:44:31.807 GMT 27	Information	100452	Orleans.Runtime.SiloLifecycleSubject]	ClusterHealthMonitor started in stage BecomeActive (19999) in 13.507200000000001 Milliseconds	
+[2019-12-14 18:44:31.808 GMT 25	Information	100604	Orleans.Runtime.MembershipService.MembershipAgent]	-BecomeActive	
+[2019-12-14 18:44:31.810 GMT 10	Information	0	Orleans.Runtime.Messaging.IncomingMessageAcceptor]	Starting AsyncAgent Runtime.Messaging.GatewayAcceptor on managed thread 10	
+[2019-12-14 18:44:31.810 GMT 10	Information	0	Runtime.Messaging.GatewayClientCleanupAgent]	Starting AsyncAgent Runtime.Messaging.GatewayClientCleanupAgent on managed thread 10	
+[2019-12-14 18:44:31.810 GMT 47	Information	0	Orleans.Threading.ThreadPoolThread]	Starting thread Runtime.Messaging.GatewayAcceptor0 on managed thread 47	
+[2019-12-14 18:44:31.810 GMT 10	Information	100452	Orleans.Runtime.Silo]	Start gateway took 1 Milliseconds to finish	
+[2019-12-14 18:44:31.810 GMT 48	Information	0	Orleans.Threading.ThreadPoolThread]	Starting thread Runtime.Messaging.GatewayClientCleanupAgent0 on managed thread 48	
+[2019-12-14 18:44:31.810 GMT 27	Information	100452	Orleans.Runtime.SiloLifecycleSubject]	Orleans.Runtime.Silo started in stage BecomeActive (19999) in 2.1925 Milliseconds	
+[2019-12-14 18:44:31.822 GMT 25	Information	100645	Orleans.Runtime.MembershipService.MembershipTableManager]	ProcessTableUpdate (called from TryUpdateMyStatusGlobalOnce) membership table: 1 silos, 1 are Active, 0 are Dead, Version=<2, 2>. All silos: [SiloAddress=S127.0.0.1:26470:314045071 SiloName=Primary Status=Active]	
+[2019-12-14 18:44:31.823 GMT 25	Information	100605	Orleans.Runtime.MembershipService.MembershipAgent]	-Finished BecomeActive.	
+[2019-12-14 18:44:31.824 GMT 27	Information	100452	Orleans.Runtime.SiloLifecycleSubject]	MembershipAgent started in stage BecomeActive (19999) in 17.4737 Milliseconds	
+[2019-12-14 18:44:31.827 GMT 26	Information	100452	Orleans.Runtime.SiloLifecycleSubject]	Orleans.Runtime.Silo started in stage Active (20000) in 3.1333 Milliseconds	
+[2019-12-14 18:44:32.035 GMT 27	Information	0	Orleans.Runtime.MembershipService.MembershipTableManager]	Received cluster membership snapshot via gossip: [Version: 3, 2 silos, SiloAddress=S127.0.0.1:26470:314045071 SiloName=Primary Status=Active, SiloAddress=S127.0.0.1:26471:314045071 SiloName=Secondary_1 Status=Joining]	
+[2019-12-14 18:44:32.055 GMT 27	Information	0	Orleans.Runtime.MembershipService.MembershipTableManager]	Received cluster membership snapshot via gossip: [Version: 4, 2 silos, SiloAddress=S127.0.0.1:26470:314045071 SiloName=Primary Status=Active, SiloAddress=S127.0.0.1:26471:314045071 SiloName=Secondary_1 Status=Active]	
+[2019-12-14 18:44:32.056 GMT 22	Information	103003	Orleans.Runtime.ConsistentRing.VirtualBucketsRingProvider]	Added Server S127.0.0.1:26471:314045071/xF5114D5E. Current view: [S127.0.0.1:26471:314045071 -> <MultiRange: Size=x7015EC6A, %Ring=43,783%>, S127.0.0.1:26470:314045071 -> <MultiRange: Size=x8FEA1396, %Ring=56,217%>]	
+[2019-12-14 18:44:32.056 GMT 22	Information	103005	Orleans.Runtime.ConsistentRing.VirtualBucketsRingProvider]	-NotifyLocalRangeSubscribers about old <MultiRange: Size=x100000000, %Ring=100,000%> new <MultiRange: Size=x8FEA1396, %Ring=56,217%> increased? True	
+[2019-12-14 18:44:32.056 GMT 22	Information	0	Orleans.Runtime.TypeManager]	Expediting cluster type map refresh due to new silo, S127.0.0.1:26471:314045071	
+[2019-12-14 18:44:32.058 GMT 27	Information	100612	Orleans.Runtime.MembershipService.ClusterHealthMonitor]	Will watch (actively ping) 1 silos: [S127.0.0.1:26471:314045071]	
+[2019-12-14 18:44:32.223 GMT 57	Information	101301	Orleans.Runtime.Messaging.Gateway]	Recorded opened socket from endpoint 127.0.0.1:54910, client ID *cli/62da7ca5.	
+[2019-12-14 18:44:32.225 GMT 26	Information	0	Runtime.Messaging.GatewaySender/GatewaySiloSender_0]	Starting AsyncAgent Runtime.Messaging.GatewaySender/GatewaySiloSender_0 on managed thread 26	
+[2019-12-14 18:44:32.225 GMT 97	Information	0	Orleans.Threading.ThreadPoolThread]	Starting thread Runtime.Messaging.GatewaySender/GatewaySiloSender_00 on managed thread 97	
+[2019-12-14 18:44:32.399 GMT 7	Information	101302	Orleans.Runtime.Messaging.Gateway]	Recorded closed socket from endpoint 127.0.0.1:54910, client ID *cli/62da7ca5.	
+[2019-12-14 18:44:32.446 GMT 26	Information	0	Orleans.Runtime.MembershipService.MembershipTableManager]	Received cluster membership snapshot via gossip: [Version: 5, 2 silos, SiloAddress=S127.0.0.1:26470:314045071 SiloName=Primary Status=Active, SiloAddress=S127.0.0.1:26471:314045071 SiloName=Secondary_1 Status=ShuttingDown]	
+[2019-12-14 18:44:32.449 GMT 27	Information	100524	Orleans.Runtime.Catalog]	Catalog is deactivating 0 activations due to a failure of silo S127.0.0.1:26471:314045071/xF5114D5E, since it is a primary directory partition to these grain ids.	
+[2019-12-14 18:44:32.453 GMT 25	Information	103004	Orleans.Runtime.ConsistentRing.VirtualBucketsRingProvider]	Removed Server S127.0.0.1:26471:314045071/xF5114D5E. Current view: [S127.0.0.1:26470:314045071 -> <MultiRange: Size=x100000000, %Ring=100,000%>]	
+[2019-12-14 18:44:32.453 GMT 25	Information	103005	Orleans.Runtime.ConsistentRing.VirtualBucketsRingProvider]	-NotifyLocalRangeSubscribers about old <MultiRange: Size=x8FEA1396, %Ring=56,217%> new <MultiRange: Size=x100000000, %Ring=100,000%> increased? True	
+[2019-12-14 18:44:34.484 GMT 27	Information	0	Orleans.Runtime.MembershipService.MembershipTableManager]	Received cluster membership snapshot via gossip: [Version: 6, 2 silos, SiloAddress=S127.0.0.1:26470:314045071 SiloName=Primary Status=Active, SiloAddress=S127.0.0.1:26471:314045071 SiloName=Secondary_1 Status=Dead]	
+[2019-12-14 18:44:34.484 GMT 27	Information	100612	Orleans.Runtime.MembershipService.ClusterHealthMonitor]	Will watch (actively ping) 0 silos: []	
+[2019-12-14 18:44:34.485 GMT 37	Information	101016	Runtime.Messaging.SiloMessageSender/PingSender]	Silo S127.0.0.1:26470:314045071 is dropping message: Response S127.0.0.1:26470:314045071*stg/15/0000000f@S0000000f->S127.0.0.1:26471:314045071*stg/15/0000000f@S0000000f #39: . Reason = Target S127.0.0.1:26471:314045071 silo is known to be dead	
+[2019-12-14 18:44:35.000 GMT 26	Information	100452	Orleans.Runtime.SiloLifecycleSubject]	Orleans.Runtime.Silo stopped in stage Active (20000) in 0.061200000000000004 Milliseconds.	
+[2019-12-14 18:44:35.000 GMT 26	Information	100452	Orleans.Runtime.SiloLifecycleSubject]	Stopping lifecycle stage Active (20000) took 0.1024 Milliseconds	
+[2019-12-14 18:44:35.001 GMT 26	Information	100606	Orleans.Runtime.MembershipService.MembershipAgent]	-Shutdown	
+[2019-12-14 18:44:35.001 GMT 26	Information	100452	Orleans.Runtime.SiloLifecycleSubject]	ClusterHealthMonitor stopped in stage BecomeActive (19999) in 0.393 Milliseconds.	
+[2019-12-14 18:44:35.001 GMT 25	Information	100417	Orleans.Runtime.Silo]	Silo starting to Shutdown()	
+[2019-12-14 18:44:35.001 GMT 43	Information	100328	Orleans.Threading.ThreadPoolThread]	Stopping Thread Runtime.GrainDirectory.GlobalSingleInstanceActivationMaintainer0 on managed thread 43	
+[2019-12-14 18:44:35.001 GMT 25	Information	100545	Orleans.Runtime.Catalog]	DeactivateAllActivations.	
+[2019-12-14 18:44:35.002 GMT 26	Information	100645	Orleans.Runtime.MembershipService.MembershipTableManager]	ProcessTableUpdate (called from TryUpdateMyStatusGlobalOnce) membership table: 2 silos, 0 are Active, 1 are Dead, 1 are ShuttingDown, Version=<7, 12>. All silos: [SiloAddress=S127.0.0.1:26470:314045071 SiloName=Primary Status=ShuttingDown, SiloAddress=S127.0.0.1:26471:314045071 SiloName=Secondary_1 Status=Dead]	
+[2019-12-14 18:44:35.002 GMT 26	Information	100452	Orleans.Runtime.SiloLifecycleSubject]	MembershipAgent stopped in stage BecomeActive (19999) in 1.8081 Milliseconds.	
+[2019-12-14 18:44:37.014 GMT 47	Information	100328	Orleans.Threading.ThreadPoolThread]	Stopping Thread Runtime.Messaging.GatewayAcceptor0 on managed thread 47	
+[2019-12-14 18:44:37.014 GMT 97	Information	100328	Orleans.Threading.ThreadPoolThread]	Stopping Thread Runtime.Messaging.GatewaySender/GatewaySiloSender_00 on managed thread 97	
+[2019-12-14 18:44:37.014 GMT 27	Information	100452	Orleans.Runtime.SiloLifecycleSubject]	Orleans.Runtime.Silo stopped in stage BecomeActive (19999) in 2013.4454 Milliseconds.	
+[2019-12-14 18:44:37.014 GMT 27	Information	100452	Orleans.Runtime.SiloLifecycleSubject]	Stopping lifecycle stage BecomeActive (19999) took 2013.9514000000001 Milliseconds	
+[2019-12-14 18:44:37.015 GMT 27	Information	100452	Orleans.Runtime.SiloLifecycleSubject]	Orleans.Runtime.Versions.GrainVersionStore stopped in stage ApplicationServices (10000) in 0.0071 Milliseconds.	
+[2019-12-14 18:44:37.015 GMT 27	Information	100452	Orleans.Runtime.SiloLifecycleSubject]	Stopping lifecycle stage ApplicationServices (10000) took 0.12510000000000002 Milliseconds	
+[2019-12-14 18:44:37.015 GMT 27	Information	100452	Orleans.Runtime.SiloLifecycleSubject]	MembershipAgent stopped in stage AfterRuntimeGrainServices (8100) in 0.009300000000000001 Milliseconds.	
+[2019-12-14 18:44:37.015 GMT 27	Information	100452	Orleans.Runtime.SiloLifecycleSubject]	SiloStatusListenerManager stopped in stage AfterRuntimeGrainServices (8100) in 0.0057 Milliseconds.	
+[2019-12-14 18:44:37.015 GMT 27	Information	100452	Orleans.Runtime.SiloLifecycleSubject]	Stopping lifecycle stage AfterRuntimeGrainServices (8100) took 0.2726 Milliseconds	
+[2019-12-14 18:44:37.015 GMT 27	Information	100452	Orleans.Runtime.SiloLifecycleSubject]	Orleans.Runtime.Silo stopped in stage RuntimeGrainServices (8000) in 0.005 Milliseconds.	
+[2019-12-14 18:44:37.015 GMT 27	Information	100452	Orleans.Runtime.SiloLifecycleSubject]	MembershipTableCleanupAgent stopped in stage RuntimeGrainServices (8000) in 0.0367 Milliseconds.	
+[2019-12-14 18:44:37.015 GMT 27	Information	100452	Orleans.Runtime.SiloLifecycleSubject]	HostedClient stopped in stage RuntimeGrainServices (8000) in 0.126 Milliseconds.	
+[2019-12-14 18:44:37.016 GMT 27	Information	100452	Orleans.Runtime.SiloLifecycleSubject]	MembershipTableManager stopped in stage RuntimeGrainServices (8000) in 0.3309 Milliseconds.	
+[2019-12-14 18:44:37.016 GMT 27	Information	100452	Orleans.Runtime.SiloLifecycleSubject]	Stopping lifecycle stage RuntimeGrainServices (8000) took 0.9361 Milliseconds	
+[2019-12-14 18:44:37.016 GMT 27	Information	100452	Orleans.Runtime.SiloLifecycleSubject]	Orleans.Runtime.Silo stopped in stage RuntimeServices (4000) in 0.1915 Milliseconds.	
+[2019-12-14 18:44:37.017 GMT 27	Information	100452	Orleans.Runtime.SiloLifecycleSubject]	Stopping lifecycle stage RuntimeServices (4000) took 0.3272 Milliseconds	
+[2019-12-14 18:44:37.017 GMT 22	Information	100413	Orleans.Runtime.Silo]	Silo is Stopped()	
+[2019-12-14 18:44:37.017 GMT 22	Information	100528	Orleans.Runtime.ActivationDirectory]	ActivationDirectory.PrintActivationDirectory(): Size = 0, Directory:
+[]	
+[2019-12-14 18:44:37.017 GMT 36	Information	100328	Orleans.Threading.ThreadPoolThread]	Stopping Thread Runtime.Messaging.IncomingMessageAcceptor0 on managed thread 36	
+[2019-12-14 18:44:37.017 GMT 27	Information	100452	Orleans.Runtime.SiloLifecycleSubject]	Orleans.Runtime.InsideRuntimeClient stopped in stage RuntimeInitialize (2000) in 0.025400000000000002 Milliseconds.	
+[2019-12-14 18:44:37.017 GMT 39	Information	100328	Orleans.Threading.ThreadPoolThread]	Stopping Thread Runtime.Messaging.IncomingMessageAgent/Ping0 on managed thread 39	
+[2019-12-14 18:44:37.017 GMT 41	Information	100328	Orleans.Threading.ThreadPoolThread]	Stopping Thread Runtime.Messaging.IncomingMessageAgent/Application0 on managed thread 41	
+[2019-12-14 18:44:37.017 GMT 40	Information	100328	Orleans.Threading.ThreadPoolThread]	Stopping Thread Runtime.Messaging.IncomingMessageAgent/System0 on managed thread 40	
+[2019-12-14 18:44:37.018 GMT 27	Information	100452	Orleans.Runtime.SiloLifecycleSubject]	SiloStatusListenerManager stopped in stage RuntimeInitialize (2000) in 1.0437 Milliseconds.	
+[2019-12-14 18:44:37.018 GMT 38	Information	100328	Orleans.Threading.ThreadPoolThread]	Stopping Thread Runtime.Messaging.SiloMessageSender/SystemSender0 on managed thread 38	
+[2019-12-14 18:44:37.018 GMT 37	Information	100328	Orleans.Threading.ThreadPoolThread]	Stopping Thread Runtime.Messaging.SiloMessageSender/PingSender0 on managed thread 37	
+[2019-12-14 18:44:37.018 GMT 25	Information	100609	Orleans.Runtime.MembershipService.MembershipAgent]	Updating status to Dead	
+[2019-12-14 18:44:37.018 GMT 22	Information	100703	Orleans.Runtime.CounterStatistic]	Stopping  Windows perf counter stats collection	
+[2019-12-14 18:44:37.018 GMT 25	Information	100112	Orleans.Runtime.Messaging.OutboundMessageQueue]	Message was queued for sending after outbound queue was stopped: Request S127.0.0.1:26470:314045071*cli/edca32ae@66c653a9->S127.0.0.1:26470:0*stg/29/0000001d@S0000001d #43: 	
+[2019-12-14 18:44:37.018 GMT 27	Information	100452	Orleans.Runtime.SiloLifecycleSubject]	ClusterMembershipService stopped in stage RuntimeInitialize (2000) in 0.9914000000000001 Milliseconds.	
+[2019-12-14 18:44:37.020 GMT 22	Information	100704	Orleans.RuntimeSiloLogStatistics]	Statistics: ^^^
+App.Requests.Latency.Average.Millis=7.000
+App.Requests.LatencyHistogram.Millis=[0.1024:0,20470000000000002]=1, [0.2048:0,40950000000000003]=1, [0.4096:0,8191]=10, [0.8192:1,6383]=5, [1.6384:3,2767]=7, [3.2768:6,5535000000000005]=8, [6.5536:13,1071]=2, [13.1072:26,2143]=2, [26.2144:52,4287]=1, [52.4288:104,8575]=2, 
+App.Requests.TimedOut.Current=0
+App.Requests.Total.Requests.Current=39,      Delta=2
+Catalog.Activation.Collection.NumberOfCollections.Current=2
+Catalog.Activation.Created.Current=1
+Catalog.Activation.CurrentCount=0
+Catalog.Activation.Destroyed.Current=1
+Catalog.Activation.FailedToActivate.Current=1
+Client.ConnectedGatewayCount=0
+ConsistentRing.AverageRangePercentage=100.000
+ConsistentRing.MyRange.RingDistance=x100000000
+ConsistentRing.MyRange.RingPercentage=100.000
+ConsistentRing.Ring=[S127.0.0.1:26470:314045071 -> <MultiRange: Size=x100000000, %Ring=100,000%>]
+ConsistentRing.RingSize=1
+Directory.CacheSize=0
+Directory.Lookups.Cache.HitRatio=0, Delta=0
+Directory.Lookups.Cache.Issued.Current=1
+Directory.Lookups.Cache.Successes.Current=0
+Directory.Lookups.Full.Issued.Current=1
+Directory.Lookups.Local.Issued.Current=1
+Directory.Lookups.Local.Successes.Current=0
+Directory.Lookups.LocalDirectory.Issued.Current=1
+Directory.Lookups.LocalDirectory.Successes.Current=0
+Directory.Lookups.Remote.Received.Current=1
+Directory.Lookups.Remote.Sent.Current=1
+Directory.PartitionSize=0
+Directory.Registrations.Issued.Current=6,      Delta=2
+Directory.Registrations.Local.Current=8,      Delta=2
+Directory.Registrations.Remote.Received.Current=4
+Directory.Registrations.Remote.Sent.Current=1
+Directory.Registrations.SingleAct.Issued.Current=1
+Directory.Registrations.SingleAct.Local.Current=1
+Directory.Registrations.SingleAct.Remote.Received.Current=2
+Directory.Registrations.SingleAct.Remote.Sent.Current=1
+Directory.Ring=[S127.0.0.1:26470:314045071/6A338BC0]
+Directory.Ring.MyPortion.AverageRingPercentage=100.000
+Directory.Ring.MyPortion.RingDistance=0
+Directory.Ring.MyPortion.RingPercentage=0.000
+Directory.Ring.MyPredecessors=[]
+Directory.Ring.MySuccessors=[]
+Directory.Ring.RingSize=1
+Directory.UnRegistrations.Issued.Current=2,      Delta=1
+Directory.UnRegistrations.Local.Current=1
+Directory.UnRegistrations.Remote.Received.Current=1
+Directory.UnRegistrations.Remote.Sent.Current=2,      Delta=1
+Directory.UnRegistrationsMany.Issued.Current=0
+Directory.UnRegistrationsMany.Remote.Received.Current=0
+Directory.UnRegistrationsMany.Remote.Sent.Current=0
+Directory.Validations.Cache.Received.Current=0
+Directory.Validations.Cache.Sent.Current=0
+Dispatcher.NewPlacement.Current=1
+Gateway.ConnectedClients.Current=2
+Gateway.LoadShedding.Current=0
+Gateway.Received.Current=5
+Gateway.Sent.Current=5
+Grain.Grains.PlayerGrain.Current=0
+MessageCenter.ReceiveQueueLength=0
+MessageCenter.SendQueueLength=0
+Messaging.Acceptor.AllocatedSocketEventArgs.Current=5
+Messaging.Acceptor.CheckedInSocketEventArgs.Current=5
+Messaging.Acceptor.CheckedOutSocketEventArgs.Current=5
+Messaging.Acceptor.InUseSocketEventArgs=0
+Messaging.Expired.AtDispatch.Current=0
+Messaging.Expired.AtInvoke.Current=0
+Messaging.Expired.AtReceive.Current=0
+Messaging.Expired.AtRespond.Current=0
+Messaging.Expired.AtSend.Current=0
+Messaging.Pings.Received.S127.0.0.1:26471:314045071.Current=1
+Messaging.Pings.ReplyReceived.S127.0.0.1:26470:314045071.Current=1
+Messaging.Pings.Sent.S127.0.0.1:26470:314045071.Current=1
+Messaging.Processing.ActivationData.All=0
+Messaging.Processing.Dispatcher.Processed.Errors.Direction.OneWay.Current=0
+Messaging.Processing.Dispatcher.Processed.Errors.Direction.Request.Current=0
+Messaging.Processing.Dispatcher.Processed.Errors.Direction.Response.Current=0
+Messaging.Processing.Dispatcher.Processed.Ok.Direction.OneWay.Current=0
+Messaging.Processing.Dispatcher.Processed.Ok.Direction.Request.Current=0
+Messaging.Processing.Dispatcher.Processed.Ok.Direction.Response.Current=0
+Messaging.Processing.Dispatcher.Processed.ReRoute.Direction.OneWay.Current=0
+Messaging.Processing.Dispatcher.Processed.ReRoute.Direction.Request.Current=0
+Messaging.Processing.Dispatcher.Processed.ReRoute.Direction.Response.Current=0
+Messaging.Processing.Dispatcher.Processed.Total.Current=0
+Messaging.Processing.Dispatcher.Received.Direction.OneWay.Current=0
+Messaging.Processing.Dispatcher.Received.Direction.Request.Current=1
+Messaging.Processing.Dispatcher.Received.Direction.Response.Current=0
+Messaging.Processing.Dispatcher.Received.OnActivationContext.Current=0
+Messaging.Processing.Dispatcher.Received.OnNullContext.Current=1
+Messaging.Processing.Dispatcher.Received.Total.Current=1
+Messaging.Processing.IGC.Forwarded.Current=0
+Messaging.Processing.IGC.ReRoute.Current=0
+Messaging.Processing.IGC.Resent.Current=0
+Messaging.Processing.IMA.Enqueued.ToActivationContex.Current=0
+Messaging.Processing.IMA.Enqueued.ToNullContex.Current=1
+Messaging.Processing.IMA.Enqueued.ToSystemTargetContex.Current=59,      Delta=4
+Messaging.Processing.IMA.Received.Current=60,      Delta=4
+Messaging.Received.BatchSize.PerSocketDirection.ClientToGateway=0.000
+Messaging.Received.BatchSize.PerSocketDirection.GatewayToClient=0.000
+Messaging.Received.BatchSize.PerSocketDirection.SiloToSilo=0.000
+Messaging.Received.BatchSizeBytesHistogram.Bytes.PerSocketDirection.ClientToGateway=
+Messaging.Received.BatchSizeBytesHistogram.Bytes.PerSocketDirection.GatewayToClient=
+Messaging.Received.BatchSizeBytesHistogram.Bytes.PerSocketDirection.SiloToSilo=
+Messaging.Received.Bytes.Header.Current=13538,      Delta=386
+Messaging.Received.Bytes.Total.Current=29532,      Delta=604
+Messaging.Received.Direction.OneWay.Current=0
+Messaging.Received.Direction.Request.Current=37,      Delta=2
+Messaging.Received.Direction.Response.Current=28
+Messaging.Received.Messages.From.Null.Current=5
+Messaging.Received.Messages.From.S127.0.0.1:26470:0.Current=9
+Messaging.Received.Messages.From.S127.0.0.1:26470:314045071.Current=24,      Delta=2
+Messaging.Received.Messages.From.S127.0.0.1:26471:314045071.Current=26
+Messaging.Received.Messages.From.S127.0.0.1:45791:0.Current=1
+Messaging.Received.Messages.Total.Current=65,      Delta=2
+Messaging.Received.MessageSizeHistogram.Bytes=[128:255]=34, [256:511]=19, [512:1023]=8, [1024:2047]=1, [2048:4095]=3, 
+Messaging.Rejected.Request.Current=1
+Messaging.Rerouted.OneWay.Current=0
+Messaging.Rerouted.Request.Current=3
+Messaging.Rerouted.Response.Current=0
+Messaging.Sent.BatchSize.PerSocketDirection.ClientToGateway=0.000
+Messaging.Sent.BatchSize.PerSocketDirection.GatewayToClient=0.000
+Messaging.Sent.BatchSize.PerSocketDirection.SiloToSilo=0.000
+Messaging.Sent.BatchSizeBytesHistogram.Bytes.PerSocketDirection.ClientToGateway=
+Messaging.Sent.BatchSizeBytesHistogram.Bytes.PerSocketDirection.GatewayToClient=
+Messaging.Sent.BatchSizeBytesHistogram.Bytes.PerSocketDirection.SiloToSilo=
+Messaging.Sent.Bytes.Header.Current=13538,      Delta=386
+Messaging.Sent.Bytes.Total.Current=30052,      Delta=620
+Messaging.Sent.Direction.OneWay.Current=0
+Messaging.Sent.Direction.Request.Current=37,      Delta=2
+Messaging.Sent.Direction.Response.Current=28
+Messaging.Sent.Dropped.Response.Current=1
+Messaging.Sent.Failed.Response.Current=1
+Messaging.Sent.LocalMessages.Current=13,      Delta=2
+Messaging.Sent.Messages.To.Null.Current=5
+Messaging.Sent.Messages.To.S127.0.0.1:26470:0.Current=17,      Delta=2
+Messaging.Sent.Messages.To.S127.0.0.1:26470:314045071.Current=15
+Messaging.Sent.Messages.To.S127.0.0.1:26471:314045071.Current=23
+Messaging.Sent.Messages.To.S127.0.0.1:45790:0.Current=2
+Messaging.Sent.Messages.To.S127.0.0.1:45791:0.Current=3
+Messaging.Sent.Messages.Total.Current=65,      Delta=2
+Messaging.Sent.MessageSizeHistogram.Bytes=[128:255]=33, [256:511]=20, [512:1023]=8, [1024:2047]=1, [2048:4095]=3, 
+Networking.Sockets.ClientToGateway.Duplex.Closed.Current=4
+Networking.Sockets.ClientToGateway.Duplex.Opened.Current=4
+Networking.Sockets.GatewayToClient.Duplex.Closed.Current=0
+Networking.Sockets.GatewayToClient.Duplex.Opened.Current=0
+Networking.Sockets.Silo.Receiving.Closed.Current=0
+Networking.Sockets.Silo.Receiving.Opened.Current=3
+Networking.Sockets.Silo.Sending.Closed.Current=0
+Networking.Sockets.Silo.Sending.Opened.Current=3
+Queues.QueueSize.Instantaneous.Scheduler.LevelOne=0
+Runtime.IsOverloaded=False
+Runtime.Threads.AsynchAgent.Messaging.GatewayClientReceiver/gwy.tcp://127.0.0.1:45790/00.Current=0
+Runtime.Threads.AsynchAgent.Messaging.GatewayClientReceiver/gwy.tcp://127.0.0.1:45791/00.Current=0
+Runtime.Threads.AsynchAgent.Messaging.GatewayConnection/GatewayClientSender_gwy.tcp://127.0.0.1:45790/00.Current=0
+Runtime.Threads.AsynchAgent.Messaging.GatewayConnection/GatewayClientSender_gwy.tcp://127.0.0.1:45791/00.Current=0
+Runtime.Threads.AsynchAgent.Runtime.GrainDirectory.AdaptiveDirectoryCacheMaintainer`10.Current=2
+Runtime.Threads.AsynchAgent.Runtime.GrainDirectory.GlobalSingleInstanceActivationMaintainer0.Current=0,      Delta=-1
+Runtime.Threads.AsynchAgent.Runtime.Messaging.GatewayAcceptor0.Current=0,      Delta=-1
+Runtime.Threads.AsynchAgent.Runtime.Messaging.GatewayClientCleanupAgent0.Current=2
+Runtime.Threads.AsynchAgent.Runtime.Messaging.GatewaySender/GatewaySiloSender_00.Current=0,      Delta=-1
+Runtime.Threads.AsynchAgent.Runtime.Messaging.IncomingMessageAcceptor0.Current=0,      Delta=-1
+Runtime.Threads.AsynchAgent.Runtime.Messaging.IncomingMessageAgent/Application0.Current=0,      Delta=-1
+Runtime.Threads.AsynchAgent.Runtime.Messaging.IncomingMessageAgent/Ping0.Current=0,      Delta=-1
+Runtime.Threads.AsynchAgent.Runtime.Messaging.IncomingMessageAgent/System0.Current=0,      Delta=-1
+Runtime.Threads.AsynchAgent.Runtime.Messaging.SiloMessageSender/PingSender0.Current=0,      Delta=-1
+Runtime.Threads.AsynchAgent.Runtime.Messaging.SiloMessageSender/SystemSender0.Current=0,      Delta=-1
+Runtime.Threads.AsynchAgent.Runtime.Scheduler.OrleansSchedulerAsynchAgent/Scheduler.LevelOne.MainQueue0.Current=1,      Delta=-1
+Runtime.Threads.AsynchAgent.Runtime.Scheduler.OrleansSchedulerAsynchAgent/Scheduler.LevelOne.MainQueue1.Current=1,      Delta=-1
+Runtime.Threads.AsynchAgent.Runtime.Scheduler.OrleansSchedulerAsynchAgent/Scheduler.LevelOne.MainQueue2.Current=1,      Delta=-1
+Runtime.Threads.AsynchAgent.Runtime.Scheduler.OrleansSchedulerAsynchAgent/Scheduler.LevelOne.MainQueue3.Current=1,      Delta=-1
+Runtime.Threads.AsynchAgent.Runtime.Scheduler.OrleansSchedulerAsynchAgent/Scheduler.LevelOne.MainQueue4.Current=1,      Delta=-1
+Runtime.Threads.AsynchAgent.Runtime.Scheduler.OrleansSchedulerAsynchAgent/Scheduler.LevelOne.MainQueue5.Current=1,      Delta=-1
+Runtime.Threads.AsynchAgent.Runtime.Scheduler.OrleansSchedulerAsynchAgent/Scheduler.LevelOne.MainQueue6.Current=1,      Delta=-1
+Runtime.Threads.AsynchAgent.Runtime.Scheduler.OrleansSchedulerAsynchAgent/Scheduler.LevelOne.MainQueue7.Current=1,      Delta=-1
+Runtime.Threads.AsynchAgent.Runtime.Scheduler.OrleansSchedulerAsynchAgent/Scheduler.LevelOne.SystemQueue0.Current=1,      Delta=-1
+Runtime.Threads.AsynchAgent.Runtime.Scheduler.OrleansSchedulerAsynchAgent/Scheduler.LevelOne.SystemQueue1.Current=1,      Delta=-1
+Runtime.Threads.AsynchAgent.Runtime.Watchdog0.Current=1,      Delta=-1
+Runtime.Threads.AsynchAgent.TotalThreadsCreated.Current=48
+Scheduler.NumLongQueueWaitTimes.Current=0
+Scheduler.NumLongRunningTurns.Current=0
+Scheduler.WorkItemGroupCount=14
+Serialization.BufferPool.AllocatedBuffers.Current=750
+Serialization.BufferPool.BuffersInPool=217
+Serialization.BufferPool.CheckedInBuffers.Current=894,      Delta=4
+Serialization.BufferPool.CheckedOutBuffers.Current=1123,      Delta=4
+Serialization.BufferPool.DroppedBuffers.Current=0
+Serialization.BufferPool.DroppedTooLargeBuffers.Current=0
+Serialization.BufferPool.InUse.AllocatedAndNotInPool_Buffers=533
+Serialization.BufferPool.InUse.CheckedOutAndNotCheckedIn_Buffers=229
+Silo.StartTime=2019-12-14 18:44:31.035 GMT
+Storage.Activate.Errors.Current=0
+Storage.Activate.Total.Current=0
+Storage.Clear.Errors.Current=0
+Storage.Clear.Latency=0 Secs
+Storage.Clear.Total.Current=0
+Storage.Read.Errors.Current=0
+Storage.Read.Latency=0 Secs
+Storage.Read.Total.Current=0
+Storage.Write.Errors.Current=0
+Storage.Write.Latency=0 Secs
+Storage.Write.Total.Current=0
+SystemTarget..Current=7
+Watchdog.NumHealthChecks.Current=0
+	
+[2019-12-14 18:44:37.021 GMT 44	Error	100326	Orleans.Runtime.HostedClient]	!!!!!!!!!! RunClientMessagePump has thrown exception	
+Exc level 0: System.OperationCanceledException: The operation was canceled.
+   at System.Collections.Concurrent.BlockingCollection`1.TryTakeWithNoTimeValidation(T& item, Int32 millisecondsTimeout, CancellationToken cancellationToken, CancellationTokenSource combinedTokenSource)
+   at System.Collections.Concurrent.BlockingCollection`1.TryTake(T& item, Int32 millisecondsTimeout, CancellationToken cancellationToken)
+   at System.Collections.Concurrent.BlockingCollection`1.Take(CancellationToken cancellationToken)
+   at Orleans.Runtime.HostedClient.RunClientMessagePump()
+[2019-12-14 18:44:37.021 GMT 27	Information	100452	Orleans.Runtime.SiloLifecycleSubject]	Orleans.Runtime.Silo stopped in stage RuntimeInitialize (2000) in 4.5163 Milliseconds.	
+[2019-12-14 18:44:37.511 GMT 45	Information	100328	Orleans.Threading.ThreadPoolThread]	Stopping Thread Runtime.Watchdog0 on managed thread 45	
+[2019-12-14 18:44:42.030 GMT 25	Warning	0	Orleans.Runtime.MembershipService.MembershipTableManager]	Failed to update status to dead in the alotted time during shutdown	
+[2019-12-14 18:44:42.031 GMT 27	Information	100452	Orleans.Runtime.SiloLifecycleSubject]	MembershipAgent stopped in stage RuntimeInitialize (2000) in 5013.154500000001 Milliseconds.	
+[2019-12-14 18:44:42.031 GMT 27	Information	100452	Orleans.Runtime.SiloLifecycleSubject]	Stopping lifecycle stage RuntimeInitialize (2000) took 5014.0029 Milliseconds	
+[2019-12-14 18:44:42.031 GMT 27	Information	100452	Orleans.Runtime.SiloLifecycleSubject]	Orleans.Runtime.SiloOptionsLogger stopped in stage First (-2147483648) in 0.0032 Milliseconds.	
+[2019-12-14 18:44:42.031 GMT 27	Information	100452	Orleans.Runtime.SiloLifecycleSubject]	Stopping lifecycle stage First (-2147483648) took 0.0327 Milliseconds	
+[2019-12-14 18:44:42.031 GMT 32	Information	100328	Orleans.Threading.ThreadPoolThread]	Stopping Thread Runtime.Scheduler.OrleansSchedulerAsynchAgent/Scheduler.LevelOne.MainQueue4 on managed thread 32	
+[2019-12-14 18:44:42.031 GMT 30	Information	100328	Orleans.Threading.ThreadPoolThread]	Stopping Thread Runtime.Scheduler.OrleansSchedulerAsynchAgent/Scheduler.LevelOne.MainQueue2 on managed thread 30	
+[2019-12-14 18:44:42.031 GMT 31	Information	100328	Orleans.Threading.ThreadPoolThread]	Stopping Thread Runtime.Scheduler.OrleansSchedulerAsynchAgent/Scheduler.LevelOne.MainQueue3 on managed thread 31	
+[2019-12-14 18:44:42.031 GMT 33	Information	100328	Orleans.Threading.ThreadPoolThread]	Stopping Thread Runtime.Scheduler.OrleansSchedulerAsynchAgent/Scheduler.LevelOne.MainQueue5 on managed thread 33	
+[2019-12-14 18:44:42.031 GMT 29	Information	100328	Orleans.Threading.ThreadPoolThread]	Stopping Thread Runtime.Scheduler.OrleansSchedulerAsynchAgent/Scheduler.LevelOne.MainQueue1 on managed thread 29	
+[2019-12-14 18:44:42.031 GMT 26	Information	100328	Orleans.Threading.ThreadPoolThread]	Stopping Thread Runtime.Scheduler.OrleansSchedulerAsynchAgent/Scheduler.LevelOne.SystemQueue0 on managed thread 26	
+[2019-12-14 18:44:42.031 GMT 28	Information	100328	Orleans.Threading.ThreadPoolThread]	Stopping Thread Runtime.Scheduler.OrleansSchedulerAsynchAgent/Scheduler.LevelOne.MainQueue0 on managed thread 28	
+[2019-12-14 18:44:42.031 GMT 34	Information	100328	Orleans.Threading.ThreadPoolThread]	Stopping Thread Runtime.Scheduler.OrleansSchedulerAsynchAgent/Scheduler.LevelOne.MainQueue6 on managed thread 34	
+[2019-12-14 18:44:42.031 GMT 27	Information	100328	Orleans.Threading.ThreadPoolThread]	Stopping Thread Runtime.Scheduler.OrleansSchedulerAsynchAgent/Scheduler.LevelOne.SystemQueue1 on managed thread 27	
+[2019-12-14 18:44:42.031 GMT 35	Information	100328	Orleans.Threading.ThreadPoolThread]	Stopping Thread Runtime.Scheduler.OrleansSchedulerAsynchAgent/Scheduler.LevelOne.MainQueue7 on managed thread 35	
+[2019-12-14 18:44:42.031 GMT 25	Information	101203	Orleans.Runtime.Scheduler.OrleansTaskScheduler]	OrleansTaskScheduler.PrintStatistics(): RunQueue=0, WorkItems=14, Directory:
+[--System*WorkItemGroup:Name=*stg/10/0000000a,WorkGroupStatus=Waiting. Currently QueuedWorkItems=0; Total EnQueued=9; Total processed=9; Quantum expirations=0; TaskRunner=ActivationTaskScheduler-6:Queued=0; Detailed SchedulingContext=<[SystemTarget: S127.0.0.1:26470:314045071*stg/10/0000000a@S0000000a] CurrentlyExecuting=Request S127.0.0.1:26471:314045071*stg/10/0000000a@S0000000a->S127.0.0.1:26470:314045071*stg/10/0000000a@S0000000a #34: >
+--System*WorkItemGroup:Name=*stg/11/0000000b,WorkGroupStatus=Waiting. Currently QueuedWorkItems=0; Total EnQueued=4; Total processed=4; Quantum expirations=0; TaskRunner=ActivationTaskScheduler-7:Queued=0; Detailed SchedulingContext=<[SystemTarget: S127.0.0.1:26470:314045071*stg/11/0000000b@S0000000b] CurrentlyExecuting=null>
+--System*WorkItemGroup:Name=*stg/12/0000000c,WorkGroupStatus=Waiting. Currently QueuedWorkItems=0; Total EnQueued=0; Total processed=0; Quantum expirations=0; TaskRunner=ActivationTaskScheduler-3:Queued=0; Detailed SchedulingContext=<[SystemTarget: S127.0.0.1:26470:314045071*stg/12/0000000c@S0000000c] CurrentlyExecuting=null>
+--System*WorkItemGroup:Name=*stg/13/0000000d,WorkGroupStatus=Waiting. Currently QueuedWorkI

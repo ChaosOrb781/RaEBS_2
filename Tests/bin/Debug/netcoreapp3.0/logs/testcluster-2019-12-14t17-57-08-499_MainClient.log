@@ -1,0 +1,232 @@
+﻿[2019-12-14 17:57:10.513 GMT 13	Information	100313	Orleans.OutsideRuntimeClient]	---------- Initializing OutsideRuntimeClient on DESKTOP-GKPQB1U at 25.42.218.143 Client Id = *cli/7c208182 ----------	
+[2019-12-14 17:57:10.516 GMT 13	Information	100314	Orleans.OutsideRuntimeClient]	---------- Starting OutsideRuntimeClient with runtime Version='2.4.2. Commit Hash: fd62117e7374fba917995f66f5be41824a58cd2e (Release).' in AppDomain=<AppDomain.Id=1, AppDomain.FriendlyName=testhost>	
+[2019-12-14 17:57:10.522 GMT 53	Information	101309	Orleans.Messaging.GatewayManager]	Found 2 knownGateways from Gateway listProvider [gwy.tcp://127.0.0.1:45780/0, gwy.tcp://127.0.0.1:45781/0]	
+[2019-12-14 17:57:10.529 GMT 53	Information	100908	Messaging.GatewayConnection/GatewayClientSender_gwy.tcp://127.0.0.1:45781/0]	Connected to gateway at address gwy.tcp://127.0.0.1:45781/0 on trial 0.	
+[2019-12-14 17:57:10.530 GMT 53	Information	0	Messaging.GatewayClientReceiver/gwy.tcp://127.0.0.1:45781/0]	Starting AsyncAgent Messaging.GatewayClientReceiver/gwy.tcp://127.0.0.1:45781/0 on managed thread 53	
+[2019-12-14 17:57:10.530 GMT 53	Information	0	Messaging.GatewayConnection/GatewayClientSender_gwy.tcp://127.0.0.1:45781/0]	Starting AsyncAgent Messaging.GatewayConnection/GatewayClientSender_gwy.tcp://127.0.0.1:45781/0 on managed thread 53	
+[2019-12-14 17:57:10.530 GMT 92	Information	0	Orleans.Threading.ThreadPoolThread]	Starting thread Messaging.GatewayClientReceiver/gwy.tcp://127.0.0.1:45781/00 on managed thread 92	
+[2019-12-14 17:57:10.530 GMT 93	Information	0	Orleans.Threading.ThreadPoolThread]	Starting thread Messaging.GatewayConnection/GatewayClientSender_gwy.tcp://127.0.0.1:45781/00 on managed thread 93	
+[2019-12-14 17:57:10.545 GMT 22	Information	100908	Messaging.GatewayConnection/GatewayClientSender_gwy.tcp://127.0.0.1:45780/0]	Connected to gateway at address gwy.tcp://127.0.0.1:45780/0 on trial 0.	
+[2019-12-14 17:57:10.545 GMT 22	Information	0	Messaging.GatewayClientReceiver/gwy.tcp://127.0.0.1:45780/0]	Starting AsyncAgent Messaging.GatewayClientReceiver/gwy.tcp://127.0.0.1:45780/0 on managed thread 22	
+[2019-12-14 17:57:10.545 GMT 22	Information	0	Messaging.GatewayConnection/GatewayClientSender_gwy.tcp://127.0.0.1:45780/0]	Starting AsyncAgent Messaging.GatewayConnection/GatewayClientSender_gwy.tcp://127.0.0.1:45780/0 on managed thread 22	
+[2019-12-14 17:57:10.545 GMT 95	Information	0	Orleans.Threading.ThreadPoolThread]	Starting thread Messaging.GatewayClientReceiver/gwy.tcp://127.0.0.1:45780/00 on managed thread 95	
+[2019-12-14 17:57:10.545 GMT 96	Information	0	Orleans.Threading.ThreadPoolThread]	Starting thread Messaging.GatewayConnection/GatewayClientSender_gwy.tcp://127.0.0.1:45780/00 on managed thread 96	
+[2019-12-14 17:57:10.549 GMT 22	Information	100929	Orleans.OutsideRuntimeClient]	---------- Started OutsideRuntimeClient with Global Client ID: C25.42.218.143:0:-314042230*cli/7c208182@1895939c, client GUID ID: *cli/7c208182	
+[2019-12-14 17:57:10.550 GMT 22	Information	0	Orleans.ClientOptionsLogger]	Configuration Orleans.Configuration.ClientMessagingOptions: 
+ClientSenderBuckets: 8192
+PreferredFamily: InterNetwork
+NetworkInterfaceName: 
+LocalAddress: 
+ResponseTimeout: 00:00:30
+ResponseTimeoutWithDebugger: 00:30:00
+MaxResendCount: 0
+ResendOnTimeout: False
+DropExpiredMessages: True
+BufferPoolBufferSize: 4096
+BufferPoolMaxSize: 10000
+BufferPoolPreallocationSize: 250
+PropagateActivityId: False
+LargeMessageWarningThreshold: 85000
+MaxMessageHeaderSize: 10485760
+MaxMessageBodySize: 104857600
+	
+[2019-12-14 17:57:10.550 GMT 22	Information	0	Orleans.ClientOptionsLogger]	Configuration Orleans.Configuration.ClusterOptions: 
+ClusterId: testcluster-2019-12-14t17-57-08-499
+ServiceId: 39c8b61f4a0a47c181adbf1b03076cb7
+	
+[2019-12-14 17:57:10.550 GMT 22	Information	0	Orleans.ClientOptionsLogger]	Configuration Orleans.Configuration.NetworkingOptions: 
+OpenConnectionTimeout: 00:00:05
+MaxSocketAge: 10675199.02:48:05.4775807
+MaxSockets: 500
+	
+[2019-12-14 17:57:10.550 GMT 22	Information	0	Orleans.ClientOptionsLogger]	Configuration Orleans.Configuration.StaticGatewayListProviderOptions: 
+Gateways.0: gwy.tcp://127.0.0.1:45780/0
+Gateways.1: gwy.tcp://127.0.0.1:45781/0
+	
+[2019-12-14 17:57:10.550 GMT 22	Information	0	Orleans.ClientOptionsLogger]	Configuration Orleans.Configuration.StatisticsOptions: 
+PerfCountersWriteInterval: 00:00:30
+LogWriteInterval: 00:05:00
+CollectionLevel: Info
+	
+[2019-12-14 17:57:10.624 GMT 93	Information	100328	Orleans.Threading.ThreadPoolThread]	Stopping Thread Messaging.GatewayConnection/GatewayClientSender_gwy.tcp://127.0.0.1:45781/00 on managed thread 93	
+[2019-12-14 17:57:10.625 GMT 96	Information	100328	Orleans.Threading.ThreadPoolThread]	Stopping Thread Messaging.GatewayConnection/GatewayClientSender_gwy.tcp://127.0.0.1:45780/00 on managed thread 96	
+[2019-12-14 17:57:10.626 GMT 95	Information	100328	Orleans.Threading.ThreadPoolThread]	Stopping Thread Messaging.GatewayClientReceiver/gwy.tcp://127.0.0.1:45780/00 on managed thread 95	
+[2019-12-14 17:57:10.626 GMT 92	Information	100328	Orleans.Threading.ThreadPoolThread]	Stopping Thread Messaging.GatewayClientReceiver/gwy.tcp://127.0.0.1:45781/00 on managed thread 92	
+[2019-12-14 17:57:10.626 GMT 19	Information	0	Orleans.OutsideRuntimeClient]	OutsideRuntimeClient.Reset(): client Id *cli/7c208182	
+[2019-12-14 17:57:10.645 GMT 19	Information	100704	Orleans.RuntimeClientLogStatistics]	Statistics: ^^^
+App.Requests.Latency.Average.Millis=7.000
+App.Requests.LatencyHistogram.Millis=[0.2048:0,40950000000000003]=1, [0.4096:0,8191]=8, [0.8192:1,6383]=1, [1.6384:3,2767]=3, [3.2768:6,5535000000000005]=4, [6.5536:13,1071]=2, [13.1072:26,2143]=4, [52.4288:104,8575]=1, 
+App.Requests.TimedOut.Current=0
+App.Requests.Total.Requests.Current=24
+Catalog.Activation.Collection.NumberOfCollections.Current=2
+Catalog.Activation.Created.Current=0
+Catalog.Activation.CurrentCount=0
+Catalog.Activation.Destroyed.Current=0
+Catalog.Activation.FailedToActivate.Current=0
+Client.ConnectedGatewayCount=0
+ConsistentRing.AverageRangePercentage=50.000
+ConsistentRing.MyRange.RingDistance=x71580947
+ConsistentRing.MyRange.RingPercentage=44.275
+ConsistentRing.Ring=[S127.0.0.1:28240:314042228 -> <MultiRange: Size=x71580947, %Ring=44,275%>, S127.0.0.1:28241:314042229 -> <MultiRange: Size=x8EA7F6B9, %Ring=55,725%>]
+ConsistentRing.RingSize=2
+Directory.CacheSize=0
+Directory.Lookups.Cache.HitRatio=0, Delta=0
+Directory.Lookups.Cache.Issued.Current=0
+Directory.Lookups.Cache.Successes.Current=0
+Directory.Lookups.Full.Issued.Current=0
+Directory.Lookups.Local.Issued.Current=0
+Directory.Lookups.Local.Successes.Current=0
+Directory.Lookups.LocalDirectory.Issued.Current=0
+Directory.Lookups.LocalDirectory.Successes.Current=0
+Directory.Lookups.Remote.Received.Current=0
+Directory.Lookups.Remote.Sent.Current=0
+Directory.PartitionSize=3
+Directory.Registrations.Issued.Current=4
+Directory.Registrations.Local.Current=5
+Directory.Registrations.Remote.Received.Current=3
+Directory.Registrations.Remote.Sent.Current=1
+Directory.Registrations.SingleAct.Issued.Current=0
+Directory.Registrations.SingleAct.Local.Current=0
+Directory.Registrations.SingleAct.Remote.Received.Current=0
+Directory.Registrations.SingleAct.Remote.Sent.Current=0
+Directory.Ring=[S127.0.0.1:28241:314042229/F138EF36, S127.0.0.1:28240:314042228/8D89306]
+Directory.Ring.MyPortion.AverageRingPercentage=50.000
+Directory.Ring.MyPortion.RingDistance=3898629166
+Directory.Ring.MyPortion.RingPercentage=90.772
+Directory.Ring.MyPredecessors=[S127.0.0.1:28241:314042229/F138EF36]
+Directory.Ring.MySuccessors=[S127.0.0.1:28241:314042229/F138EF36]
+Directory.Ring.RingSize=2
+Directory.UnRegistrations.Issued.Current=0
+Directory.UnRegistrations.Local.Current=0
+Directory.UnRegistrations.Remote.Received.Current=0
+Directory.UnRegistrations.Remote.Sent.Current=0
+Directory.UnRegistrationsMany.Issued.Current=0
+Directory.UnRegistrationsMany.Remote.Received.Current=0
+Directory.UnRegistrationsMany.Remote.Sent.Current=0
+Directory.Validations.Cache.Received.Current=0
+Directory.Validations.Cache.Sent.Current=0
+Gateway.ConnectedClients.Current=2
+Gateway.LoadShedding.Current=0
+Gateway.Received.Current=4
+Gateway.Sent.Current=4
+MessageCenter.ReceiveQueueLength=0
+MessageCenter.SendQueueLength=0
+Messaging.Acceptor.AllocatedSocketEventArgs.Current=5
+Messaging.Acceptor.CheckedInSocketEventArgs.Current=2
+Messaging.Acceptor.CheckedOutSocketEventArgs.Current=5
+Messaging.Acceptor.InUseSocketEventArgs=3
+Messaging.Expired.AtDispatch.Current=0
+Messaging.Expired.AtInvoke.Current=0
+Messaging.Expired.AtReceive.Current=0
+Messaging.Expired.AtRespond.Current=0
+Messaging.Expired.AtSend.Current=0
+Messaging.Pings.Received.S127.0.0.1:28241:314042229.Current=1
+Messaging.Pings.ReplyReceived.S127.0.0.1:28240:314042228.Current=1
+Messaging.Pings.Sent.S127.0.0.1:28240:314042228.Current=1
+Messaging.Processing.ActivationData.All=0
+Messaging.Processing.Dispatcher.Processed.Errors.Direction.OneWay.Current=0
+Messaging.Processing.Dispatcher.Processed.Errors.Direction.Request.Current=0
+Messaging.Processing.Dispatcher.Processed.Errors.Direction.Response.Current=0
+Messaging.Processing.Dispatcher.Processed.Ok.Direction.OneWay.Current=0
+Messaging.Processing.Dispatcher.Processed.Ok.Direction.Request.Current=0
+Messaging.Processing.Dispatcher.Processed.Ok.Direction.Response.Current=0
+Messaging.Processing.Dispatcher.Processed.ReRoute.Direction.OneWay.Current=0
+Messaging.Processing.Dispatcher.Processed.ReRoute.Direction.Request.Current=0
+Messaging.Processing.Dispatcher.Processed.ReRoute.Direction.Response.Current=0
+Messaging.Processing.Dispatcher.Processed.Total.Current=0
+Messaging.Processing.Dispatcher.Received.Direction.OneWay.Current=0
+Messaging.Processing.Dispatcher.Received.Direction.Request.Current=0
+Messaging.Processing.Dispatcher.Received.Direction.Response.Current=0
+Messaging.Processing.Dispatcher.Received.OnActivationContext.Current=0
+Messaging.Processing.Dispatcher.Received.OnNullContext.Current=0
+Messaging.Processing.Dispatcher.Received.Total.Current=0
+Messaging.Processing.IGC.Forwarded.Current=0
+Messaging.Processing.IGC.ReRoute.Current=0
+Messaging.Processing.IGC.Resent.Current=0
+Messaging.Processing.IMA.Enqueued.ToActivationContex.Current=0
+Messaging.Processing.IMA.Enqueued.ToNullContex.Current=0
+Messaging.Processing.IMA.Enqueued.ToSystemTargetContex.Current=32
+Messaging.Processing.IMA.Received.Current=32
+Messaging.Received.BatchSize.PerSocketDirection.ClientToGateway=0.000
+Messaging.Received.BatchSize.PerSocketDirection.GatewayToClient=0.000
+Messaging.Received.BatchSize.PerSocketDirection.SiloToSilo=0.000
+Messaging.Received.BatchSizeBytesHistogram.Bytes.PerSocketDirection.ClientToGateway=
+Messaging.Received.BatchSizeBytesHistogram.Bytes.PerSocketDirection.GatewayToClient=
+Messaging.Received.BatchSizeBytesHistogram.Bytes.PerSocketDirection.SiloToSilo=
+Messaging.Received.Bytes.Header.Current=7535
+Messaging.Received.Bytes.Total.Current=18341
+Messaging.Received.Direction.OneWay.Current=0
+Messaging.Received.Direction.Request.Current=23
+Messaging.Received.Direction.Response.Current=17
+Messaging.Received.Messages.From.Null.Current=4
+Messaging.Received.Messages.From.S127.0.0.1:28240:0.Current=5
+Messaging.Received.Messages.From.S127.0.0.1:28240:314042228.Current=16
+Messaging.Received.Messages.From.S127.0.0.1:28241:314042229.Current=15
+Messaging.Received.Messages.Total.Current=40
+Messaging.Received.MessageSizeHistogram.Bytes=[128:255]=23, [256:511]=11, [512:1023]=3, [1024:2047]=1, [2048:4095]=2, 
+Messaging.Rerouted.OneWay.Current=0
+Messaging.Rerouted.Request.Current=2
+Messaging.Rerouted.Response.Current=0
+Messaging.Sent.BatchSize.PerSocketDirection.ClientToGateway=0.000
+Messaging.Sent.BatchSize.PerSocketDirection.GatewayToClient=0.000
+Messaging.Sent.BatchSize.PerSocketDirection.SiloToSilo=0.000
+Messaging.Sent.BatchSizeBytesHistogram.Bytes.PerSocketDirection.ClientToGateway=
+Messaging.Sent.BatchSizeBytesHistogram.Bytes.PerSocketDirection.GatewayToClient=
+Messaging.Sent.BatchSizeBytesHistogram.Bytes.PerSocketDirection.SiloToSilo=
+Messaging.Sent.Bytes.Header.Current=7535
+Messaging.Sent.Bytes.Total.Current=18661
+Messaging.Sent.Direction.OneWay.Current=0
+Messaging.Sent.Direction.Request.Current=23
+Messaging.Sent.Direction.Response.Current=17
+Messaging.Sent.LocalMessages.Current=6
+Messaging.Sent.Messages.To.Null.Current=4
+Messaging.Sent.Messages.To.S127.0.0.1:28240:0.Current=11
+Messaging.Sent.Messages.To.S127.0.0.1:28240:314042228.Current=8
+Messaging.Sent.Messages.To.S127.0.0.1:28241:314042229.Current=13
+Messaging.Sent.Messages.To.S127.0.0.1:45780:0.Current=2
+Messaging.Sent.Messages.To.S127.0.0.1:45781:0.Current=2
+Messaging.Sent.Messages.Total.Current=40
+Messaging.Sent.MessageSizeHistogram.Bytes=[128:255]=23, [256:511]=11, [512:1023]=3, [1024:2047]=1, [2048:4095]=2, 
+Networking.Sockets.ClientToGateway.Duplex.Closed.Current=4
+Networking.Sockets.ClientToGateway.Duplex.Opened.Current=4
+Networking.Sockets.GatewayToClient.Duplex.Closed.Current=0
+Networking.Sockets.GatewayToClient.Duplex.Opened.Current=0
+Networking.Sockets.Silo.Receiving.Closed.Current=0
+Networking.Sockets.Silo.Receiving.Opened.Current=3
+Networking.Sockets.Silo.Sending.Closed.Current=0
+Networking.Sockets.Silo.Sending.Opened.Current=3
+Queues.QueueSize.Instantaneous.Scheduler.LevelOne=0
+Runtime.IsOverloaded=False
+Runtime.Threads.AsynchAgent.Messaging.GatewayClientReceiver/gwy.tcp://127.0.0.1:45780/00.Current=0
+Runtime.Threads.AsynchAgent.Messaging.GatewayClientReceiver/gwy.tcp://127.0.0.1:45781/00.Current=0
+Runtime.Threads.AsynchAgent.Messaging.GatewayConnection/GatewayClientSender_gwy.tcp://127.0.0.1:45780/00.Current=0
+Runtime.Threads.AsynchAgent.Messaging.GatewayConnection/GatewayClientSender_gwy.tcp://127.0.0.1:45781/00.Current=0
+Runtime.Threads.AsynchAgent.Runtime.GrainDirectory.AdaptiveDirectoryCacheMaintainer`10.Current=2
+Runtime.Threads.AsynchAgent.Runtime.GrainDirectory.GlobalSingleInstanceActivationMaintainer0.Current=2
+Runtime.Threads.AsynchAgent.Runtime.Messaging.GatewayAcceptor0.Current=2
+Runtime.Threads.AsynchAgent.Runtime.Messaging.GatewayClientCleanupAgent0.Current=2
+Runtime.Threads.AsynchAgent.Runtime.Messaging.GatewaySender/GatewaySiloSender_00.Current=2
+Runtime.Threads.AsynchAgent.Runtime.Messaging.IncomingMessageAcceptor0.Current=2
+Runtime.Threads.AsynchAgent.Runtime.Messaging.IncomingMessageAgent/Application0.Current=2
+Runtime.Threads.AsynchAgent.Runtime.Messaging.IncomingMessageAgent/Ping0.Current=2
+Runtime.Threads.AsynchAgent.Runtime.Messaging.IncomingMessageAgent/System0.Current=2
+Runtime.Threads.AsynchAgent.Runtime.Messaging.SiloMessageSender/PingSender0.Current=2
+Runtime.Threads.AsynchAgent.Runtime.Messaging.SiloMessageSender/SystemSender0.Current=2
+Runtime.Threads.AsynchAgent.Runtime.Scheduler.OrleansSchedulerAsynchAgent/Scheduler.LevelOne.MainQueue0.Current=2
+Runtime.Threads.AsynchAgent.Runtime.Scheduler.OrleansSchedulerAsynchAgent/Scheduler.LevelOne.MainQueue1.Current=2
+Runtime.Threads.AsynchAgent.Runtime.Scheduler.OrleansSchedulerAsynchAgent/Scheduler.LevelOne.MainQueue2.Current=2
+Runtime.Threads.AsynchAgent.Runtime.Scheduler.OrleansSchedulerAsynchAgent/Scheduler.LevelOne.MainQueue3.Current=2
+Runtime.Threads.AsynchAgent.Runtime.Scheduler.OrleansSchedulerAsynchAgent/Scheduler.LevelOne.MainQueue4.Current=2
+Runtime.Threads.AsynchAgent.Runtime.Scheduler.OrleansSchedulerAsynchAgent/Scheduler.LevelOne.MainQueue5.Current=2
+Runtime.Threads.AsynchAgent.Runtime.Scheduler.OrleansSchedulerAsynchAgent/Scheduler.LevelOne.MainQueue6.Current=2
+Runtime.Threads.AsynchAgent.Runtime.Scheduler.OrleansSchedulerAsynchAgent/Scheduler.LevelOne.MainQueue7.Current=2
+Runtime.Threads.AsynchAgent.Runtime.Scheduler.OrleansSchedulerAsynchAgent/Scheduler.LevelOne.SystemQueue0.Current=2
+Runtime.Threads.AsynchAgent.Runtime.Scheduler.OrleansSchedulerAsynchAgent/Scheduler.LevelOne.SystemQueue1.Current=2
+Runtime.Threads.AsynchAgent.Runtime.Watchdog0.Current=2
+Runtime.Threads.AsynchAgent.TotalThreadsCreated.Current=48
+Scheduler.NumLongQueueWaitTimes.Current=0
+Scheduler.NumLongRunningTurns.Current=0
+Scheduler.WorkItemGroupCount=14
+Serialization.BufferPool.AllocatedBuffers.Current=750
+Serialization.BufferPool.BuffersInPool=217
+Serialization.BufferPo

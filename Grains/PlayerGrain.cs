@@ -16,22 +16,22 @@ namespace Grains
     }
 
 
-    [StorageProvider(ProviderName = "OrleansStorage")]
+    //[StorageProvider(ProviderName = "storage")]
     public class PlayerGrain : Grain<PlayerState>, IPlayer
     {
         private static Tuple<int, int> waitPeriod = Tuple.Create(500, 4000);
 
+        //http://dotnet.github.io/orleans/Documentation/grains/grain_identity.html
         public override Task OnActivateAsync()
-        { 
-            throw new NotImplementedException();
-            //get last state of player before deactivation (from memory)
-            //Give state to new actor
-            //Initialize new Actor
-
+        {
+            Guid primaryKey = this.GetPrimaryKey();
+            //Do some fetching from the database to initialize state from persistant memory?
+            return base.OnActivateAsync();
         }
 
         public override Task OnDeactivateAsync() 
         {
+
             throw new NotImplementedException();
             //remember state when a player is deactivated
         }
@@ -61,9 +61,10 @@ namespace Grains
 
                
 
-        Task IPlayer.ReceiveBall(Guid ballId)
+        async Task IPlayer.ReceiveBall(Guid ballId)
         {
             State.BallIds.Add(ballId);
+            await WriteStateAsync();
             var i = State.BallIds.Count;
             if (i > 1)
             {
@@ -73,9 +74,6 @@ namespace Grains
             {
                 HoldOrPassBall(ballId);
             }
-
-            return null;
-
         }
 
         Task<List<Guid>> IPlayer.GetBallIds()
@@ -85,7 +83,8 @@ namespace Grains
 
         Task IRemindable.ReceiveReminder(string reminderName, TickStatus status)
         {
-            throw new NotImplementedException();
+            //http://dotnet.github.io/orleans/Documentation/grains/timers_and_reminders.html
+            return Task.CompletedTask;
         }
 
         /// <summary>
