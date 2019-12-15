@@ -38,8 +38,7 @@ namespace SiloMain
                    options.ServiceId = "OrleansStorage";
                })
                .ConfigureApplicationParts(parts => parts.AddApplicationPart(typeof(PlayerGrain).Assembly).WithReferences())
-               // TODO replace with your connection string
-               .AddAdoNetGrainStorage(options =>
+               .AddAdoNetGrainStorageAsDefault(options =>
                {
                    options.Invariant = "Npgsql";
                    options.ConnectionString = "Server=127.0.0.1;Port=5432;Database=OrleansStorage;User Id=postgres;Password=postgres;";

@@ -4,6 +4,7 @@
     <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
   </PropertyGroup>
   <ImportGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <Import Project="$(NuGetPackageRoot)microsoft.orleans.orleansmanager\2.4.4\build\Microsoft.Orleans.OrleansManager.targets" Condition="Exists('$(NuGetPackageRoot)microsoft.orleans.orleansmanager\2.4.4\build\Microsoft.Orleans.OrleansManager.targets')" />
     <Import Project="$(NuGetPackageRoot)microsoft.orleans.orleanshost\1.5.10\build\Microsoft.Orleans.OrleansHost.targets" Condition="Exists('$(NuGetPackageRoot)microsoft.orleans.orleanshost\1.5.10\build\Microsoft.Orleans.OrleansHost.targets')" />
     <Import Project="$(NuGetPackageRoot)microsoft.orleans.orleanscodegenerator.build\3.0.2\build\Microsoft.Orleans.OrleansCodeGenerator.Build.targets" Condition="Exists('$(NuGetPackageRoot)microsoft.orleans.orleanscodegenerator.build\3.0.2\build\Microsoft.Orleans.OrleansCodeGenerator.Build.targets')" />
   </ImportGroup>

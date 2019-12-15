@@ -1,0 +1,50 @@
+﻿[2019-12-15 16:18:45.734 GMT 8	Information	100313	Orleans.OutsideRuntimeClient]	---------- Initializing OutsideRuntimeClient on DESKTOP-GKPQB1U at 25.42.218.143 Client Id = *cli/074df597 ----------	
+[2019-12-15 16:18:45.737 GMT 8	Information	100314	Orleans.OutsideRuntimeClient]	---------- Starting OutsideRuntimeClient with runtime Version='3.0.2. Commit Hash: 4a3ec9a4cdc0bd68d11ee8fa74845af2084ee633 (Release).' in AppDomain=<AppDomain.Id=1, AppDomain.FriendlyName=SiloMain>	
+[2019-12-15 16:18:45.747 GMT 10	Information	101309	Orleans.Messaging.GatewayManager]	Found 2 knownGateways from Gateway listProvider [gwy.tcp://127.0.0.1:40075/0, gwy.tcp://127.0.0.1:40076/0]	
+[2019-12-15 16:18:45.753 GMT 4	Information	0	Microsoft.Orleans.Networking]	Establishing connection to endpoint S127.0.0.1:40075:0	
+[2019-12-15 16:18:45.756 GMT 6	Information	0	Microsoft.Orleans.Networking]	Connected to endpoint S127.0.0.1:40075:0	
+[2019-12-15 16:18:45.756 GMT 6	Information	0	Microsoft.Orleans.Networking]	Connection Local: 127.0.0.1:62987, Remote: 127.0.0.1:40075, ConnectionId: 0HLS1F9QP5G80 established with S127.0.0.1:40075:0	
+[2019-12-15 16:18:45.760 GMT 27	Information	0	Microsoft.Orleans.Networking]	Starting to process messages from local endpoint 127.0.0.1:62987 to remote endpoint 127.0.0.1:40075	
+[2019-12-15 16:18:45.760 GMT 4	Information	0	Microsoft.Orleans.Networking]	Starting to process messages from remote endpoint 127.0.0.1:40075 to local endpoint 127.0.0.1:62987	
+[2019-12-15 16:18:45.771 GMT 5	Information	0	Microsoft.Orleans.Networking]	Establishing connection to endpoint S127.0.0.1:40076:0	
+[2019-12-15 16:18:45.773 GMT 6	Information	0	Microsoft.Orleans.Networking]	Connected to endpoint S127.0.0.1:40076:0	
+[2019-12-15 16:18:45.773 GMT 6	Information	0	Microsoft.Orleans.Networking]	Connection Local: 127.0.0.1:62988, Remote: 127.0.0.1:40076, ConnectionId: 0HLS1F9QP5G81 established with S127.0.0.1:40076:0	
+[2019-12-15 16:18:45.774 GMT 6	Information	0	Microsoft.Orleans.Networking]	Starting to process messages from local endpoint 127.0.0.1:62988 to remote endpoint 127.0.0.1:40076	
+[2019-12-15 16:18:45.774 GMT 9	Information	0	Microsoft.Orleans.Networking]	Starting to process messages from remote endpoint 127.0.0.1:40076 to local endpoint 127.0.0.1:62988	
+[2019-12-15 16:18:45.779 GMT 6	Information	100929	Orleans.OutsideRuntimeClient]	---------- Started OutsideRuntimeClient with Global Client ID: C25.42.218.143:0:-314122725*cli/074df597@5cf2e79b, client GUID ID: *cli/074df597	
+[2019-12-15 16:18:45.781 GMT 6	Information	0	Orleans.ClientOptionsLogger]	Configuration Orleans.Configuration.ClientMessagingOptions: 
+ClientSenderBuckets: 8192
+PreferredFamily: InterNetwork
+NetworkInterfaceName: 
+LocalAddress: 
+ResponseTimeout: 00:30:00
+ResponseTimeoutWithDebugger: 00:30:00
+DropExpiredMessages: True
+BufferPoolBufferSize: 4096
+BufferPoolMaxSize: 10000
+BufferPoolPreallocationSize: 250
+PropagateActivityId: False
+LargeMessageWarningThreshold: 85000
+MaxMessageHeaderSize: 10485760
+MaxMessageBodySize: 104857600
+	
+[2019-12-15 16:18:45.781 GMT 6	Information	0	Orleans.ClientOptionsLogger]	Configuration Orleans.Configuration.ClusterOptions: 
+ClusterId: testcluster-2019-12-15t16-18-43-116
+ServiceId: d0b3ded39cdf48d396cfbcf7cab86101
+	
+[2019-12-15 16:18:45.781 GMT 6	Information	0	Orleans.ClientOptionsLogger]	Configuration Orleans.Configuration.ConnectionOptions: 
+ProtocolVersion: Version1
+ConnectionsPerEndpoint: 1
+ConnectionRetryDelay: 00:00:01
+OpenConnectionTimeout: 00:00:05
+	
+[2019-12-15 16:18:45.781 GMT 6	Information	0	Orleans.ClientOptionsLogger]	Configuration Orleans.Configuration.StaticGatewayListProviderOptions: 
+Gateways.0: gwy.tcp://127.0.0.1:40075/0
+Gateways.1: gwy.tcp://127.0.0.1:40076/0
+	
+[2019-12-15 16:18:45.781 GMT 6	Information	0	Orleans.ClientOptionsLogger]	Configuration Orleans.Configuration.StatisticsOptions: 
+PerfCountersWriteInterval: 00:00:30
+LogWriteInterval: 00:05:00
+CollectionLevel: Info
+	
+[2019-12-15 16:18:45.857 GMT 27	Information	0	Microsoft.Orleans.Networking]	Completed processing messages from remote endpoint 127.0.0.1:40075	

@@ -226,6 +226,10 @@
               "target": "Package",
               "version": "[3.0.2, )"
             },
+            "Microsoft.Orleans.OrleansCodeGenerator": {
+              "target": "Package",
+              "version": "[3.0.2, )"
+            },
             "Microsoft.Orleans.OrleansCodeGenerator.Build": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
@@ -236,11 +240,19 @@
               "target": "Package",
               "version": "[1.5.10, )"
             },
+            "Microsoft.Orleans.OrleansManager": {
+              "target": "Package",
+              "version": "[2.4.4, )"
+            },
             "Microsoft.Orleans.OrleansProviders": {
               "target": "Package",
               "version": "[3.0.2, )"
             },
             "Microsoft.Orleans.OrleansRuntime": {
+              "target": "Package",
+              "version": "[3.0.2, )"
+            },
+            "Microsoft.Orleans.Persistence.AdoNet": {
               "target": "Package",
               "version": "[3.0.2, )"
             },

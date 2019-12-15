@@ -420,6 +420,21 @@
           "lib/netstandard2.0/Orleans.Core.Abstractions.dll": {}
         }
       },
+      "Microsoft.Orleans.OrleansCodeGenerator/3.0.2": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.CodeAnalysis.CSharp": "3.3.1",
+          "Microsoft.Orleans.Core": "3.0.2",
+          "System.Runtime": "4.3.1",
+          "System.Threading.Tasks.Extensions": "4.5.3"
+        },
+        "compile": {
+          "lib/netstandard2.0/Orleans.CodeGeneration.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Orleans.CodeGeneration.dll": {}
+        }
+      },
       "Microsoft.Orleans.OrleansCodeGenerator.Build/3.0.2": {
         "type": "package",
         "build": {
@@ -437,6 +452,12 @@
         },
         "build": {
           "build/Microsoft.Orleans.OrleansHost.targets": {}
+        }
+      },
+      "Microsoft.Orleans.OrleansManager/2.4.4": {
+        "type": "package",
+        "build": {
+          "build/Microsoft.Orleans.OrleansManager.targets": {}
         }
       },
       "Microsoft.Orleans.OrleansProviders/3.0.2": {
@@ -470,6 +491,20 @@
         },
         "runtime": {
           "lib/netstandard2.0/Orleans.Runtime.dll": {}
+        }
+      },
+      "Microsoft.Orleans.Persistence.AdoNet/3.0.2": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Orleans.OrleansProviders": "3.0.2",
+          "Microsoft.Orleans.Runtime.Abstractions": "3.0.2",
+          "System.Data.Common": "4.3.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Orleans.Persistence.AdoNet.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Orleans.Persistence.AdoNet.dll": {}
         }
       },
       "Microsoft.Orleans.Runtime.Abstractions/3.0.2": {
@@ -947,6 +982,25 @@
         },
         "compile": {
           "ref/netstandard1.3/System.Console.dll": {}
+        }
+      },
+      "System.Data.Common/4.3.0": {
+        "type": "package",
+        "dependencies": {
+          "System.Collections": "4.3.0",
+          "System.Globalization": "4.3.0",
+          "System.IO": "4.3.0",
+          "System.Resources.ResourceManager": "4.3.0",
+          "System.Runtime": "4.3.0",
+          "System.Runtime.Extensions": "4.3.0",
+          "System.Text.RegularExpressions": "4.3.0",
+          "System.Threading.Tasks": "4.3.0"
+        },
+        "compile": {
+          "ref/netstandard1.2/System.Data.Common.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.2/System.Data.Common.dll": {}
         }
       },
       "System.Diagnostics.Debug/4.3.0": {
@@ -2520,6 +2574,21 @@
         "microsoft.orleans.core.abstractions.nuspec"
       ]
     },
+    "Microsoft.Orleans.OrleansCodeGenerator/3.0.2": {
+      "sha512": "JVjxQuhyhX7AVZLAyVVhdNu0iEp0Y4vPzE+aNKh9jBX99H5vVKFv+CMYhUT9b3+Yn3lGb4X3Sqjr04LAjp68+g==",
+      "type": "package",
+      "path": "microsoft.orleans.orleanscodegenerator/3.0.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/netstandard2.0/Orleans.CodeGeneration.dll",
+        "lib/netstandard2.0/Orleans.CodeGeneration.pdb",
+        "lib/netstandard2.0/Orleans.CodeGeneration.xml",
+        "logo_128.png",
+        "microsoft.orleans.orleanscodegenerator.3.0.2.nupkg.sha512",
+        "microsoft.orleans.orleanscodegenerator.nuspec"
+      ]
+    },
     "Microsoft.Orleans.OrleansCodeGenerator.Build/3.0.2": {
       "sha512": "Ggc5ixyyyAm8uHXi2oLqW5mYEjekby7OAXs538rZnFEBz3slTpzfCwimMUust3vWWDkeOxCFS6MIraWRtw+eFw==",
       "type": "package",
@@ -2785,6 +2854,24 @@
         "tools/OrleansHost.exe.config"
       ]
     },
+    "Microsoft.Orleans.OrleansManager/2.4.4": {
+      "sha512": "teCnljB67tqYATPFX5SU04ZISBYIsEpsHnrm+HJRDWUhWRRnqnNs8BJAXavcA9JPrVY5c3ZpKXSO2LPv/05mZQ==",
+      "type": "package",
+      "path": "microsoft.orleans.orleansmanager/2.4.4",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "build/Microsoft.Orleans.OrleansManager.targets",
+        "lib/net461/OrleansManager.exe",
+        "lib/net461/OrleansManager.pdb",
+        "lib/net461/OrleansManager.xml",
+        "microsoft.orleans.orleansmanager.2.4.4.nupkg.sha512",
+        "microsoft.orleans.orleansmanager.nuspec",
+        "tools/ClientConfiguration.xml",
+        "tools/OrleansManager.exe.config"
+      ]
+    },
     "Microsoft.Orleans.OrleansProviders/3.0.2": {
       "sha512": "xgyX+56p8VsoxdZNerMfDrp20uOy5bq2As/N/KpciNzFXIbNwMjcBANbP2MuBmTzbIQhzC2fa9sC7VmmG4iSNw==",
       "type": "package",
@@ -2813,6 +2900,21 @@
         "logo_128.png",
         "microsoft.orleans.orleansruntime.3.0.2.nupkg.sha512",
         "microsoft.orleans.orleansruntime.nuspec"
+      ]
+    },
+    "Microsoft.Orleans.Persistence.AdoNet/3.0.2": {
+      "sha512": "D9wl1MXE890bvVux0qvRb4NqwAYEtsiGTs175ODmkRl9Buo2azrFe8+wgog2LWsGY/3qxli0vE0/HMdruVEEVg==",
+      "type": "package",
+      "path": "microsoft.orleans.persistence.adonet/3.0.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/netstandard2.0/Orleans.Persistence.AdoNet.dll",
+        "lib/netstandard2.0/Orleans.Persistence.AdoNet.pdb",
+        "lib/netstandard2.0/Orleans.Persistence.AdoNet.xml",
+        "logo_128.png",
+        "microsoft.orleans.persistence.adonet.3.0.2.nupkg.sha512",
+        "microsoft.orleans.persistence.adonet.nuspec"
       ]
     },
     "Microsoft.Orleans.Runtime.Abstractions/3.0.2": {
@@ -3671,6 +3773,57 @@
         "ref/xamarinwatchos10/_._",
         "system.console.4.3.0.nupkg.sha512",
         "system.console.nuspec"
+      ]
+    },
+    "System.Data.Common/4.3.0": {
+      "sha512": "lm6E3T5u7BOuEH0u18JpbJHxBfOJPuCyl4Kg1RH10ktYLp5uEEE1xKrHW56/We4SnZpGAuCc9N0MJpSDhTHZGQ==",
+      "type": "package",
+      "path": "system.data.common/4.3.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "ThirdPartyNotices.txt",
+        "dotnet_library_license.txt",
+        "lib/MonoAndroid10/_._",
+        "lib/MonoTouch10/_._",
+        "lib/net451/System.Data.Common.dll",
+        "lib/netstandard1.2/System.Data.Common.dll",
+        "lib/portable-net451+win8+wp8+wpa81/System.Data.Common.dll",
+        "lib/xamarinios10/_._",
+        "lib/xamarinmac20/_._",
+        "lib/xamarintvos10/_._",
+        "lib/xamarinwatchos10/_._",
+        "ref/MonoAndroid10/_._",
+        "ref/MonoTouch10/_._",
+        "ref/net451/System.Data.Common.dll",
+        "ref/netstandard1.2/System.Data.Common.dll",
+        "ref/netstandard1.2/System.Data.Common.xml",
+        "ref/netstandard1.2/de/System.Data.Common.xml",
+        "ref/netstandard1.2/es/System.Data.Common.xml",
+        "ref/netstandard1.2/fr/System.Data.Common.xml",
+        "ref/netstandard1.2/it/System.Data.Common.xml",
+        "ref/netstandard1.2/ja/System.Data.Common.xml",
+        "ref/netstandard1.2/ko/System.Data.Common.xml",
+        "ref/netstandard1.2/ru/System.Data.Common.xml",
+        "ref/netstandard1.2/zh-hans/System.Data.Common.xml",
+        "ref/netstandard1.2/zh-hant/System.Data.Common.xml",
+        "ref/portable-net451+win8+wp8+wpa81/System.Data.Common.dll",
+        "ref/portable-net451+win8+wp8+wpa81/System.Data.Common.xml",
+        "ref/portable-net451+win8+wp8+wpa81/de/System.Data.Common.xml",
+        "ref/portable-net451+win8+wp8+wpa81/es/System.Data.Common.xml",
+        "ref/portable-net451+win8+wp8+wpa81/fr/System.Data.Common.xml",
+        "ref/portable-net451+win8+wp8+wpa81/it/System.Data.Common.xml",
+        "ref/portable-net451+win8+wp8+wpa81/ja/System.Data.Common.xml",
+        "ref/portable-net451+win8+wp8+wpa81/ko/System.Data.Common.xml",
+        "ref/portable-net451+win8+wp8+wpa81/ru/System.Data.Common.xml",
+        "ref/portable-net451+win8+wp8+wpa81/zh-hans/System.Data.Common.xml",
+        "ref/portable-net451+win8+wp8+wpa81/zh-hant/System.Data.Common.xml",
+        "ref/xamarinios10/_._",
+        "ref/xamarinmac20/_._",
+        "ref/xamarintvos10/_._",
+        "ref/xamarinwatchos10/_._",
+        "system.data.common.4.3.0.nupkg.sha512",
+        "system.data.common.nuspec"
       ]
     },
     "System.Diagnostics.Debug/4.3.0": {
@@ -6836,10 +6989,13 @@
       "Microsoft.Orleans.CodeGenerator >= 3.0.2",
       "Microsoft.Orleans.Core >= 3.0.2",
       "Microsoft.Orleans.Core.Abstractions >= 3.0.2",
+      "Microsoft.Orleans.OrleansCodeGenerator >= 3.0.2",
       "Microsoft.Orleans.OrleansCodeGenerator.Build >= 3.0.2",
       "Microsoft.Orleans.OrleansHost >= 1.5.10",
+      "Microsoft.Orleans.OrleansManager >= 2.4.4",
       "Microsoft.Orleans.OrleansProviders >= 3.0.2",
       "Microsoft.Orleans.OrleansRuntime >= 3.0.2",
+      "Microsoft.Orleans.Persistence.AdoNet >= 3.0.2",
       "Microsoft.Orleans.Runtime.Abstractions >= 3.0.2",
       "Microsoft.Orleans.Server >= 3.0.2",
       "Microsoft.Orleans.TestingHost >= 3.0.2",
@@ -6910,6 +7066,10 @@
             "target": "Package",
             "version": "[3.0.2, )"
           },
+          "Microsoft.Orleans.OrleansCodeGenerator": {
+            "target": "Package",
+            "version": "[3.0.2, )"
+          },
           "Microsoft.Orleans.OrleansCodeGenerator.Build": {
             "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
             "suppressParent": "All",
@@ -6920,11 +7080,19 @@
             "target": "Package",
             "version": "[1.5.10, )"
           },
+          "Microsoft.Orleans.OrleansManager": {
+            "target": "Package",
+            "version": "[2.4.4, )"
+          },
           "Microsoft.Orleans.OrleansProviders": {
             "target": "Package",
             "version": "[3.0.2, )"
           },
           "Microsoft.Orleans.OrleansRuntime": {
+            "target": "Package",
+            "version": "[3.0.2, )"
+          },
+          "Microsoft.Orleans.Persistence.AdoNet": {
             "target": "Package",
             "version": "[3.0.2, )"
           },

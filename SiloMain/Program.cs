@@ -1,4 +1,7 @@
-﻿using System;
+﻿using GrainInterfaces;
+using Orleans.TestingHost;
+using System;
+using System.Collections.Generic;
 
 namespace SiloMain
 {
@@ -6,7 +9,12 @@ namespace SiloMain
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var fixture = new ClusterFixture();
+            TestCluster _cluster = fixture.Cluster;
+
+            IPlayer player = _cluster.Client.GetGrain<IPlayer>(new Guid());
+            player.Initialize(new List<Guid>(), true);
+
         }
     }
 }
