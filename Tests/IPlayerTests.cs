@@ -10,7 +10,6 @@ using Xunit.Abstractions;
 
 namespace XUnitTests
 {
-    [Collection(ClusterCollection.Name)]
     public class IPlayerTests
     {
         private readonly TestCluster _cluster;
