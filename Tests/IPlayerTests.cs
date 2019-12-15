@@ -38,7 +38,18 @@ namespace XUnitTests
         }
 
         [Fact]
-        public async void PlayerGetsBall()
+        public async void PlayerInitialization()
+        {
+            List<Guid> players = new List<Guid>() { new Guid(), new Guid() };
+            IPlayer player1 = _cluster.GrainFactory.GetGrain<IPlayer>(players[0]);
+            IPlayer player2 = _cluster.GrainFactory.GetGrain<IPlayer>(players[1]);
+            await player1.Initialize(players, true);
+            await player2.Initialize(players, false);
+            Assert.True(true);
+        }
+
+        [Fact]
+        public async void PlayerRecieveBall()
         {
             IPlayer player = _cluster.GrainFactory.GetGrain<IPlayer>(new Guid());
             Guid newBall = new Guid();

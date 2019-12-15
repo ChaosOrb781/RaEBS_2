@@ -1,4 +1,5 @@
 ﻿using GrainInterfaces;
+using Microsoft.Extensions.Logging;
 using Orleans;
 using Orleans.Providers;
 using Orleans.Runtime;
@@ -16,33 +17,52 @@ namespace Grains
     }
 
 
-    [StorageProvider(ProviderName = "OrleansStorage")]
+    [StorageProvider]
     public class PlayerGrain : Grain<PlayerState>, IPlayer
     {
         private static Tuple<int, int> waitPeriod = Tuple.Create(500, 4000);
 
+        private readonly ILogger logger;
+
+        public PlayerGrain(ILogger<PlayerGrain> logger)
+        {
+            this.logger = logger;
+        }
+
         //http://dotnet.github.io/orleans/Documentation/grains/grain_identity.html
         public override Task OnActivateAsync()
         {
-            Guid primaryKey = this.GetPrimaryKey();
+            logger.LogInformation("Activating grain {0}", this.GetPrimaryKey());
             //Do some fetching from the database to initialize state from persistant memory?
             return base.OnActivateAsync();
         }
 
         public override Task OnDeactivateAsync() 
         {
-
+            logger.LogInformation("Deactivating grain {0}", this.GetPrimaryKey());
+            base.OnDeactivateAsync();
             throw new NotImplementedException();
             //remember state when a player is deactivated
         }
 
         Task IPlayer.Initialize(List<Guid> playerIds, bool isHoldingBall)
         {
+            logger.LogInformation("Initializing players of the game...");
+            State.PlayerIds = playerIds;
+            if (isHoldingBall)
+            {
+                State.BallIds = new List<Guid>();
+                State.BallIds.Add(new Guid());
+            }
+            /*
             foreach (Guid id in playerIds) {
+                logger.LogInformation("Checking if player {0} is holding a ball", id);
                 IPlayer player = GrainFactory.GetGrain<IPlayer>(id);
                 //if {} Implemet whether or not the Actor has a state - if not, initialize otherwise go to isHoldingBall
                 //playerIds.Add(id);
-                if (isHoldingBall) {
+                if (isHoldingBall)
+                {
+                    logger.LogInformation("Player {0} is holding a ball", id);
                     //player.ReceiveBall();
                     State.BallIds = new List<Guid>();
                     State.BallIds.Add(new Guid());
@@ -50,20 +70,22 @@ namespace Grains
                 }
                 else
                 {
+                    logger.LogInformation("Player {0} is NOT holding a ball", id);
                     State.BallIds = new List<Guid>();
                     State.BallIds.Add(new Guid());
                     // player.ReceiveBall(new Guid()); Maybe the balls shouldn't be distributed here
                 }
-            }
+            }*/
             return Task.CompletedTask;
         }
 
         async Task IPlayer.ReceiveBall(Guid ballId)
         {
+            logger.LogInformation("Player {0} is receiving ball {1}", this.GetPrimaryKey(), ballId);
             State.BallIds.Add(ballId);
             await WriteStateAsync();
-            var i = State.BallIds.Count;
-            if (i > 1)
+            logger.LogInformation("Player {0} now has {1} balls", this.GetPrimaryKey(), State.BallIds.Count);
+            if (State.BallIds.Count > 1)
             {
                 PassOtherBalls(ballId);
             }
@@ -75,7 +97,8 @@ namespace Grains
 
         Task<List<Guid>> IPlayer.GetBallIds()
         {
-            throw new NotImplementedException();
+            logger.LogInformation("Someone wants to know about my balls :3");
+            return Task.FromResult(State.BallIds);
         }
 
         Task IRemindable.ReceiveReminder(string reminderName, TickStatus status)
@@ -89,7 +112,7 @@ namespace Grains
         ///  the player then decides at random to either keep the ball for another
         ///  period or to pass the ball.
         /// </summary>
-        private Task HoldOrPassBall(object arg)
+        private async Task HoldOrPassBall(object arg)
         {
             Random rndChoice = new Random();
             int choice = rndChoice.Next(0, 1);
@@ -97,9 +120,7 @@ namespace Grains
             {
                 // How long should the Actor sleep?
                 Random Sleep = new Random();
-                int SleepTime = Sleep.Next();
-
-                return null; // Bruh
+                int SleepTime = Sleep.Next(1, 100);
             }
             else
             {
@@ -111,10 +132,7 @@ namespace Grains
                 Guid randomplayer = State.PlayerIds[randomindex];
                 Guid randomball = State.BallIds[randomballindex];
                 IPlayer player = GrainFactory.GetGrain<IPlayer>(randomplayer);
-                player.ReceiveBall(randomball);
-
-                return null; //Bruh
-                
+                await player.ReceiveBall(randomball);
             }
         }
 
@@ -122,7 +140,7 @@ namespace Grains
         /// If the player is now holding more than one ball, it enters a state in which it
         ///  passes all but the ball received to known other players selected at random.
         /// </summary>
-        private Task PassOtherBalls(object arg)
+        private async Task PassOtherBalls(object arg)
         {
             // Get to know whether the player has more than 1 ball
             Guid LatestBall = State.LatestBallReceived;
@@ -131,7 +149,7 @@ namespace Grains
             {
                 if(LatestBall == ball)
                 {
-                    break;
+                    continue;
                 }
                 else
                 {
@@ -139,12 +157,9 @@ namespace Grains
                     int randomindex = rnd.Next(0, State.PlayerIds.Count);
                     Guid randomplayer = State.PlayerIds[randomindex];
                     IPlayer player = GrainFactory.GetGrain<IPlayer>(randomplayer);
-                    player.ReceiveBall(ball);
+                    await player.ReceiveBall(ball);
                 }
             }
-
-            return null;
         }
-
     }
 }

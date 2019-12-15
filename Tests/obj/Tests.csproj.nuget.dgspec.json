@@ -45,11 +45,11 @@
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[2.4.2, )"
+              "version": "[3.0.2, )"
             },
             "Microsoft.Orleans.Core.Abstractions": {
               "target": "Package",
-              "version": "[2.4.2, )"
+              "version": "[3.0.2, )"
             }
           },
           "imports": [
@@ -114,17 +114,37 @@
           "dependencies": {
             "Microsoft.Extensions.Logging.Abstractions": {
               "target": "Package",
-              "version": "[2.2.0, )"
+              "version": "[3.1.0, )"
+            },
+            "Microsoft.Orleans.Client": {
+              "target": "Package",
+              "version": "[3.0.2, )"
             },
             "Microsoft.Orleans.CodeGenerator.MSBuild": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[2.4.2, )"
+              "version": "[3.0.2, )"
+            },
+            "Microsoft.Orleans.Core": {
+              "target": "Package",
+              "version": "[3.0.2, )"
             },
             "Microsoft.Orleans.Core.Abstractions": {
               "target": "Package",
-              "version": "[2.4.2, )"
+              "version": "[3.0.2, )"
+            },
+            "Microsoft.Orleans.OrleansProviders": {
+              "target": "Package",
+              "version": "[3.0.2, )"
+            },
+            "Microsoft.Orleans.OrleansRuntime": {
+              "target": "Package",
+              "version": "[3.0.2, )"
+            },
+            "Microsoft.Orleans.Server": {
+              "target": "Package",
+              "version": "[3.0.2, )"
             }
           },
           "imports": [
@@ -194,13 +214,29 @@
               "target": "Package",
               "version": "[16.4.0, )"
             },
+            "Microsoft.Orleans.Core": {
+              "target": "Package",
+              "version": "[3.0.2, )"
+            },
+            "Microsoft.Orleans.OrleansProviders": {
+              "target": "Package",
+              "version": "[3.0.2, )"
+            },
+            "Microsoft.Orleans.OrleansRuntime": {
+              "target": "Package",
+              "version": "[3.0.2, )"
+            },
             "Microsoft.Orleans.Persistence.AdoNet": {
               "target": "Package",
-              "version": "[2.4.2, )"
+              "version": "[3.0.2, )"
+            },
+            "Microsoft.Orleans.Server": {
+              "target": "Package",
+              "version": "[3.0.2, )"
             },
             "Microsoft.Orleans.TestingHost": {
               "target": "Package",
-              "version": "[2.4.2, )"
+              "version": "[3.0.2, )"
             },
             "coverlet.collector": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",

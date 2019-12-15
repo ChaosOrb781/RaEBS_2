@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+  </PropertyGroup>
+  <ImportGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <Import Project="$(NuGetPackageRoot)microsoft.orleans.orleanshost\1.5.10\build\Microsoft.Orleans.OrleansHost.targets" Condition="Exists('$(NuGetPackageRoot)microsoft.orleans.orleanshost\1.5.10\build\Microsoft.Orleans.OrleansHost.targets')" />
+    <Import Project="$(NuGetPackageRoot)microsoft.orleans.orleanscodegenerator.build\3.0.2\build\Microsoft.Orleans.OrleansCodeGenerator.Build.targets" Condition="Exists('$(NuGetPackageRoot)microsoft.orleans.orleanscodegenerator.build\3.0.2\build\Microsoft.Orleans.OrleansCodeGenerator.Build.targets')" />
+  </ImportGroup>
+</Project>

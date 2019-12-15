@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Grains", "Grains\Grains.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests", "Tests\Tests.csproj", "{47882169-38F7-4754-ACC3-3B58D2F0B30A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SiloMain", "SiloMain\SiloMain.csproj", "{87CDE994-C7FF-4E98-A893-7679AF1E5361}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{47882169-38F7-4754-ACC3-3B58D2F0B30A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{47882169-38F7-4754-ACC3-3B58D2F0B30A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{47882169-38F7-4754-ACC3-3B58D2F0B30A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87CDE994-C7FF-4E98-A893-7679AF1E5361}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87CDE994-C7FF-4E98-A893-7679AF1E5361}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87CDE994-C7FF-4E98-A893-7679AF1E5361}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87CDE994-C7FF-4E98-A893-7679AF1E5361}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

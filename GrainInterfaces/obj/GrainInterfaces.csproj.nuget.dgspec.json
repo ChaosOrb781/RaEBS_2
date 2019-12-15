@@ -45,11 +45,11 @@
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[2.4.2, )"
+              "version": "[3.0.2, )"
             },
             "Microsoft.Orleans.Core.Abstractions": {
               "target": "Package",
-              "version": "[2.4.2, )"
+              "version": "[3.0.2, )"
             }
           },
           "imports": [
