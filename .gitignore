@@ -8,3 +8,7 @@ Tests/bin/Debug/netcoreapp3.0/
 Tests/obj/Debug/netcoreapp3.0/
 
 Grains/obj/Debug/netcoreapp3.0/
+
+Grains/bin/Debug/netcoreapp3.0/
+
+GrainInterfaces/obj/Debug/netcoreapp3.0/

@@ -16,7 +16,7 @@ namespace Grains
     }
 
 
-    //[StorageProvider(ProviderName = "storage")]
+    [StorageProvider(ProviderName = "OrleansStorage")]
     public class PlayerGrain : Grain<PlayerState>, IPlayer
     {
         private static Tuple<int, int> waitPeriod = Tuple.Create(500, 4000);
@@ -57,9 +57,6 @@ namespace Grains
             }
             return Task.CompletedTask;
         }
-
-
-               
 
         async Task IPlayer.ReceiveBall(Guid ballId)
         {

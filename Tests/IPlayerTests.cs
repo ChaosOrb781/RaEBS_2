@@ -12,12 +12,14 @@ namespace XUnitTests
 {
     public class IPlayerTests
     {
+        private ClusterFixture fixture;
         private readonly TestCluster _cluster;
         private readonly ITestOutputHelper _testOutputHelper;
 
-        public IPlayerTests(ClusterFixture fixture, ITestOutputHelper testOutputHelper)
+        public IPlayerTests(/*ClusterFixture fixture, */ITestOutputHelper testOutputHelper)
         {
             _testOutputHelper = testOutputHelper;
+            fixture = new ClusterFixture();
             _cluster = fixture.Cluster;
         }
 
