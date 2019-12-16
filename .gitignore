@@ -36,3 +36,11 @@ GrainInterfaces/bin/Debug/netcoreapp3.0/
 Grains/bin (1)/Debug/netcoreapp3.0/
 
 SiloMain/obj/
+
+.vs/
+
+GrainInterfaces/obj/
+
+Grains/obj/
+
+Silo/obj/
