@@ -32,7 +32,6 @@ namespace Grains
 
         Task IPlayer.Initialize(List<Guid> playerIds, bool isHoldingBall)
         {
-
             State.PlayerIds = playerIds;
             State.BallIds = new List<Guid>();
             return Task.CompletedTask;
