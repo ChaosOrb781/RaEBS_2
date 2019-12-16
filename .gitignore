@@ -12,3 +12,27 @@ Grains/obj/Debug/netcoreapp3.0/
 Grains/bin/Debug/netcoreapp3.0/
 
 GrainInterfaces/obj/Debug/netcoreapp3.0/
+
+SiloMain/bin/Debug/netcoreapp3.0/logs/
+
+SiloMain/bin/Debug/netcoreapp3.0/
+
+Grains/bin/Debug/netcoreapp2.1/
+
+Grains/bin/Debug/netcoreapp2.2/
+
+ClientMain/obj/Debug/netcoreapp3.0/
+
+ClientMain/obj/
+
+GrainInterfaces/bin (1)/Debug/netcoreapp3.0/
+
+GrainInterfaces/bin/Debug/netcoreapp2.1/
+
+GrainInterfaces/bin/Debug/netcoreapp2.2/
+
+GrainInterfaces/bin/Debug/netcoreapp3.0/
+
+Grains/bin (1)/Debug/netcoreapp3.0/
+
+SiloMain/obj/
