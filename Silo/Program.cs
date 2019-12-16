@@ -38,7 +38,7 @@ namespace OrleansBasics
                 Console.WriteLine("Give the player a ball...");
                 Console.ReadLine();
                 //Give Player a ball (new ball) - k balls
-                //await player.ReceiveBall(Guid.NewGuid());
+                await player.ReceiveBall(Guid.NewGuid());
 
                 
 
@@ -69,7 +69,7 @@ namespace OrleansBasics
                 })
                 .ConfigureApplicationParts(parts => parts.AddApplicationPart(typeof(PlayerGrain).Assembly).WithReferences())
                 .ConfigureLogging(logging => logging.AddConsole())
-                .AddAdoNetGrainStorage("OrleansStorage", options =>
+                .AddAdoNetGrainStorageAsDefault(options =>
                 {
                     options.Invariant = "Npgsql";
                     options.ConnectionString = "host=localhost;database=OrleansStorage;password=postgres;username=postgres";

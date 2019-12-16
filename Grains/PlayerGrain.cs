@@ -15,7 +15,7 @@ namespace Grains
     }
 
 
-    [StorageProvider(ProviderName = "OrleansStorage")]
+    [StorageProvider]
     public class PlayerGrain : Grain<PlayerState>, IPlayer
     {
         public override Task OnActivateAsync()
@@ -34,12 +34,19 @@ namespace Grains
         {
             State.PlayerIds = playerIds;
             State.BallIds = new List<Guid>();
+            if (isHoldingBall)
+            {
+                State.BallIds.Add(Guid.NewGuid());
+            }
             return Task.CompletedTask;
             //throw new NotImplementedException();
         }
 
         Task IPlayer.ReceiveBall(Guid ballId)
         {
+            State.BallIds.Add(ballId);
+            return WriteStateAsync();
+            /*
             State.BallIds.Add(ballId);
 
             //WriteStateAsync Writes to the database!!!
@@ -51,7 +58,7 @@ namespace Grains
             this.WriteStateAsync();
 
             //WriteStateAsync Updates the database!!!
-            return Task.CompletedTask;
+            return Task.CompletedTask;*/
             //throw new NotImplementedException();
         }   
 

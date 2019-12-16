@@ -41,7 +41,7 @@ namespace XUnitTests
                 })
                 .ConfigureApplicationParts(parts => parts.AddApplicationPart(typeof(PlayerGrain).Assembly).WithReferences())
                 .ConfigureLogging(logging => logging.AddConsole())
-                .AddAdoNetGrainStorage("OrleansStorage", options =>
+                .AddAdoNetGrainStorageAsDefault(options =>
                 {
                     options.Invariant = Statics.SQLInvariant;
                     options.ConnectionString = Statics.ConnectionString;
