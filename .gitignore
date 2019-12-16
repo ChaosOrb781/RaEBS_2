@@ -12,3 +12,11 @@ Grains/obj/Debug/netcoreapp3.0/
 Grains/bin/Debug/netcoreapp3.0/
 
 GrainInterfaces/obj/Debug/netcoreapp3.0/
+
+Tests/obj/
+
+Silo/obj/
+
+Grains/obj/
+
+GrainInterfaces/obj/
