@@ -1,17 +1,151 @@
 {
   "format": 1,
   "restore": {
-    "/Users/christian/Documents/School/RaEBS/Week_51/Assignment_2/RaEBS_2/Silo/Silo.csproj": {}
+    "/Users/christian/Documents/School/RaEBS/Assignment2/Silo/Silo.csproj": {}
   },
   "projects": {
-    "/Users/christian/Documents/School/RaEBS/Week_51/Assignment_2/RaEBS_2/Silo/Silo.csproj": {
+    "/Users/christian/Documents/School/RaEBS/Assignment2/GrainInterfaces/GrainInterfaces.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/christian/Documents/School/RaEBS/Week_51/Assignment_2/RaEBS_2/Silo/Silo.csproj",
-        "projectName": "Silo",
-        "projectPath": "/Users/christian/Documents/School/RaEBS/Week_51/Assignment_2/RaEBS_2/Silo/Silo.csproj",
+        "projectUniqueName": "/Users/christian/Documents/School/RaEBS/Assignment2/GrainInterfaces/GrainInterfaces.csproj",
+        "projectName": "GrainInterfaces",
+        "projectPath": "/Users/christian/Documents/School/RaEBS/Assignment2/GrainInterfaces/GrainInterfaces.csproj",
         "packagesPath": "/Users/christian/.nuget/packages/",
-        "outputPath": "/Users/christian/Documents/School/RaEBS/Week_51/Assignment_2/RaEBS_2/Silo/obj/",
+        "outputPath": "/Users/christian/Documents/School/RaEBS/Assignment2/GrainInterfaces/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/christian/.config/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.2"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.2": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.2": {
+          "dependencies": {
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
+            },
+            "Microsoft.Orleans.CodeGenerator.MSBuild": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.4.2, )"
+            },
+            "Microsoft.Orleans.Core.Abstractions": {
+              "target": "Package",
+              "version": "[2.4.2, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.0.100/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/christian/Documents/School/RaEBS/Assignment2/Grains/Grains.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/christian/Documents/School/RaEBS/Assignment2/Grains/Grains.csproj",
+        "projectName": "Grains",
+        "projectPath": "/Users/christian/Documents/School/RaEBS/Assignment2/Grains/Grains.csproj",
+        "packagesPath": "/Users/christian/.nuget/packages/",
+        "outputPath": "/Users/christian/Documents/School/RaEBS/Assignment2/Grains/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/christian/.config/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.2"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.2": {
+            "projectReferences": {
+              "/Users/christian/Documents/School/RaEBS/Assignment2/GrainInterfaces/GrainInterfaces.csproj": {
+                "projectPath": "/Users/christian/Documents/School/RaEBS/Assignment2/GrainInterfaces/GrainInterfaces.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.2": {
+          "dependencies": {
+            "Microsoft.Extensions.Logging.Abstractions": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
+            },
+            "Microsoft.Orleans.CodeGenerator.MSBuild": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.4.2, )"
+            },
+            "Microsoft.Orleans.Core.Abstractions": {
+              "target": "Package",
+              "version": "[2.4.2, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.0.100/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/christian/Documents/School/RaEBS/Assignment2/Silo/Silo.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/christian/Documents/School/RaEBS/Assignment2/Silo/Silo.csproj",
+        "projectName": "Silo",
+        "projectPath": "/Users/christian/Documents/School/RaEBS/Assignment2/Silo/Silo.csproj",
+        "packagesPath": "/Users/christian/.nuget/packages/",
+        "outputPath": "/Users/christian/Documents/School/RaEBS/Assignment2/Silo/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/christian/.config/NuGet/NuGet.Config"
@@ -24,7 +158,14 @@
         },
         "frameworks": {
           "netcoreapp3.0": {
-            "projectReferences": {}
+            "projectReferences": {
+              "/Users/christian/Documents/School/RaEBS/Assignment2/GrainInterfaces/GrainInterfaces.csproj": {
+                "projectPath": "/Users/christian/Documents/School/RaEBS/Assignment2/GrainInterfaces/GrainInterfaces.csproj"
+              },
+              "/Users/christian/Documents/School/RaEBS/Assignment2/Grains/Grains.csproj": {
+                "projectPath": "/Users/christian/Documents/School/RaEBS/Assignment2/Grains/Grains.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -35,6 +176,32 @@
       },
       "frameworks": {
         "netcoreapp3.0": {
+          "dependencies": {
+            "Microsoft.Extensions.Logging": {
+              "target": "Package",
+              "version": "[3.1.0, )"
+            },
+            "Microsoft.Extensions.Logging.Console": {
+              "target": "Package",
+              "version": "[3.1.0, )"
+            },
+            "Microsoft.Orleans.Core": {
+              "target": "Package",
+              "version": "[2.4.2, )"
+            },
+            "Microsoft.Orleans.Persistence.AdoNet": {
+              "target": "Package",
+              "version": "[2.4.2, )"
+            },
+            "Microsoft.Orleans.Server": {
+              "target": "Package",
+              "version": "[2.4.2, )"
+            },
+            "Npgsql": {
+              "target": "Package",
+              "version": "[4.1.2, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

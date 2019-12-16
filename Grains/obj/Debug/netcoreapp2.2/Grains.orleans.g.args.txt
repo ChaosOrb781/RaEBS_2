@@ -1,12 +1,12 @@
 LogLevel:Warning
-ProjectPath:/Users/christian/Documents/School/RaEBS/Week_51/Assignment_2/RaEBS_2/Grains/Grains.csproj
+ProjectPath:/Users/christian/Documents/School/RaEBS/Assignment2/Grains/Grains.csproj
 ProjectGuid:
 AssemblyName:Grains
 OutputType:Library
-TargetPath:/Users/christian/Documents/School/RaEBS/Week_51/Assignment_2/RaEBS_2/Grains/bin/Debug/netcoreapp2.2/Grains.dll
-CodeGenOutputFile:/Users/christian/Documents/School/RaEBS/Week_51/Assignment_2/RaEBS_2/Grains/obj/Debug/netcoreapp2.2/Grains.orleans.g.cs
-Compile:/Users/christian/Documents/School/RaEBS/Week_51/Assignment_2/RaEBS_2/Grains/PlayerGrain.cs
-Reference:/Users/christian/Documents/School/RaEBS/Week_51/Assignment_2/RaEBS_2/GrainInterfaces/bin/Debug/netcoreapp2.2/GrainInterfaces.dll
+TargetPath:/Users/christian/Documents/School/RaEBS/Assignment2/Grains/bin/Debug/netcoreapp2.2/Grains.dll
+CodeGenOutputFile:/Users/christian/Documents/School/RaEBS/Assignment2/Grains/obj/Debug/netcoreapp2.2/Grains.orleans.g.cs
+Compile:/Users/christian/Documents/School/RaEBS/Assignment2/Grains/PlayerGrain.cs
+Reference:/Users/christian/Documents/School/RaEBS/Assignment2/GrainInterfaces/bin/Debug/netcoreapp2.2/GrainInterfaces.dll
 Reference:/Users/christian/.nuget/packages/microsoft.netcore.app/2.2.0/ref/netcoreapp2.2/Microsoft.CSharp.dll
 Reference:/Users/christian/.nuget/packages/microsoft.extensions.logging.abstractions/2.2.0/lib/netstandard2.0/Microsoft.Extensions.Logging.Abstractions.dll
 Reference:/Users/christian/.nuget/packages/microsoft.netcore.app/2.2.0/ref/netcoreapp2.2/Microsoft.VisualBasic.dll

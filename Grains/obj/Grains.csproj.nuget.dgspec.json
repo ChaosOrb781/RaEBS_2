@@ -1,34 +1,29 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\chaos\\Google Drev\\UNIVERSITET - Datalogi\\Reactive and Event Based Systems\\RaEBS_2\\Grains\\Grains.csproj": {}
+    "/Users/christian/Documents/School/RaEBS/Assignment2/Grains/Grains.csproj": {}
   },
   "projects": {
-    "C:\\Users\\chaos\\Google Drev\\UNIVERSITET - Datalogi\\Reactive and Event Based Systems\\RaEBS_2\\GrainInterfaces\\GrainInterfaces.csproj": {
+    "/Users/christian/Documents/School/RaEBS/Assignment2/GrainInterfaces/GrainInterfaces.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\chaos\\Google Drev\\UNIVERSITET - Datalogi\\Reactive and Event Based Systems\\RaEBS_2\\GrainInterfaces\\GrainInterfaces.csproj",
+        "projectUniqueName": "/Users/christian/Documents/School/RaEBS/Assignment2/GrainInterfaces/GrainInterfaces.csproj",
         "projectName": "GrainInterfaces",
-        "projectPath": "C:\\Users\\chaos\\Google Drev\\UNIVERSITET - Datalogi\\Reactive and Event Based Systems\\RaEBS_2\\GrainInterfaces\\GrainInterfaces.csproj",
-        "packagesPath": "C:\\Users\\chaos\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\chaos\\Google Drev\\UNIVERSITET - Datalogi\\Reactive and Event Based Systems\\RaEBS_2\\GrainInterfaces\\obj\\",
+        "projectPath": "/Users/christian/Documents/School/RaEBS/Assignment2/GrainInterfaces/GrainInterfaces.csproj",
+        "packagesPath": "/Users/christian/.nuget/packages/",
+        "outputPath": "/Users/christian/Documents/School/RaEBS/Assignment2/GrainInterfaces/obj/",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\chaos\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/Users/christian/.config/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
-          "netcoreapp3.0"
+          "netcoreapp2.2"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "netcoreapp3.0": {
+          "netcoreapp2.2": {
             "projectReferences": {}
           }
         },
@@ -39,17 +34,23 @@
         }
       },
       "frameworks": {
-        "netcoreapp3.0": {
+        "netcoreapp2.2": {
           "dependencies": {
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
+            },
             "Microsoft.Orleans.CodeGenerator.MSBuild": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[3.0.2, )"
+              "version": "[2.4.2, )"
             },
             "Microsoft.Orleans.Core.Abstractions": {
               "target": "Package",
-              "version": "[3.0.2, )"
+              "version": "[2.4.2, )"
             }
           },
           "imports": [
@@ -62,43 +63,33 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "frameworkReferences": {
-            "Microsoft.NETCore.App": {
-              "privateAssets": "all"
-            }
-          },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.0.100/RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\chaos\\Google Drev\\UNIVERSITET - Datalogi\\Reactive and Event Based Systems\\RaEBS_2\\Grains\\Grains.csproj": {
+    "/Users/christian/Documents/School/RaEBS/Assignment2/Grains/Grains.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\chaos\\Google Drev\\UNIVERSITET - Datalogi\\Reactive and Event Based Systems\\RaEBS_2\\Grains\\Grains.csproj",
+        "projectUniqueName": "/Users/christian/Documents/School/RaEBS/Assignment2/Grains/Grains.csproj",
         "projectName": "Grains",
-        "projectPath": "C:\\Users\\chaos\\Google Drev\\UNIVERSITET - Datalogi\\Reactive and Event Based Systems\\RaEBS_2\\Grains\\Grains.csproj",
-        "packagesPath": "C:\\Users\\chaos\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\chaos\\Google Drev\\UNIVERSITET - Datalogi\\Reactive and Event Based Systems\\RaEBS_2\\Grains\\obj\\",
+        "projectPath": "/Users/christian/Documents/School/RaEBS/Assignment2/Grains/Grains.csproj",
+        "packagesPath": "/Users/christian/.nuget/packages/",
+        "outputPath": "/Users/christian/Documents/School/RaEBS/Assignment2/Grains/obj/",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\chaos\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/Users/christian/.config/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
-          "netcoreapp3.0"
+          "netcoreapp2.2"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "netcoreapp3.0": {
+          "netcoreapp2.2": {
             "projectReferences": {
-              "C:\\Users\\chaos\\Google Drev\\UNIVERSITET - Datalogi\\Reactive and Event Based Systems\\RaEBS_2\\GrainInterfaces\\GrainInterfaces.csproj": {
-                "projectPath": "C:\\Users\\chaos\\Google Drev\\UNIVERSITET - Datalogi\\Reactive and Event Based Systems\\RaEBS_2\\GrainInterfaces\\GrainInterfaces.csproj"
+              "/Users/christian/Documents/School/RaEBS/Assignment2/GrainInterfaces/GrainInterfaces.csproj": {
+                "projectPath": "/Users/christian/Documents/School/RaEBS/Assignment2/GrainInterfaces/GrainInterfaces.csproj"
               }
             }
           }
@@ -110,41 +101,27 @@
         }
       },
       "frameworks": {
-        "netcoreapp3.0": {
+        "netcoreapp2.2": {
           "dependencies": {
             "Microsoft.Extensions.Logging.Abstractions": {
               "target": "Package",
-              "version": "[3.1.0, )"
+              "version": "[2.2.0, )"
             },
-            "Microsoft.Orleans.Client": {
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
               "target": "Package",
-              "version": "[3.0.2, )"
+              "version": "[2.2.0, )",
+              "autoReferenced": true
             },
             "Microsoft.Orleans.CodeGenerator.MSBuild": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[3.0.2, )"
-            },
-            "Microsoft.Orleans.Core": {
-              "target": "Package",
-              "version": "[3.0.2, )"
+              "version": "[2.4.2, )"
             },
             "Microsoft.Orleans.Core.Abstractions": {
               "target": "Package",
-              "version": "[3.0.2, )"
-            },
-            "Microsoft.Orleans.OrleansProviders": {
-              "target": "Package",
-              "version": "[3.0.2, )"
-            },
-            "Microsoft.Orleans.OrleansRuntime": {
-              "target": "Package",
-              "version": "[3.0.2, )"
-            },
-            "Microsoft.Orleans.Server": {
-              "target": "Package",
-              "version": "[3.0.2, )"
+              "version": "[2.4.2, )"
             }
           },
           "imports": [
@@ -157,12 +134,7 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "frameworkReferences": {
-            "Microsoft.NETCore.App": {
-              "privateAssets": "all"
-            }
-          },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.0.100/RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -1,19 +1,16 @@
 ﻿<Properties StartupConfiguration="{47882169-38F7-4754-ACC3-3B58D2F0B30A}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Grains/PlayerGrain.cs">
-    <Files>
-      <File FileName="Grains/PlayerGrain.cs" Line="103" Column="45" />
-      <File FileName="GrainInterfaces/IPlayer.cs" Line="23" Column="37" />
-      <File FileName="Tests/IPlayerTests.cs" Line="30" Column="6" />
-      <File FileName="Tests/ClusterFixture.cs" Line="17" Column="10" />
-    </Files>
+  <MonoDevelop.Ide.ItemProperties.SiloHost PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="Assignment2" expanded="True">
             <Node name="GrainInterfaces" expanded="True" />
-            <Node name="Grains" expanded="True">
-              <Node name="PlayerGrain.cs" selected="True" />
+            <Node name="Grains" expanded="True" />
+            <Node name="OrleansClient" expanded="True">
+              <Node name="PlayerClientHostedService.cs" selected="True" />
             </Node>
+            <Node name="SiloHost" expanded="True" />
             <Node name="Tests" expanded="True" />
           </Node>
         </State>

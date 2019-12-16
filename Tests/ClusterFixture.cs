@@ -1,11 +1,7 @@
-﻿using Grains;
-using Orleans;
-using Orleans.ApplicationParts;
-using Orleans.Configuration;
+﻿using Orleans.Configuration;
 using Orleans.Hosting;
 using Orleans.TestingHost;
 using System;
-using System.Net;
 using Xunit;
 
 namespace XUnitTests
@@ -33,17 +29,17 @@ namespace XUnitTests
         public void Configure(ISiloHostBuilder hostBuilder)
         {
             hostBuilder = new SiloHostBuilder()
+               .UseLocalhostClustering()
                .Configure<ClusterOptions>(options =>
                {
                    options.ClusterId = "dev";
-                   options.ServiceId = "OrleansStorage";
+                   options.ServiceId = "OrleansBasics";
                })
-               .ConfigureApplicationParts(parts => parts.AddApplicationPart(typeof(PlayerGrain).Assembly).WithReferences())
                // TODO replace with your connection string
-               .AddAdoNetGrainStorageAsDefault(options =>
+               .AddAdoNetGrainStorage("OrleansStorage", options =>
                {
                    options.Invariant = "Npgsql";
-                   options.ConnectionString = "Server=127.0.0.1;Port=5432;Database=OrleansStorage;User Id=postgres;Password=postgres;";
+                   options.ConnectionString = "<ConnectionString>";
                    options.UseJsonFormat = true;
                })
                .UseInMemoryReminderService();
