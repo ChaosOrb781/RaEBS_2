@@ -6,7 +6,6 @@ using Orleans.TestingHost;
 using System;
 using Xunit;
 using Microsoft.Extensions.Logging;
-using Tests;
 
 namespace XUnitTests
 {
@@ -22,7 +21,7 @@ namespace XUnitTests
 
         public void Dispose()
         {
-            this.Cluster.StopAllSilos();
+            //this.Cluster.StopAllSilos();
         }
 
         public TestCluster Cluster { get; private set; }
@@ -32,8 +31,9 @@ namespace XUnitTests
     {
         public void Configure(ISiloHostBuilder hostBuilder)
         {
-            hostBuilder = new SiloHostBuilder()
+            hostBuilder
                 .UseLocalhostClustering()
+                .ConfigureDefaults()
                 .Configure<ClusterOptions>(options =>
                 {
                     options.ClusterId = "dev";
@@ -43,8 +43,8 @@ namespace XUnitTests
                 .ConfigureLogging(logging => logging.AddConsole())
                 .AddAdoNetGrainStorageAsDefault(options =>
                 {
-                    options.Invariant = Statics.SQLInvariant;
-                    options.ConnectionString = Statics.ConnectionString;
+                    options.Invariant = Statics.Values.SQLInvariant;
+                    options.ConnectionString = Statics.Values.ConnectionString;
                     options.UseJsonFormat = true;
                 })
                .UseInMemoryReminderService();

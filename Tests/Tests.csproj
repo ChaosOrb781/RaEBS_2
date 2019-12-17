@@ -9,7 +9,7 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="3.1.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.4.0" />
-    <PackageReference Include="Microsoft.Orleans.Core" Version="3.0.2" />
+    <PackageReference Include="Microsoft.Orleans.Core" Version="2.4.2" />
     <PackageReference Include="Microsoft.Orleans.Persistence.AdoNet" Version="2.4.2" />
     <PackageReference Include="Microsoft.Orleans.TestingHost" Version="2.4.2" />
     <PackageReference Include="Npgsql" Version="4.1.2" />
@@ -24,6 +24,7 @@
   <ItemGroup>
     <ProjectReference Include="..\GrainInterfaces\GrainInterfaces.csproj" />
     <ProjectReference Include="..\Grains\Grains.csproj" />
+    <ProjectReference Include="..\Statics\Statics.csproj" />
   </ItemGroup>
 
 </Project>

@@ -28,3 +28,7 @@ Silo/bin/
 GrainInterfaces/bin/
 
 .vs/
+
+Statics/bin/
+
+Statics/obj/
