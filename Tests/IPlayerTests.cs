@@ -12,7 +12,6 @@ namespace XUnitTests
     {
         private readonly TestCluster _cluster;
         private readonly ITestOutputHelper _testOutputHelper;
-        private readonly List<Guid> players;
 
         //Statics.Players contains 10 guids we reuse for testing purposes
         public IPlayerTests(ClusterFixture fixture, ITestOutputHelper testOutputHelper)
@@ -85,6 +84,7 @@ namespace XUnitTests
                     initializers.Add(player.Initialize(Statics.Values.Players, true));
                 }
                 await Task.WhenAll(initializers);
+
                 List<Task<List<Guid>>> balls = new List<Task<List<Guid>>>(); 
                 foreach (IPlayer player in players)
                 {

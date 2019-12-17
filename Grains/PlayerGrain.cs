@@ -13,7 +13,7 @@ namespace Grains
     {
         public List<Guid> PlayerIds { set; get; } = new List<Guid>();
         public List<Guid> BallIds { set; get; } = new List<Guid>();
-        public Guid LatestBallReceived;
+        public Guid LatestBallReceived = Guid.Empty;
     }
 
 
@@ -39,8 +39,9 @@ namespace Grains
             State.BallIds = new List<Guid>();
             if (isHoldingBall)
             {
-                State.BallIds.Add(Guid.NewGuid());
-                State.LatestBallReceived = State.BallIds.FirstOrDefault();
+                Guid newBall = Guid.NewGuid();
+                State.BallIds.Add(newBall);
+                State.LatestBallReceived = newBall;
             }
             return WriteStateAsync();
         }

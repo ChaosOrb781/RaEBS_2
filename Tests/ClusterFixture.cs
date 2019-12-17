@@ -21,7 +21,7 @@ namespace XUnitTests
 
         public void Dispose()
         {
-            //this.Cluster.StopAllSilos();
+            this.Cluster.StopAllSilos();
         }
 
         public TestCluster Cluster { get; private set; }
