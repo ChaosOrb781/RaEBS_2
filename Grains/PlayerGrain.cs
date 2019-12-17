@@ -61,7 +61,7 @@ namespace Grains
 
             await InitializeSnapshot(this.GetPrimaryKey());
 
-
+            //await HoldOrPassBallTruelyRandom(ballId);
             // Set Timer
             RegisterTimer(HoldOrPassBallTruelyRandom, ballId, TimeSpan.FromSeconds(1), TimeSpan.FromMilliseconds(-1));
             //await HoldOrPassBallTruelyRandom(); //Decide if we keep latest
@@ -106,6 +106,7 @@ namespace Grains
                 await PassOtherBallsTruelyRandom(ballId);
             }
 
+
             if (Convert.ToBoolean(Randomizer.Next(0, 2)))
             {
                
@@ -121,11 +122,11 @@ namespace Grains
                 await otherPlayer.ReceiveBall(ballId);
                 State.BallIds.Remove(ballId);
 
-                Console.WriteLine("Player {0} threw ball {1} to player {2}", this.GetPrimaryKey(), ballId, otherPlayer.GetPrimaryKey());
+                Console.WriteLine("HOLD OR PASS _ Player {0} threw ball {1} to player {2}", this.GetPrimaryKey(), ballId, otherPlayer.GetPrimaryKey());
 
 
 
-                await WriteStateAsync();
+                //await WriteStateAsync();
             }
             else
             {
@@ -190,20 +191,23 @@ namespace Grains
                     int otherPlayerIndex = Randomizer.Next(0, State.PlayerIds.Count - 1);
                     //If this player's id was chosen, just add one by the logic of previous line
                     otherPlayerIndex = (otherPlayerIndex >= State.PlayerIds.IndexOf(this.GetPrimaryKey())) ? otherPlayerIndex++ : otherPlayerIndex;
+
                     IPlayer otherPlayer = GrainFactory.GetGrain<IPlayer>(State.PlayerIds[otherPlayerIndex]);
 
-                    Console.WriteLine("Player {0} threw ball {1} to player {2}", this.GetPrimaryKey(), ball, otherPlayer.GetPrimaryKey());
                     await otherPlayer.ReceiveBall(ball);
+                    Console.WriteLine("PASS OTHER _ Player {0} threw ball {1} to player {2}", this.GetPrimaryKey(), ball, otherPlayer.GetPrimaryKey());
+
                     State.BallIds.Remove(ball);
-                    await WriteStateAsync();
+
+                    //await WriteStateAsync();
 
                     // Maybe
-                    await HoldOrPassBallTruelyRandom(ball);
+                    //await HoldOrPassBallTruelyRandom(ball);
                 }
 
-
             }
-            
+            await HoldOrPassBallTruelyRandom(ballId);
+
         }
 
 
@@ -262,14 +266,14 @@ namespace Grains
             }
             */
 
-            object message = ("Player {0} has ball(s) {1}", ID, BallIDs[0]);
+            object message = ("Player (Channel) {0} has ball(s) {1}", ID, BallIDs[0]);
 
             return message;
         }
 
         /*
         // We also want to keep track of the messages that the player "Receives" - meaning all the messages on its incoming channel
-        // Every Actor "knows about" N-1 other Actors
+        // Every Actor "knows about" N-1 other Actors. This is implemented in the above functions
         public async void MessagesReceived(Guid Initialplayer, object message)
         {
 

@@ -30,17 +30,18 @@ namespace OrleansBasics
 
 
                 
-                Console.WriteLine("How many players do you want in the game? :");
+                Console.WriteLine("\n\n How many players do you want in the game? :");
 
                 List<Guid> AllPlayers = SpawnPlayers(client, int.Parse(Console.ReadLine()));
 
 
 
 
-                Console.WriteLine("How many balls do you want in the game? :");
+                Console.WriteLine("\n\n How many balls do you want in the game? :");
 
                 await GiveRandomPlayersBalls(client, AllPlayers, int.Parse(Console.ReadLine()));
 
+                
 
 
 
@@ -124,7 +125,13 @@ namespace OrleansBasics
 
             }
 
+            Console.WriteLine("PLAYERS: \n\n");
+            for (int i = 0; i < number_of_players; i++)
+            {
+                Console.WriteLine(ListID[i]);
+            }
             return ListID;
+
         }
 
 
@@ -132,8 +139,22 @@ namespace OrleansBasics
         { 
             Random rng = new Random();
 
+            List<Guid> ballsList = new List<Guid>();
+
             int balls = number_of_balls;
 
+            // Returns the same ball -- goddammit
+            for (int i = 0; i < number_of_balls; i++)
+            {
+                ballsList.Add(Guid.NewGuid());
+            }
+
+            // Print the balls added to the game
+            Console.WriteLine("\n\n BALLS :");
+            for (int i = 0; i < balls; i++)
+            {
+                Console.WriteLine("{0}", ballsList[i]);
+            }
 
             // Shuffle list of players randomly to and give K balls to the first K players
             int n = AllPlayers.Count;
@@ -147,13 +168,24 @@ namespace OrleansBasics
                 AllPlayers[n] = value;
             }
 
-            // K balls
-            for (int i = 0; i < balls; i++)
+            Console.WriteLine("\n\n Shuffled List of Players : ");
+
+            for (int i = 0; i < AllPlayers.Count; i++)
             {
+                Console.WriteLine(AllPlayers[i]);
+            }
+
+            // K balls
+            for (int i = 0; i < ballsList.Count; i++)
+            {
+                Console.WriteLine("PLAYER {0} has ID {1}",i, AllPlayers[i]);
                 var player = client.GetGrain<IPlayer>(AllPlayers[i]);
-                await player.ReceiveBall(Guid.NewGuid());
+                Console.WriteLine("PLAYER {0} gets ball {1}", i, ballsList[i]);
+
+                await player.ReceiveBall(ballsList[i]);
 
             }
+
 
         }
     }
