@@ -48,6 +48,7 @@ namespace XUnitTests
             {
                 List<Task> initializers = new List<Task>();
                 List<IPlayer> players = new List<IPlayer>();
+
                 foreach (Guid playerId in Statics.Values.Players)
                 {
                     IPlayer player = _cluster.Client.GetGrain<IPlayer>(playerId);
@@ -55,14 +56,19 @@ namespace XUnitTests
                     initializers.Add(player.Initialize(Statics.Values.Players, false));
                 }
                 await Task.WhenAll(initializers);
+
                 List<Task<List<Guid>>> balls = new List<Task<List<Guid>>>();
+
                 foreach (IPlayer player in players)
                 {
+                    //Get the balls from every player
                     balls.Add(player.GetBallIds());
                 }
                 await Task.WhenAll(balls);
 
                 Assert.True(balls.TrueForAll(l => l.Result.Count == 0));
+
+
             } 
             catch (Exception e)
             {
@@ -78,6 +84,7 @@ namespace XUnitTests
             {
                 List<Task> initializers = new List<Task>();
                 List<IPlayer> players = new List<IPlayer>();
+
                 foreach (Guid playerId in Statics.Values.Players)
                 {
                     IPlayer player = _cluster.Client.GetGrain<IPlayer>(playerId);
@@ -85,12 +92,24 @@ namespace XUnitTests
                     initializers.Add(player.Initialize(Statics.Values.Players, true));
                 }
                 await Task.WhenAll(initializers);
-                List<Task<List<Guid>>> balls = new List<Task<List<Guid>>>(); 
+                               
+                List<Task<List<Guid>>> balls = new List<Task<List<Guid>>>();
+
+
                 foreach (IPlayer player in players)
                 {
                     balls.Add(player.GetBallIds());
+                    
                 }
                 await Task.WhenAll(balls);
+
+
+                // Print all balls for each player
+                /*
+                foreach(Task < List < Guid >> ball in balls) {
+                    _testOutputHelper.WriteLine("Hello {0}", ball.Result.Count);
+                }
+                */
 
                 Assert.True(balls.TrueForAll(l => l.Result.Count == 1));
             }
@@ -108,6 +127,7 @@ namespace XUnitTests
             {
                 List<Task> initializers = new List<Task>();
                 List<IPlayer> players = new List<IPlayer>();
+
                 for (int i = 0; i < Statics.Values.Players.Length; i++)
                 {
                     IPlayer player = _cluster.Client.GetGrain<IPlayer>(Statics.Values.Players[i]);
@@ -133,12 +153,13 @@ namespace XUnitTests
         }
 
         [Fact]
-        public async void TorseAllKBallsAtOnePlayer()
+        public async void TossAllKBallsAtOnePlayer()
         {
             try
             {
                 List<Task> initializers = new List<Task>();
                 List<IPlayer> players = new List<IPlayer>();
+
                 foreach (Guid playerId in Statics.Values.Players)
                 {
                     IPlayer player = _cluster.Client.GetGrain<IPlayer>(playerId);
@@ -155,6 +176,7 @@ namespace XUnitTests
                 await Task.WhenAll(torses);
 
                 List<Task<List<Guid>>> balls = new List<Task<List<Guid>>>();
+
                 foreach (IPlayer player in players)
                 {
                     balls.Add(player.GetBallIds());
