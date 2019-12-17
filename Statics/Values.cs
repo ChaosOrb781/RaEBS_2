@@ -42,7 +42,7 @@ namespace Statics
 
         //Seconds delay, minimum value for Reminders are 1 minute.
         public const int WaitTimeMin = 60;
-        public const int WaitTimeMax = 300;
+        public const int WaitTimeMax = 120;
         public const string TossReminderName = "TossReminder";
 
         //Random variables

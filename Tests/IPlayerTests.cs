@@ -62,7 +62,7 @@ namespace XUnitTests
                 await Task.WhenAll(balls);
 
                 Assert.True(balls.TrueForAll(l => l.Result.Count == 0));
-            } 
+            }
             catch (Exception e)
             {
                 _testOutputHelper.WriteLine("Error: " + e.Message);
@@ -85,7 +85,7 @@ namespace XUnitTests
                 }
                 await Task.WhenAll(initializers);
 
-                List<Task<List<Guid>>> balls = new List<Task<List<Guid>>>(); 
+                List<Task<List<Guid>>> balls = new List<Task<List<Guid>>>();
                 foreach (IPlayer player in players)
                 {
                     balls.Add(player.GetBallIds());
@@ -133,7 +133,73 @@ namespace XUnitTests
         }
 
         [Fact]
-        public async void TorseAllKBallsAtOnePlayer()
+        public async void TossTwoBallsAtSamePlayer()
+        {
+            try
+            {
+                _testOutputHelper.WriteLine("Initializing players");
+                List<Task> initializers = new List<Task>();
+                List<IPlayer> players = new List<IPlayer>();
+                foreach (Guid playerId in Statics.Values.Players)
+                {
+                    IPlayer player = _cluster.Client.GetGrain<IPlayer>(playerId);
+                    players.Add(player);
+                    initializers.Add(player.Initialize(Statics.Values.Players, false));
+                }
+                await Task.WhenAll(initializers);
+
+                _testOutputHelper.WriteLine("Tossing ball to first player");
+                await players[0].ReceiveBall(Statics.Values.Balls[0]);
+                await players[0].ReceiveBall(Statics.Values.Balls[1]);
+                await players[0].ReceiveBall(Statics.Values.Balls[2]);
+                await players[0].ReceiveBall(Statics.Values.Balls[3]);
+                await players[0].ReceiveBall(Statics.Values.Balls[4]);
+
+                _testOutputHelper.WriteLine("Right after statistics toss");
+                _testOutputHelper.WriteLine("Checking how many balls are in play");
+                List<Task<List<Guid>>> balls = new List<Task<List<Guid>>>();
+                foreach (IPlayer player in players)
+                {
+                    balls.Add(player.GetBallIds());
+                }
+                await Task.WhenAll(balls);
+                //Check immidially after
+                int numBalls = 0;
+                for (int i = 0; i < Statics.Values.N; i++)
+                {
+                    numBalls += balls[i].Result.Count;
+                    _testOutputHelper.WriteLine("Player {0} had {1} balls", i, balls[i].Result.Count);
+                }
+                Assert.Equal(5, numBalls);
+
+                await Task.Delay(121000);
+
+                _testOutputHelper.WriteLine("2 minutes after toss");
+                _testOutputHelper.WriteLine("Checking how many balls are in play");
+                balls = new List<Task<List<Guid>>>();
+                foreach (IPlayer player in players)
+                {
+                    balls.Add(player.GetBallIds());
+                }
+                await Task.WhenAll(balls);
+                //Check immidially after
+                numBalls = 0;
+                for (int i = 0; i < Statics.Values.N; i++)
+                {
+                    numBalls += balls[i].Result.Count;
+                    _testOutputHelper.WriteLine("Player {0} had {1} balls", i, balls[i].Result.Count);
+                }
+                Assert.Equal(5, numBalls);
+            }
+            catch (Exception e)
+            {
+                _testOutputHelper.WriteLine("Error: " + e.Message);
+                Assert.False(true);
+            }
+        }
+
+        [Fact]
+        public async void TossAllKBallsAtOnePlayer()
         {
             try
             {
@@ -147,12 +213,12 @@ namespace XUnitTests
                 }
                 await Task.WhenAll(initializers);
 
-                List<Task> torses = new List<Task>();
+                List<Task> tosses = new List<Task>();
                 for (int i = 0; i < Statics.Values.Kmax; i++)
                 {
-                    torses.Add(players[0].ReceiveBall(Statics.Values.Balls[i]));
+                    tosses.Add(players[0].ReceiveBall(Statics.Values.Balls[i]));
                 }
-                await Task.WhenAll(torses);
+                await Task.WhenAll(tosses);
 
                 List<Task<List<Guid>>> balls = new List<Task<List<Guid>>>();
                 foreach (IPlayer player in players)

@@ -53,13 +53,13 @@ namespace Grains
             State.LatestBallReceived = ballId; // Write to state
             await WriteStateAsync(); //Save state
             await PassOtherBallsTruelyRandom(); //Pass all other balls but latest
-            //await HoldOrPassBallTruelyRandom(); //Decide if we keep latest
+            await HoldOrPassBallTruelyRandom(); //Decide if we keep latest
         }   
 
-        public Task<List<Guid>> GetBallIds()
+        public async Task<List<Guid>> GetBallIds()
         {
-            //await ReadStateAsync(); //Update state; Should be unnecessary as recovered OnActivation
-            return Task.FromResult(this.State.BallIds);
+            await ReadStateAsync(); //Update state; Should be unnecessary as recovered OnActivation
+            return this.State.BallIds;
         }
 
         public async Task ReceiveReminder(string reminderName, TickStatus status)
@@ -73,15 +73,16 @@ namespace Grains
                 default:
                     break;
             }
+            this.UnregisterReminder(await GetReminder(reminderName)).Dispose();
         }
 
         private async Task HoldOrPassBallTruelyRandom()
         {
-            //Cannot torse if no ball
+            //Cannot toss if no ball
             if (State.BallIds.Count == 0)
                 return;
-            int torseChoice = Statics.Values.Randomizer.Next(Statics.Values.MinChange, Statics.Values.MaxChance);
-            if (torseChoice <= Statics.Values.TossChange)
+            int tossChoice = Statics.Values.Randomizer.Next(Statics.Values.MinChange, Statics.Values.MaxChance);
+            if (tossChoice <= Statics.Values.TossChange)
             {
                 //Check from 0 to N - 2 (removing this player from the list)
                 int otherPlayerIndex = Statics.Values.Randomizer.Next(0, State.PlayerIds.Count - 2);
@@ -95,25 +96,20 @@ namespace Grains
             }
             else
             {
-                int timeWaitMilliseconds = Statics.Values.Randomizer.Next(Statics.Values.WaitTimeMin, Statics.Values.WaitTimeMax);
-                //?? Dont use await to prevent blocking actions!
-                //Might just be registering it instead of waiting, if so do await
-                this.RegisterOrUpdateReminder("RemindToPass",
-                    TimeSpan.FromSeconds(Statics.Values.WaitTimeMin),
-                    TimeSpan.FromSeconds(timeWaitMilliseconds));
+                RandomWait();
             }
         }
 
         private async Task HoldOrPassBallLogicRandom()
         {
-            //Cannot torse if no ball
+            //Cannot toss if no ball
             if (State.BallIds.Count == 0)
                 return;
-            int torseChoice = Statics.Values.Randomizer.Next(Statics.Values.MinChange, Statics.Values.MaxChance);
-            if (torseChoice <= Statics.Values.TossChange)
+            int tossChoice = Statics.Values.Randomizer.Next(Statics.Values.MinChange, Statics.Values.MaxChance);
+            if (tossChoice <= Statics.Values.TossChange)
             {
-                //Only torse to player who can receive, this is not necessarily thread-safe,
-                //many actors can torse to same actor if their count is observed to be 0 balls
+                //Only toss to player who can receive, this is not necessarily thread-safe,
+                //many actors can toss to same actor if their count is observed to be 0 balls
                 //Hence we "PassOtherBalls" before we "HoldOrPassBall"
                 IPlayer otherPlayer = null;
                 List<Guid> balls = new List<Guid>();
@@ -134,12 +130,7 @@ namespace Grains
             }
             else
             {
-                int timeWaitMilliseconds = Statics.Values.Randomizer.Next(Statics.Values.WaitTimeMin, Statics.Values.WaitTimeMax);
-                //?? Dont use await to prevent blocking actions!
-                //Might just be registering it instead of waiting, if so do await
-                await this.RegisterOrUpdateReminder("RemindToPass", 
-                    TimeSpan.FromMilliseconds(Statics.Values.WaitTimeMin), 
-                    TimeSpan.FromMilliseconds(timeWaitMilliseconds));
+                RandomWait();
             }
         }
 
@@ -147,7 +138,7 @@ namespace Grains
         {
             while (State.BallIds.Count > 1)
             {
-                //If lowest ball in stack is Latest, skip that and torse others
+                //If lowest ball in stack is Latest, skip that and toss others
                 int index = (State.BallIds[0] == State.LatestBallReceived) ? 1 : 0;
                 Guid ball = State.BallIds[index];
 
@@ -167,11 +158,11 @@ namespace Grains
         {
             while (State.BallIds.Count > 1)
             {
-                //If lowest ball in stack is Latest, skip that and torse others
+                //If lowest ball in stack is Latest, skip that and toss others
                 int index = (State.BallIds[0] == State.LatestBallReceived) ? 1 : 0;
                 Guid ball = State.BallIds[index];
 
-                //Only torse to player who can receive, this is not necessarily thread-safe,
+                //Only toss to player who can receive, this is not necessarily thread-safe,
                 //many actors can torse to same actor if their count is observed to be 0 balls
                 //Hence we "PassOtherBalls" before we "HoldOrPassBall"
                 IPlayer otherPlayer = null;
@@ -192,5 +183,22 @@ namespace Grains
                 await WriteStateAsync();
             }
         }
+
+        private async void RandomWait()
+        {
+            IGrainReminder reminderRegistration = await this.RegisterOrUpdateReminder(
+                Statics.Values.TossReminderName,
+                TimeSpan.FromMinutes(1),    //The amount of time to delay before firing the reminder
+                TimeSpan.FromMinutes(2));    //The time interval between firing of reminders
+            /*
+            int timeWaitSeconds = Statics.Values.Randomizer.Next(Statics.Values.WaitTimeMin, Statics.Values.WaitTimeMax);
+            //?? Dont use await to prevent blocking actions!
+            //Might just be registering it instead of waiting, if so do await
+            await this.RegisterOrUpdateReminder(Statics.Values.TossReminderName,
+                TimeSpan.FromSeconds(Statics.Values.WaitTimeMin),
+                TimeSpan.FromSeconds(Statics.Values.WaitTimeMin - 1));
+            */
+        }
+
     }
 }
