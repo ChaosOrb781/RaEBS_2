@@ -41,9 +41,11 @@ namespace Statics
         public static int Kmax { get { return Balls.Length; } }
 
         //Seconds delay, minimum value for Reminders are 1 minute.
+        public const int MaxWaitReminderTime = 1800;
         public const int WaitTimeMin = 60;
         public const int WaitTimeMax = 120;
         public const string TossReminderName = "TossReminder";
+        public const string PassReminderName = "PassReminder";
 
         //Random variables
         public const int MinChange = 1; // Just for semantics

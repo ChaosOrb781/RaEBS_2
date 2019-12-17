@@ -20,16 +20,16 @@ namespace Grains
     [StorageProvider]
     public class PlayerGrain : Grain<PlayerState>, IPlayer
     {
-        public override Task OnActivateAsync()
+        public override async Task OnActivateAsync()
         {
-            //ReadStateAsync(); //Should be called on activation automatically
-            return base.OnActivateAsync();
+            await ReadStateAsync(); //Should be called on activation automatically
+            await base.OnActivateAsync();
         }
 
-        public override Task OnDeactivateAsync() 
+        public override async Task OnDeactivateAsync() 
         {
-            //WriteStateAsync(); //Should be called on deactivation automatically
-            return base.OnDeactivateAsync();
+            await WriteStateAsync(); //Should be called on deactivation automatically
+            await base.OnDeactivateAsync();
         }
 
         public Task Initialize(IEnumerable<Guid> playerIds, bool isHoldingBall)
@@ -43,17 +43,17 @@ namespace Grains
                 State.BallIds.Add(newBall);
                 State.LatestBallReceived = newBall;
             }
+            StartOrRestartHoldOrPass();
+            StartOrRestartPassOtherBalls();
             return WriteStateAsync();
         }
 
         public async Task ReceiveBall(Guid ballId)
         {
-            //await ReadStateAsync(); //Update state; Should be unnecessary as recovered OnActivation
+            await ReadStateAsync(); //Update state; Should be unnecessary as recovered OnActivation
             State.BallIds.Add(ballId); //Write to state
             State.LatestBallReceived = ballId; // Write to state
             await WriteStateAsync(); //Save state
-            await PassOtherBallsTruelyRandom(); //Pass all other balls but latest
-            await HoldOrPassBallTruelyRandom(); //Decide if we keep latest
         }   
 
         public async Task<List<Guid>> GetBallIds()
@@ -67,20 +67,28 @@ namespace Grains
             switch (reminderName)
             {
                 case Statics.Values.TossReminderName:
-                    GrainFactory.GetGrain<IPlayer>(this.GetPrimaryKey());
-                    await HoldOrPassBallTruelyRandom();
+                    await HoldOrPassBall();
+                    StartOrRestartHoldOrPass();
+                    break;
+                case Statics.Values.PassReminderName:
+                    await PassOtherBalls();
+                    StartOrRestartPassOtherBalls();
                     break;
                 default:
                     break;
             }
-            this.UnregisterReminder(await GetReminder(reminderName)).Dispose();
+            if (State.BallIds.Count == 0)
+                await OnDeactivateAsync();
         }
 
-        private async Task HoldOrPassBallTruelyRandom()
+        private async Task HoldOrPassBall()
         {
+            await ReadStateAsync();
             //Cannot toss if no ball
-            if (State.BallIds.Count == 0)
+            if (State.BallIds.Count < 1)
                 return;
+            else if (State.BallIds.Count > 1)
+                await PassOtherBalls();
             int tossChoice = Statics.Values.Randomizer.Next(Statics.Values.MinChange, Statics.Values.MaxChance);
             if (tossChoice <= Statics.Values.TossChange)
             {
@@ -94,48 +102,11 @@ namespace Grains
                 State.BallIds.Remove(State.LatestBallReceived);
                 await WriteStateAsync();
             }
-            else
-            {
-                RandomWait();
-            }
         }
 
-        private async Task HoldOrPassBallLogicRandom()
+        private async Task PassOtherBalls()
         {
-            //Cannot toss if no ball
-            if (State.BallIds.Count == 0)
-                return;
-            int tossChoice = Statics.Values.Randomizer.Next(Statics.Values.MinChange, Statics.Values.MaxChance);
-            if (tossChoice <= Statics.Values.TossChange)
-            {
-                //Only toss to player who can receive, this is not necessarily thread-safe,
-                //many actors can toss to same actor if their count is observed to be 0 balls
-                //Hence we "PassOtherBalls" before we "HoldOrPassBall"
-                IPlayer otherPlayer = null;
-                List<Guid> balls = new List<Guid>();
-                do
-                {
-                    //Check from 0 to N - 2 (removing this player from the list)
-                    int otherPlayerIndex = Statics.Values.Randomizer.Next(0, State.PlayerIds.Count - 2);
-                    //If this player's id was chosen, just add one by the logic of previous line
-                    otherPlayerIndex = (otherPlayerIndex >= State.PlayerIds.IndexOf(this.GetPrimaryKey())) ? otherPlayerIndex++ : otherPlayerIndex;
-                    otherPlayer = GrainFactory.GetGrain<IPlayer>(State.PlayerIds[otherPlayerIndex]);
-                    //Tickle their balls a little to see if they have any
-                    balls = await otherPlayer.GetBallIds();
-                } while (balls.Count > 0 && otherPlayer != null);
-
-                await otherPlayer.ReceiveBall(State.LatestBallReceived);
-                State.BallIds.Remove(State.LatestBallReceived);
-                await WriteStateAsync();
-            }
-            else
-            {
-                RandomWait();
-            }
-        }
-
-        private async Task PassOtherBallsTruelyRandom()
-        {
+            await ReadStateAsync();
             while (State.BallIds.Count > 1)
             {
                 //If lowest ball in stack is Latest, skip that and toss others
@@ -150,54 +121,25 @@ namespace Grains
 
                 await otherPlayer.ReceiveBall(ball);
                 State.BallIds.Remove(ball);
-                await WriteStateAsync();
             }
+            //If some asynchronous task dealt the latestball out (such as hold or receive) then set first as most recent
+            if (!State.BallIds.Contains(State.LatestBallReceived))
+                State.LatestBallReceived = State.BallIds.FirstOrDefault();
+
+            await WriteStateAsync();
         }
 
-        private async Task PassOtherBallsLogicRandom()
+        private async void StartOrRestartHoldOrPass()
         {
-            while (State.BallIds.Count > 1)
-            {
-                //If lowest ball in stack is Latest, skip that and toss others
-                int index = (State.BallIds[0] == State.LatestBallReceived) ? 1 : 0;
-                Guid ball = State.BallIds[index];
-
-                //Only toss to player who can receive, this is not necessarily thread-safe,
-                //many actors can torse to same actor if their count is observed to be 0 balls
-                //Hence we "PassOtherBalls" before we "HoldOrPassBall"
-                IPlayer otherPlayer = null;
-                List<Guid> balls = new List<Guid>();
-                do
-                {
-                    //Check from 0 to N - 2 (removing this player from the list)
-                    int otherPlayerIndex = Statics.Values.Randomizer.Next(0, State.PlayerIds.Count - 2);
-                    //If this player's id was chosen, just add one by the logic of previous line
-                    otherPlayerIndex = (otherPlayerIndex >= State.PlayerIds.IndexOf(this.GetPrimaryKey())) ? otherPlayerIndex++ : otherPlayerIndex;
-                    otherPlayer = GrainFactory.GetGrain<IPlayer>(State.PlayerIds[otherPlayerIndex]);
-                    //Tickle their balls a little to see if they have any
-                    balls = await otherPlayer.GetBallIds();
-                } while (balls.Count > 0 && otherPlayer != null);
-
-                await otherPlayer.ReceiveBall(ball);
-                State.BallIds.Remove(ball);
-                await WriteStateAsync();
-            }
-        }
-
-        private async void RandomWait()
-        {
-            IGrainReminder reminderRegistration = await this.RegisterOrUpdateReminder(
-                Statics.Values.TossReminderName,
-                TimeSpan.FromMinutes(1),    //The amount of time to delay before firing the reminder
-                TimeSpan.FromMinutes(2));    //The time interval between firing of reminders
-            /*
-            int timeWaitSeconds = Statics.Values.Randomizer.Next(Statics.Values.WaitTimeMin, Statics.Values.WaitTimeMax);
-            //?? Dont use await to prevent blocking actions!
-            //Might just be registering it instead of waiting, if so do await
             await this.RegisterOrUpdateReminder(Statics.Values.TossReminderName,
+                TimeSpan.FromSeconds(Statics.Values.Randomizer.Next(Statics.Values.WaitTimeMin, Statics.Values.WaitTimeMax)),
+                TimeSpan.FromSeconds(Statics.Values.MaxWaitReminderTime));
+        }
+        private async void StartOrRestartPassOtherBalls()
+        {
+            await this.RegisterOrUpdateReminder(Statics.Values.PassReminderName,
                 TimeSpan.FromSeconds(Statics.Values.WaitTimeMin),
-                TimeSpan.FromSeconds(Statics.Values.WaitTimeMin - 1));
-            */
+                TimeSpan.FromSeconds(Statics.Values.MaxWaitReminderTime));
         }
 
     }

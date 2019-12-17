@@ -21,7 +21,7 @@ namespace XUnitTests
 
         public void Dispose()
         {
-            //this.Cluster.StopAllSilos();
+            this.Cluster.StopAllSilos();
         }
 
         public TestCluster Cluster { get; private set; }
@@ -50,4 +50,7 @@ namespace XUnitTests
                .UseInMemoryReminderService();
         }
     }
+
+    [CollectionDefinition(Statics.Values.ClusterCollection)]
+    public class ClusterCollection : ICollectionFixture<ClusterFixture> { }
 }
