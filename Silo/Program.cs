@@ -51,31 +51,6 @@ namespace OrleansBasics
 
                 return 0;
 
-                /*
-                Console.WriteLine("\n\n Press Enter to start process...\n\n");
-                Console.ReadLine();
-
-                // Create Player instance - n players
-                var player = client.GetGrain<IPlayer>(Guid.NewGuid());
-
-                //A player with a new GUID is being initialized where he is not holding a ball
-                await player.Initialize(new List<Guid>(), false);
-
-                Console.WriteLine("Give the player a ball...");
-                Console.ReadLine();
-                //Give Player a ball (new ball) - k balls
-                await player.ReceiveBall(Guid.NewGuid());
-
-                
-
-                Console.WriteLine("Everything has been completed succesfully, bitch!");
-                Console.ReadLine();
-
-
-                await host.StopAsync();
-
-                return 0;
-                */
 
             }
             catch (Exception ex)
