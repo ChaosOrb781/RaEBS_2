@@ -20,3 +20,15 @@ Silo/obj/
 Grains/obj/
 
 GrainInterfaces/obj/
+
+Tests/bin/
+
+Silo/bin/
+
+GrainInterfaces/bin/
+
+.vs/
+
+Statics/bin/
+
+Statics/obj/

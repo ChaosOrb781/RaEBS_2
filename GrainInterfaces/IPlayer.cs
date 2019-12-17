@@ -14,7 +14,7 @@ namespace GrainInterfaces
         /// bool isHoldingBall - false: at the beginning the palyer does not hold a ball
         ///                    - true: athe the beginning the palyer does hold a ball
         /// </summary>
-        Task Initialize(List<Guid> playerIds, bool isHoldingBall);
+        Task Initialize(IEnumerable<Guid> playerIds, bool isHoldingBall);
     
         /// <summary>
         /// The player receives a ball from another player, it gets the ball passed
