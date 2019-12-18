@@ -50,9 +50,11 @@ namespace Grains
             await base.OnDeactivateAsync();
         }
 
-        public Task Initialize(IEnumerable<Guid> playerIds, bool isHoldingBall)
+        public async Task Initialize(IEnumerable<Guid> playerIds, bool isHoldingBall)
         {
             //No ReadStateAsync as we want to override existing
+            await ReadStateAsync();
+            
             State.PlayerIds = playerIds.ToList();
             State.BallIds = new List<Guid>();
             State.ResetMarking();
@@ -81,6 +83,9 @@ namespace Grains
             return this.State.BallIds;
         }
 
+
+
+        /*
         public async Task ReceiveReminder(string reminderName, TickStatus status)
         {
             switch (reminderName)
@@ -95,6 +100,7 @@ namespace Grains
             if (State.BallIds.Count == 0)
                 await OnDeactivateAsync();
         }
+        */
 
         private async Task HoldOrPassBall()
         {
@@ -137,9 +143,11 @@ namespace Grains
                 Guid ball = State.BallIds[index];
 
                 //Check from 0 to N - 2 (removing this player from the list)
-                int otherPlayerIndex = Statics.Values.Randomizer.Next(0, State.PlayerIds.Count - 2);
-                //If this player's id was chosen, just add one by the logic of previous line
+                int otherPlayerIndex = Randomizer.Next(0, State.PlayerIds.Count - 2);
+
+                //If this player's id was chosen, just add one by the logic of previous 
                 otherPlayerIndex = (otherPlayerIndex >= State.PlayerIds.IndexOf(this.GetPrimaryKey())) ? otherPlayerIndex++ : otherPlayerIndex;
+
                 IPlayer otherPlayer = GrainFactory.GetGrain<IPlayer>(State.PlayerIds[otherPlayerIndex]);
 
                 //Always keep updated snapshot in memory 
@@ -203,3 +211,104 @@ namespace Grains
         }
     }
 }
+
+            foreach (Guid ball in State.BallIds)
+            {
+                if (ball == ballId)
+                {
+                    continue;
+                }
+                //Check from 0 to N - 2 (removing this player from the list)
+                int otherPlayerIndex = Randomizer.Next(0, State.PlayerIds.Count - 2);
+                //If this player's id was chosen, just add one by the logic of previous line
+                otherPlayerIndex = (otherPlayerIndex >= State.PlayerIds.IndexOf(this.GetPrimaryKey())) ? otherPlayerIndex++ : otherPlayerIndex;
+
+                IPlayer otherPlayer = GrainFactory.GetGrain<IPlayer>(State.PlayerIds[otherPlayerIndex]);
+
+                State.BallIds.Remove(ball);
+
+                Console.WriteLine("PASS OTHER _ Player {0} threw ball {1} to player {2}", this.GetPrimaryKey(), ball, otherPlayer.GetPrimaryKey());
+                await otherPlayer.ReceiveBall(ball);
+
+
+                await WriteStateAsync();
+            }
+
+            await Task.CompletedTask;
+        }
+
+
+
+
+
+
+        // We want to figure out who has which 
+        // First we want to initialize a snapshot if the player has not sent a "Snapshot" of what balls he has
+        public async Task InitializeSnapshot(Guid FromPlayerID)
+        {
+            
+
+            Guid thisPlayer = GrainFactory.GetGrain<IPlayer>(FromPlayerID).GetPrimaryKey();
+
+            List<Guid> Players = State.PlayerIds;
+            foreach (Guid player in Players)
+            {
+                if (player != thisPlayer)
+                {
+                    object message = this.SendMarkerMessage(player);
+                    bool alreadyExists = State.MessagesReceived.Contains(message);
+                    if (!alreadyExists)
+                    {
+                        State.MessagesReceived.Add(message);
+                        Console.WriteLine("Message Received for player {0}: {1}", player ,message);
+                    }
+                }
+                else
+                {
+                    continue;
+                }
+            }
+            return;
+        }
+
+        // Right after initializing the Snapshot, the player has to send a marker message out of each of its outgoing channels
+        // So, an actor - in this case a player - is playing with 10 other players, the player has 10 outgoing channels and 10 incoming channels
+        public async Task<object> SendMarkerMessage(Guid player)
+        {
+            
+
+            IPlayer ReceivingPlayer = GrainFactory.GetGrain<IPlayer>(player);
+
+            //Console.WriteLine("Getting the Guid of the player");
+            Guid ID = ReceivingPlayer.GetPrimaryKey();
+
+            //Console.WriteLine("Getting ball(s) of the player");
+            List<Guid> BallIDs = await ReceivingPlayer.GetBallIds();
+
+
+            /*
+            for(int i = 0; i < BallIDs.Count; i++)
+            {
+                Console.WriteLine("Player {0} has ball(s) {1}", ID, BallIDs[i]);
+            }
+            */
+
+            object message = ("Player (Channel) {0} has ball(s) {1}", ID, BallIDs[0]);
+
+            return message;
+        }
+
+        /*
+        // We also want to keep track of the messages that the player "Receives" - meaning all the messages on its incoming channel
+        // Every Actor "knows about" N-1 other Actors. This is implemented in the above functions
+        public async void MessagesReceived(Guid Initialplayer, object message)
+        {
+
+            return;
+        }
+        */
+
+
+    }
+}
+

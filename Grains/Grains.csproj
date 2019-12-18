@@ -18,7 +18,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\GrainInterfaces\GrainInterfaces.csproj" />
-    <ProjectReference Include="..\Statics\Statics.csproj" />
   </ItemGroup>
 
 </Project>
