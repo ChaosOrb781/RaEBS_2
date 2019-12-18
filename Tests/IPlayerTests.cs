@@ -207,7 +207,7 @@ namespace XUnitTests
             player = _cluster.Client.GetGrain<IPlayer>(Statics.Values.Players[0]);
             await player.PrimaryMark();
 
-            bool allmarked = true;
+            bool allmarked;
             do
             {
                 allmarked = true;
