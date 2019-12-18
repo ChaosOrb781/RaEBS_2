@@ -217,8 +217,8 @@ namespace Grains
         private async void StartOrRestartPass()
         {
             await this.RegisterOrUpdateReminder(Statics.Values.PassReminderName,
-                //TimeSpan.FromSeconds(Statics.Values.Randomizer.Next(Statics.Values.WaitTimeMin, Statics.Values.WaitTimeMax)),
-                TimeSpan.FromSeconds(Statics.Values.WaitTimeMin),
+                TimeSpan.FromSeconds(Statics.Values.Randomizer.Next(Statics.Values.WaitTimeMin, Statics.Values.WaitTimeMax)),
+                //TimeSpan.FromSeconds(Statics.Values.WaitTimeMin),
                 TimeSpan.FromSeconds(Statics.Values.MaxWaitReminderTime));
         }
 
