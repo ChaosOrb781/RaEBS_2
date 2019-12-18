@@ -14,6 +14,24 @@ namespace Grains
         public List<Guid> PlayerIds { set; get; } = new List<Guid>();
         public List<Guid> BallIds { set; get; } = new List<Guid>();
         public Guid LatestBallReceived = Guid.Empty;
+        public bool Marked = false;
+        public StateSnapShot SnapShot = null;
+
+        public void TakeSnapshot()
+        {
+            SnapShot = new StateSnapShot()
+            {
+                PlayerIds = this.PlayerIds,
+                BallIds = this.BallIds,
+                LatestBallReceived = this.LatestBallReceived
+            };
+        }
+
+        public void ResetMarking()
+        {
+            Marked = false;
+            SnapShot = null;
+        }
     }
 
 
@@ -37,23 +55,24 @@ namespace Grains
             //No ReadStateAsync as we want to override existing
             State.PlayerIds = playerIds.ToList();
             State.BallIds = new List<Guid>();
+            State.ResetMarking();
             if (isHoldingBall)
             {
                 Guid newBall = Guid.NewGuid();
                 State.BallIds.Add(newBall);
                 State.LatestBallReceived = newBall;
             }
-            StartOrRestartHoldOrPass();
-            StartOrRestartPassOtherBalls();
+            StartOrRestartPass();
             return WriteStateAsync();
         }
 
-        public async Task ReceiveBall(Guid ballId)
+        public async Task<bool> ReceiveBall(Guid ballId)
         {
             await ReadStateAsync(); //Update state; Should be unnecessary as recovered OnActivation
             State.BallIds.Add(ballId); //Write to state
             State.LatestBallReceived = ballId; // Write to state
             await WriteStateAsync(); //Save state
+            return State.Marked;
         }   
 
         public async Task<List<Guid>> GetBallIds()
@@ -66,13 +85,9 @@ namespace Grains
         {
             switch (reminderName)
             {
-                case Statics.Values.TossReminderName:
-                    await HoldOrPassBall();
-                    StartOrRestartHoldOrPass();
-                    break;
                 case Statics.Values.PassReminderName:
-                    await PassOtherBalls();
-                    StartOrRestartPassOtherBalls();
+                    await HoldOrPassBall();
+                    StartOrRestartPass();
                     break;
                 default:
                     break;
@@ -89,6 +104,7 @@ namespace Grains
                 return;
             else if (State.BallIds.Count > 1)
                 await PassOtherBalls();
+            await ReadStateAsync();
             int tossChoice = Statics.Values.Randomizer.Next(Statics.Values.MinChange, Statics.Values.MaxChance);
             if (tossChoice <= Statics.Values.TossChange)
             {
@@ -98,10 +114,16 @@ namespace Grains
                 otherPlayerIndex = (otherPlayerIndex >= State.PlayerIds.IndexOf(this.GetPrimaryKey())) ? otherPlayerIndex++ : otherPlayerIndex;
                 IPlayer otherPlayer = GrainFactory.GetGrain<IPlayer>(State.PlayerIds[otherPlayerIndex]);
 
-                await otherPlayer.ReceiveBall(State.LatestBallReceived);
+                //Always keep updated snapshot in memory 
+                if (!State.Marked)
+                {
+                    State.TakeSnapshot();
+                }
+                State.Marked = await otherPlayer.ReceiveBall(State.LatestBallReceived);
+
                 State.BallIds.Remove(State.LatestBallReceived);
-                await WriteStateAsync();
             }
+            await WriteStateAsync();
         }
 
         private async Task PassOtherBalls()
@@ -110,6 +132,7 @@ namespace Grains
             while (State.BallIds.Count > 1)
             {
                 //If lowest ball in stack is Latest, skip that and toss others
+                //Non descructive if LatestBallReceived is not part of the list
                 int index = (State.BallIds[0] == State.LatestBallReceived) ? 1 : 0;
                 Guid ball = State.BallIds[index];
 
@@ -119,7 +142,12 @@ namespace Grains
                 otherPlayerIndex = (otherPlayerIndex >= State.PlayerIds.IndexOf(this.GetPrimaryKey())) ? otherPlayerIndex++ : otherPlayerIndex;
                 IPlayer otherPlayer = GrainFactory.GetGrain<IPlayer>(State.PlayerIds[otherPlayerIndex]);
 
-                await otherPlayer.ReceiveBall(ball);
+                //Always keep updated snapshot in memory 
+                if (!State.Marked)
+                {
+                    State.TakeSnapshot();
+                }
+                State.Marked = await otherPlayer.ReceiveBall(ball);
                 State.BallIds.Remove(ball);
             }
             //If some asynchronous task dealt the latestball out (such as hold or receive) then set first as most recent
@@ -129,18 +157,49 @@ namespace Grains
             await WriteStateAsync();
         }
 
-        private async void StartOrRestartHoldOrPass()
-        {
-            await this.RegisterOrUpdateReminder(Statics.Values.TossReminderName,
-                TimeSpan.FromSeconds(Statics.Values.Randomizer.Next(Statics.Values.WaitTimeMin, Statics.Values.WaitTimeMax)),
-                TimeSpan.FromSeconds(Statics.Values.MaxWaitReminderTime));
-        }
-        private async void StartOrRestartPassOtherBalls()
+        private async void StartOrRestartPass()
         {
             await this.RegisterOrUpdateReminder(Statics.Values.PassReminderName,
+                //TimeSpan.FromSeconds(Statics.Values.Randomizer.Next(Statics.Values.WaitTimeMin, Statics.Values.WaitTimeMax)),
                 TimeSpan.FromSeconds(Statics.Values.WaitTimeMin),
                 TimeSpan.FromSeconds(Statics.Values.MaxWaitReminderTime));
         }
 
+        public async Task PrimaryMark()
+        {
+            await ReadStateAsync();
+            State.Marked = true;
+            State.TakeSnapshot();
+            await WriteStateAsync();
+            foreach (Guid otherId in State.PlayerIds)
+            {
+                if (this.GetPrimaryKey() == otherId)
+                    continue;
+                IPlayer otherPlayer = GrainFactory.GetGrain<IPlayer>(otherId);
+                await otherPlayer.Mark();
+            }
+        }
+
+        public async Task Mark()
+        {
+            await ReadStateAsync();
+            if (State.Marked) {
+                State.Marked = true;
+                State.TakeSnapshot();
+            }
+            await WriteStateAsync();
+        }
+
+        public async Task<bool> IsMarked()
+        {
+            await ReadStateAsync();
+            return State.Marked;
+        }
+
+        public async Task<StateSnapShot> GetSnapShot()
+        {
+            await ReadStateAsync();
+            return State.SnapShot;
+        }
     }
 }

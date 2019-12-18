@@ -123,6 +123,7 @@ namespace XUnitTests
             Assert.Equal(5, balls.FindAll(ball => ball.Result.Count == 0).Count);
         }
 
+        /*
         [Fact]
         public async void TossFiveBallsAtSamePlayer()
         {
@@ -161,7 +162,7 @@ namespace XUnitTests
             }
             Assert.Equal(5, numBalls);
 
-            await Task.Delay(121000);
+            await Task.Delay(80000);
 
             _testOutputHelper.WriteLine("2 minutes after toss");
             _testOutputHelper.WriteLine("Checking how many balls are in play");
@@ -179,17 +180,16 @@ namespace XUnitTests
                 _testOutputHelper.WriteLine("Player {0} had {1} balls", i, balls[i].Result.Count);
             }
             Assert.Equal(5, numBalls);
-        }
+        }*/
 
         [Fact]
         public async void TossAllKBallsAtOnePlayer()
         {
+            IPlayer player;
             List<Task> initializers = new List<Task>();
-            List<IPlayer> players = new List<IPlayer>();
             foreach (Guid playerId in Statics.Values.Players)
             {
-                IPlayer player = _cluster.Client.GetGrain<IPlayer>(playerId);
-                players.Add(player);
+                player = _cluster.Client.GetGrain<IPlayer>(playerId);
                 initializers.Add(player.Initialize(Statics.Values.Players, false));
             }
             await Task.WhenAll(initializers);
@@ -197,24 +197,43 @@ namespace XUnitTests
             List<Task> tosses = new List<Task>();
             for (int i = 0; i < Statics.Values.Kmax; i++)
             {
-                tosses.Add(players[0].ReceiveBall(Statics.Values.Balls[i]));
+                player = _cluster.Client.GetGrain<IPlayer>(Statics.Values.Players[0]);
+                tosses.Add(player.ReceiveBall(Statics.Values.Balls[i]));
             }
             await Task.WhenAll(tosses);
 
-            List<Task<List<Guid>>> balls = new List<Task<List<Guid>>>();
-            foreach (IPlayer player in players)
+            await Task.Delay(TimeSpan.FromSeconds(121));
+
+            player = _cluster.Client.GetGrain<IPlayer>(Statics.Values.Players[0]);
+            await player.PrimaryMark();
+
+            bool allmarked = true;
+            do
             {
-                balls.Add(player.GetBallIds());
+                allmarked = true;
+                await Task.Delay(TimeSpan.FromSeconds(1));
+                foreach (Guid playerid in Statics.Values.Players)
+                {
+                    player = _cluster.Client.GetGrain<IPlayer>(playerid);
+                    allmarked &= await player.IsMarked();
+                }
+            } while (!allmarked);
+
+            List<Task<StateSnapShot>> allSnapshots = new List<Task<StateSnapShot>>();
+            foreach (Guid playerid in Statics.Values.Players)
+            {
+                player = _cluster.Client.GetGrain<IPlayer>(playerid);
+                allSnapshots.Add(player.GetSnapShot());
             }
-            await Task.WhenAll(balls);
+            await Task.WhenAll(allSnapshots);
 
             _testOutputHelper.WriteLine("Right after statistics:");
             //Check immidially after
             int numBalls = 0;
             for (int i = 0; i < Statics.Values.N; i++)
             {
-                numBalls += balls[i].Result.Count;
-                _testOutputHelper.WriteLine("Player {0} had {1} balls", i, balls[i].Result.Count);
+                numBalls += allSnapshots[i].Result.BallIds.Count;
+                _testOutputHelper.WriteLine("Player {0} had {1} balls", i + 1, allSnapshots[i].Result.BallIds.Count);
             }
             Assert.Equal(Statics.Values.Kmax, numBalls);
         }

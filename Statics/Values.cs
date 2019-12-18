@@ -44,7 +44,6 @@ namespace Statics
         public const int MaxWaitReminderTime = 1800;
         public const int WaitTimeMin = 60;
         public const int WaitTimeMax = 120;
-        public const string TossReminderName = "TossReminder";
         public const string PassReminderName = "PassReminder";
 
         //Random variables
