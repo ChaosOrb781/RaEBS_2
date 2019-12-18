@@ -148,11 +148,10 @@ namespace Grains
             if (Convert.ToBoolean(Randomizer.Next(0, 2)))
             {
                
-                //Check from 0 to N - 2 (removing this player from the list)
-                int otherPlayerIndex = Randomizer.Next(0, State.PlayerIds.Count - 2);
-
-                //If this player's id was chosen, just add one by the logic of previous 
-                otherPlayerIndex = (otherPlayerIndex >= State.PlayerIds.IndexOf(this.GetPrimaryKey())) ? otherPlayerIndex++ : otherPlayerIndex;
+                int otherPlayerIndex = Randomizer.Next(0, State.PlayerIds.Count - 1);
+                while (otherPlayerIndex == State.PlayerIds.IndexOf(this.GetPrimaryKey())) {
+                    otherPlayerIndex = Randomizer.Next(0, State.PlayerIds.Count - 1);
+                }
 
                 IPlayer otherPlayer = GrainFactory.GetGrain<IPlayer>(State.PlayerIds[otherPlayerIndex]);
 
@@ -203,10 +202,12 @@ namespace Grains
                 {
                     continue;
                 }
-                //Check from 0 to N - 2 (removing this player from the list)
-                int otherPlayerIndex = Randomizer.Next(0, State.PlayerIds.Count - 2);
-                //If this player's id was chosen, just add one by the logic of previous line
-                otherPlayerIndex = (otherPlayerIndex >= State.PlayerIds.IndexOf(this.GetPrimaryKey())) ? otherPlayerIndex++ : otherPlayerIndex;
+
+                int otherPlayerIndex = Randomizer.Next(0, State.PlayerIds.Count - 1);
+                while (otherPlayerIndex == State.PlayerIds.IndexOf(this.GetPrimaryKey()))
+                {
+                    otherPlayerIndex = Randomizer.Next(0, State.PlayerIds.Count - 1);
+                }
 
                 IPlayer otherPlayer = GrainFactory.GetGrain<IPlayer>(State.PlayerIds[otherPlayerIndex]);
 
@@ -241,7 +242,7 @@ namespace Grains
         public async Task Mark()
         {
             await ReadStateAsync();
-            if (State.Marked)
+            if (!State.Marked)
             {
                 State.Marked = true;
                 State.TakeSnapshot();

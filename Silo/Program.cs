@@ -31,7 +31,7 @@ namespace OrleansBasics
 
                 var client = await ConnectClient();
 
-
+                
 
                 Console.WriteLine("\n\n How many players do you want in the game? :");
 
@@ -53,7 +53,64 @@ namespace OrleansBasics
                 await StartGame(client, AllPlayers);
 
 
-                Console.WriteLine("Everything has been completed succesfully, bitch!");
+
+
+
+                Console.ReadLine();
+                Console.WriteLine("\n\nNOW WE TAKE THE FUCKING SNAPSHOT\n\n");
+
+                await client.GetGrain<IPlayer>(AllPlayers[0]).PrimaryMark();
+
+                bool allmarked = false;
+
+                int counter = 1;
+                do
+                {
+                    allmarked = true;
+                    await Task.Delay(TimeSpan.FromSeconds(1));
+                    Console.WriteLine("Turn : {0}", counter);
+                    foreach (Guid playerid in AllPlayers)
+                    {
+                        IPlayer player = client.GetGrain<IPlayer>(playerid);
+                        bool ismarked = await player.IsMarked();
+                        allmarked &= ismarked;
+                        Console.WriteLine("Player {0} : Marked : {1}", playerid, ismarked);
+                    }
+                    counter++;
+
+                } while (!allmarked);
+
+
+                List<Task<StateSnapShot>> allSnapshots = new List<Task<StateSnapShot>>();
+                foreach (Guid playerid in AllPlayers)
+                {
+                    IPlayer player = client.GetGrain<IPlayer>(playerid);
+                    allSnapshots.Add(player.GetSnapShot());
+                }
+                await Task.WhenAll(allSnapshots);
+
+                Console.WriteLine("Right after statistics:");
+                //Check immidially after
+                int numBalls = 0;
+                for (int i = 0; i < AllPlayers.Count; i++)
+                {
+                    numBalls += allSnapshots[i].Result.BallIds.Count;
+                    Console.WriteLine("Player {0} had {1} balls", i + 1, allSnapshots[i].Result.BallIds.Count);
+                }
+
+                Console.WriteLine("We have a total balls of : {0}", numBalls);
+
+                Console.WriteLine("\n\nTHIS IS MY METHOD \n\n:");
+
+                foreach (Guid player in AllPlayers)
+                {
+                    IPlayer p = client.GetGrain<IPlayer>(player);
+                    List<Guid> ballIds = await p.GetBallIds();
+                    Console.WriteLine("Player {0} balls : {1}", p.GetPrimaryKey(), ballIds.Count);
+                }
+
+
+                Console.WriteLine("\n\nEverything has been completed succesfully, bitch!");
                 Console.ReadLine();
                 
 
