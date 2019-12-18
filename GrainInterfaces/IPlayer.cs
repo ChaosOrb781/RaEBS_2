@@ -37,18 +37,6 @@ namespace GrainInterfaces
         Task<bool> ReceiveBall(Guid ballId);
 
         /// <summary>
-        /// /// The player receives a ball from the game maker
-        /// Guid ballId: the id of the ball be received.
-        /// <summary>
-        Task GiveBallToPlayer(Guid ballId);
-
-        /// <summary>
-        /// /// The player receives a ball from the game maker
-        /// Guid ballId: the id of the ball be received.
-        /// <summary>
-        Task HoldOrPassBallTruelyRandom(object ballId);
-
-        /// <summary>
         /// Get the balls held by the player
         /// </summary>
         Task<List<Guid>> GetBallIds();

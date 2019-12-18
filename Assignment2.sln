@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests", "Tests\Tests.csproj
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Silo", "Silo\Silo.csproj", "{301894C6-398E-4873-A353-1B7742744E92}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Statics", "Statics\Statics.csproj", "{503943A7-3D5E-4BEA-8AD2-87754024D076}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{301894C6-398E-4873-A353-1B7742744E92}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{301894C6-398E-4873-A353-1B7742744E92}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{301894C6-398E-4873-A353-1B7742744E92}.Release|Any CPU.Build.0 = Release|Any CPU
+		{503943A7-3D5E-4BEA-8AD2-87754024D076}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{503943A7-3D5E-4BEA-8AD2-87754024D076}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{503943A7-3D5E-4BEA-8AD2-87754024D076}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{503943A7-3D5E-4BEA-8AD2-87754024D076}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

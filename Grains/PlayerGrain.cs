@@ -40,12 +40,14 @@ namespace Grains
     {
         public override async Task OnActivateAsync()
         {
+            Print("Activated");
             await ReadStateAsync(); //Should be called on activation automatically
             await base.OnActivateAsync();
         }
 
         public override async Task OnDeactivateAsync() 
         {
+            Print("Deactivated");
             await WriteStateAsync(); //Should be called on deactivation automatically
             await base.OnDeactivateAsync();
         }
@@ -64,8 +66,9 @@ namespace Grains
                 State.BallIds.Add(newBall);
                 State.LatestBallReceived = newBall;
             }
+            Print("Initialized and {0} a ball", isHoldingBall ? "has" : "does not have");
             StartOrRestartPass();
-            return WriteStateAsync();
+            await WriteStateAsync();
         }
 
         public async Task<bool> ReceiveBall(Guid ballId)
@@ -73,6 +76,7 @@ namespace Grains
             await ReadStateAsync(); //Update state; Should be unnecessary as recovered OnActivation
             State.BallIds.Add(ballId); //Write to state
             State.LatestBallReceived = ballId; // Write to state
+            Print("Received ball {0}", Statics.Values.Balls.ToList().IndexOf(ballId) + 1);
             await WriteStateAsync(); //Save state
             return State.Marked;
         }   
@@ -80,18 +84,25 @@ namespace Grains
         public async Task<List<Guid>> GetBallIds()
         {
             await ReadStateAsync(); //Update state; Should be unnecessary as recovered OnActivation
+            Print("Someone is inspecting my balls");
             return this.State.BallIds;
         }
 
-
-
-        /*
         public async Task ReceiveReminder(string reminderName, TickStatus status)
         {
+            Print("Reminder received I have: {0}", BallListToString(State.BallIds));
             switch (reminderName)
             {
                 case Statics.Values.PassReminderName:
-                    await HoldOrPassBall();
+                    if (State.BallIds.Count == 1)
+                    {
+                        await HoldOrPassBall();
+                    } 
+                    else if (State.BallIds.Count > 1) 
+                    {
+                        await PassOtherBalls();
+                        await HoldOrPassBall();
+                    }
                     StartOrRestartPass();
                     break;
                 default:
@@ -100,26 +111,37 @@ namespace Grains
             if (State.BallIds.Count == 0)
                 await OnDeactivateAsync();
         }
-        */
 
         private async Task HoldOrPassBall()
         {
             await ReadStateAsync();
             //Cannot toss if no ball
             if (State.BallIds.Count < 1)
+            {
+                Print("HoldOrPass, insufficient amount of balls");
                 return;
+            }
             else if (State.BallIds.Count > 1)
+            {
+                Print("HoldOrPass, too many balls, calling pass rest");
                 await PassOtherBalls();
+            }
             await ReadStateAsync();
             int tossChoice = Statics.Values.Randomizer.Next(Statics.Values.MinChange, Statics.Values.MaxChance);
             if (tossChoice <= Statics.Values.TossChange)
             {
-                //Check from 0 to N - 2 (removing this player from the list)
-                int otherPlayerIndex = Statics.Values.Randomizer.Next(0, State.PlayerIds.Count - 2);
-                //If this player's id was chosen, just add one by the logic of previous line
-                otherPlayerIndex = (otherPlayerIndex >= State.PlayerIds.IndexOf(this.GetPrimaryKey())) ? otherPlayerIndex++ : otherPlayerIndex;
+                int otherPlayerIndex = Statics.Values.Randomizer.Next(0, State.PlayerIds.Count - 1);
+                while (otherPlayerIndex == State.PlayerIds.IndexOf(this.GetPrimaryKey()))
+                {
+                    Print("HoldOrPass, accidentally chose myself, choosing other");
+                    otherPlayerIndex = Statics.Values.Randomizer.Next(0, State.PlayerIds.Count - 1);
+                }
+
                 IPlayer otherPlayer = GrainFactory.GetGrain<IPlayer>(State.PlayerIds[otherPlayerIndex]);
 
+                Print("HoldOrPass, tossing ball {0} to player {1}", Statics.Values.Balls.ToList().IndexOf(State.LatestBallReceived) + 1, otherPlayerIndex + 1);
+
+                bool debug_prevmark = State.Marked;
                 //Always keep updated snapshot in memory 
                 if (!State.Marked)
                 {
@@ -128,6 +150,11 @@ namespace Grains
                 State.Marked = await otherPlayer.ReceiveBall(State.LatestBallReceived);
 
                 State.BallIds.Remove(State.LatestBallReceived);
+
+                if (State.Marked != debug_prevmark)
+                {
+                    Print("HoldOrPass, I HAVE BEEN INFECTED!");
+                }
             }
             await WriteStateAsync();
         }
@@ -135,32 +162,54 @@ namespace Grains
         private async Task PassOtherBalls()
         {
             await ReadStateAsync();
-            while (State.BallIds.Count > 1)
+            Print("PassOtherBalls, started and my latest received {0}", Statics.Values.Balls.ToList().IndexOf(State.LatestBallReceived) + 1);
+            foreach (Guid ball in State.BallIds)
             {
-                //If lowest ball in stack is Latest, skip that and toss others
-                //Non descructive if LatestBallReceived is not part of the list
-                int index = (State.BallIds[0] == State.LatestBallReceived) ? 1 : 0;
-                Guid ball = State.BallIds[index];
+                Print("Contains: Ball {0}", Statics.Values.Balls.ToList().IndexOf(ball) + 1);
+            }
+
+            foreach (Guid otherBall in new List<Guid>(State.BallIds)) {
+                Print("Torsing ball {0}", Statics.Values.Balls.ToList().IndexOf(otherBall) + 1);
+                if (State.LatestBallReceived == otherBall)
+                {
+                    Print("Skipping ball {0} since it was equal to ball {1}", Statics.Values.Balls.ToList().IndexOf(otherBall) + 1, Statics.Values.Balls.ToList().IndexOf(State.LatestBallReceived) + 1);
+                    continue;
+                }
 
                 //Check from 0 to N - 2 (removing this player from the list)
-                int otherPlayerIndex = Randomizer.Next(0, State.PlayerIds.Count - 2);
-
-                //If this player's id was chosen, just add one by the logic of previous 
-                otherPlayerIndex = (otherPlayerIndex >= State.PlayerIds.IndexOf(this.GetPrimaryKey())) ? otherPlayerIndex++ : otherPlayerIndex;
+                int otherPlayerIndex = Statics.Values.Randomizer.Next(0, State.PlayerIds.Count - 1);
+                while (otherPlayerIndex == State.PlayerIds.IndexOf(this.GetPrimaryKey()))
+                {
+                    Print("HoldOrPass, accidentally chose myself, choosing other");
+                    otherPlayerIndex = Statics.Values.Randomizer.Next(0, State.PlayerIds.Count - 1);
+                }
 
                 IPlayer otherPlayer = GrainFactory.GetGrain<IPlayer>(State.PlayerIds[otherPlayerIndex]);
 
+                Print("PassOtherBalls, tossing ball {0} to player {1}", Statics.Values.Balls.ToList().IndexOf(otherBall) + 1, otherPlayerIndex + 1);
+
+                bool debug_prevmark = State.Marked;
                 //Always keep updated snapshot in memory 
                 if (!State.Marked)
                 {
                     State.TakeSnapshot();
                 }
-                State.Marked = await otherPlayer.ReceiveBall(ball);
-                State.BallIds.Remove(ball);
+
+                State.Marked = await otherPlayer.ReceiveBall(otherBall);
+                State.BallIds.Remove(otherBall);
+
+                if (State.Marked != debug_prevmark)
+                {
+                    Print("PassOtherBalls, I HAVE BEEN INFECTED!");
+                }
             }
+            Print("PassOtherBalls, has {0} balls remaining after torses", State.BallIds.Count);
             //If some asynchronous task dealt the latestball out (such as hold or receive) then set first as most recent
             if (!State.BallIds.Contains(State.LatestBallReceived))
+            {
+                Print("PassOtherBalls, LatestBallReceived has been passed (unintended), setting new latest received");
                 State.LatestBallReceived = State.BallIds.FirstOrDefault();
+            }
 
             await WriteStateAsync();
         }
@@ -176,6 +225,7 @@ namespace Grains
         public async Task PrimaryMark()
         {
             await ReadStateAsync();
+            Print("I have become the chosen one for primary snapshot");
             State.Marked = true;
             State.TakeSnapshot();
             await WriteStateAsync();
@@ -191,7 +241,8 @@ namespace Grains
         public async Task Mark()
         {
             await ReadStateAsync();
-            if (State.Marked) {
+            Print(State.Marked ? "Attempted to remark, ignoring" : "I have been marked");
+            if (!State.Marked) {
                 State.Marked = true;
                 State.TakeSnapshot();
             }
@@ -209,106 +260,25 @@ namespace Grains
             await ReadStateAsync();
             return State.SnapShot;
         }
+
+        private void Print(string message, params object[] args)
+        {
+            Console.WriteLine("Player " + (Statics.Values.Players.ToList().IndexOf(this.GetPrimaryKey()) + 1) + ": " + message, args);
+        }
+
+        private string BallListToString(List<Guid> list)
+        {
+            string s = "";
+            s += "[";
+            if (list.Count > 0) {
+                foreach (Guid o in list)
+                {
+                    s += (Statics.Values.Balls.ToList().IndexOf(o) + 1) + ", ";
+                }
+                s = s.Substring(0, s.Length - 1);
+            }
+            s += "]";
+            return s;
+        }
     }
 }
-
-            foreach (Guid ball in State.BallIds)
-            {
-                if (ball == ballId)
-                {
-                    continue;
-                }
-                //Check from 0 to N - 2 (removing this player from the list)
-                int otherPlayerIndex = Randomizer.Next(0, State.PlayerIds.Count - 2);
-                //If this player's id was chosen, just add one by the logic of previous line
-                otherPlayerIndex = (otherPlayerIndex >= State.PlayerIds.IndexOf(this.GetPrimaryKey())) ? otherPlayerIndex++ : otherPlayerIndex;
-
-                IPlayer otherPlayer = GrainFactory.GetGrain<IPlayer>(State.PlayerIds[otherPlayerIndex]);
-
-                State.BallIds.Remove(ball);
-
-                Console.WriteLine("PASS OTHER _ Player {0} threw ball {1} to player {2}", this.GetPrimaryKey(), ball, otherPlayer.GetPrimaryKey());
-                await otherPlayer.ReceiveBall(ball);
-
-
-                await WriteStateAsync();
-            }
-
-            await Task.CompletedTask;
-        }
-
-
-
-
-
-
-        // We want to figure out who has which 
-        // First we want to initialize a snapshot if the player has not sent a "Snapshot" of what balls he has
-        public async Task InitializeSnapshot(Guid FromPlayerID)
-        {
-            
-
-            Guid thisPlayer = GrainFactory.GetGrain<IPlayer>(FromPlayerID).GetPrimaryKey();
-
-            List<Guid> Players = State.PlayerIds;
-            foreach (Guid player in Players)
-            {
-                if (player != thisPlayer)
-                {
-                    object message = this.SendMarkerMessage(player);
-                    bool alreadyExists = State.MessagesReceived.Contains(message);
-                    if (!alreadyExists)
-                    {
-                        State.MessagesReceived.Add(message);
-                        Console.WriteLine("Message Received for player {0}: {1}", player ,message);
-                    }
-                }
-                else
-                {
-                    continue;
-                }
-            }
-            return;
-        }
-
-        // Right after initializing the Snapshot, the player has to send a marker message out of each of its outgoing channels
-        // So, an actor - in this case a player - is playing with 10 other players, the player has 10 outgoing channels and 10 incoming channels
-        public async Task<object> SendMarkerMessage(Guid player)
-        {
-            
-
-            IPlayer ReceivingPlayer = GrainFactory.GetGrain<IPlayer>(player);
-
-            //Console.WriteLine("Getting the Guid of the player");
-            Guid ID = ReceivingPlayer.GetPrimaryKey();
-
-            //Console.WriteLine("Getting ball(s) of the player");
-            List<Guid> BallIDs = await ReceivingPlayer.GetBallIds();
-
-
-            /*
-            for(int i = 0; i < BallIDs.Count; i++)
-            {
-                Console.WriteLine("Player {0} has ball(s) {1}", ID, BallIDs[i]);
-            }
-            */
-
-            object message = ("Player (Channel) {0} has ball(s) {1}", ID, BallIDs[0]);
-
-            return message;
-        }
-
-        /*
-        // We also want to keep track of the messages that the player "Receives" - meaning all the messages on its incoming channel
-        // Every Actor "knows about" N-1 other Actors. This is implemented in the above functions
-        public async void MessagesReceived(Guid Initialplayer, object message)
-        {
-
-            return;
-        }
-        */
-
-
-    }
-}
-

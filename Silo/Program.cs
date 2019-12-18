@@ -22,43 +22,75 @@ namespace OrleansBasics
         {
             try
             {
-                Console.WriteLine("\n\n Press Enter to start process...\n\n");
-                Console.ReadLine();
-
                 var host = await StartSilo();
 
                 var client = await ConnectClient();
 
-
-                
-                Console.WriteLine("\n\n How many players do you want in the game? :");
-
-                List<Guid> AllPlayers = SpawnPlayers(client, int.Parse(Console.ReadLine()));
-
-
-
-
-                Console.WriteLine("\n\n How many balls do you want in the game? :");
-
-                await GiveRandomPlayersBalls(client, AllPlayers, int.Parse(Console.ReadLine()));
-
-
-                // Make a StartGame() function so that everyone waits
-                Console.WriteLine("\n\n Press Enter to start the game...\n\n");
+                Console.WriteLine("\n\n Press Enter to start process...\n\n");
                 Console.ReadLine();
 
-                // Not all balls are given out
-                await StartGame(client, AllPlayers);
+                Console.WriteLine("Initializing players with no balls...");
+                int amountOfPlayers = 10, amountOfBalls = 9;
+                List<Guid> limitedPlayers = Statics.Values.Players.ToList().GetRange(0, amountOfPlayers);
+                List<Task> initialize = new List<Task>();
+                for (int i = 0; i < amountOfPlayers; i++)
+                {
+                    IPlayer player = client.GetGrain<IPlayer>(Statics.Values.Players[i]);
+                    initialize.Add(player.Initialize(limitedPlayers, false));
+                }
+                await Task.WhenAll(initialize);
 
+                Console.WriteLine("Giving all balls to the first player...");
+                List<Task> balltosses = new List<Task>();
+                for (int i = 0; i < amountOfBalls; i++)
+                {
+                    IPlayer player = client.GetGrain<IPlayer>(Statics.Values.Players[0]);
+                    balltosses.Add(player.ReceiveBall(Statics.Values.Balls[i]));
+                }
+                await Task.WhenAll(balltosses);
 
-                Console.WriteLine("Everything has been completed succesfully, bitch!");
+                Console.WriteLine("Press enter to take snapshot...");
                 Console.ReadLine();
+
+                IPlayer player1 = client.GetGrain<IPlayer>(limitedPlayers[0]);
+                await player1.PrimaryMark();
+
+                bool allmarked;
+                do
+                {
+                    allmarked = true;
+                    await Task.Delay(TimeSpan.FromSeconds(1));
+                    foreach (Guid playerid in limitedPlayers)
+                    {
+                        IPlayer player = client.GetGrain<IPlayer>(playerid);
+                        allmarked &= await player.IsMarked();
+                    }
+                } while (!allmarked);
+
+                List<Task<StateSnapShot>> allSnapshots = new List<Task<StateSnapShot>>();
+                foreach (Guid playerid in limitedPlayers)
+                {
+                    IPlayer player = client.GetGrain<IPlayer>(playerid);
+                    allSnapshots.Add(player.GetSnapShot());
+                }
+                await Task.WhenAll(allSnapshots);
+
+                //Check immidially after
+                int numBalls = 0;
+                for (int i = 0; i < amountOfPlayers; i++)
+                {
+                    numBalls += allSnapshots[i].Result.BallIds.Count;
+                    Console.WriteLine("Player {0} had {1} balls", i + 1, allSnapshots[i].Result.BallIds.Count);
+                }
+
+                Console.WriteLine("Players had {0} balls, expected {1}", numBalls, amountOfBalls);
 
                 await host.StopAsync();
 
+                Console.WriteLine("Press to terminate program...");
+                Console.ReadLine();
+
                 return 0;
-
-
             }
             catch (Exception ex)
             {
@@ -110,27 +142,6 @@ namespace OrleansBasics
             await client.Connect();
             Console.WriteLine("Client successfully connected to silo host \n");
             return client;
-        }
-
-
-        // Start the damn game!
-        public static async Task StartGame(IClusterClient client, List<Guid> AllPlayers)
-        {
-            for (int i = 0; i < AllPlayers.Count; i++)
-            {
-                IPlayer player = client.GetGrain<IPlayer>(AllPlayers[i]);
-                List<Guid> ball = await player.GetBallIds();
-                Console.WriteLine("The player {0} had {1} balls", AllPlayers[i], ball.Count);
-                if (ball.Count != 0)
-                {
-                    Console.WriteLine("HOLD OR PASS _ with ball {0}", ball[0]);
-                    player.HoldOrPassBallTruelyRandom(ball[0]);
-                }
-                else
-                {
-                    continue;
-                }
-            }
         }
 
 
@@ -206,10 +217,7 @@ namespace OrleansBasics
             {
                 //Console.WriteLine("PLAYER {0} has ID {1}",i, AllPlayers[i]);
                 var player = client.GetGrain<IPlayer>(AllPlayers[i]);
-
-                //Console.WriteLine("PLAYER {0} gets ball {1}", i, ballsList[i]);
-                await player.GiveBallToPlayer(ballsList[i]);
-
+                //player.Initialize
             }
         }
     }
