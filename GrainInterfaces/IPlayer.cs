@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 namespace GrainInterfaces
 {
    
-    public interface IPlayer: Orleans.IGrainWithGuidKey, Orleans.IRemindable
+    public interface IPlayer: Orleans.IGrainWithGuidKey //, Orleans.IRemindable
     {
         /// <summary>
         /// Give a list of other player names to the player and decide at 
@@ -21,6 +21,18 @@ namespace GrainInterfaces
         /// Guid ballId: the id of the ball be received.
         /// <summary>
         Task ReceiveBall(Guid ballId);
+
+        /// <summary>
+        /// /// The player receives a ball from the game maker
+        /// Guid ballId: the id of the ball be received.
+        /// <summary>
+        Task GiveBallToPlayer(Guid ballId);
+
+        /// <summary>
+        /// /// The player receives a ball from the game maker
+        /// Guid ballId: the id of the ball be received.
+        /// <summary>
+        Task HoldOrPassBallTruelyRandom(object ballId);
 
         /// <summary>
         /// Get the balls held by the player

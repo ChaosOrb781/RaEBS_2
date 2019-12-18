@@ -7,6 +7,7 @@ using Orleans;
 using Orleans.Configuration;
 using Orleans.Hosting;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace OrleansBasics
 {
@@ -41,8 +42,13 @@ namespace OrleansBasics
 
                 await GiveRandomPlayersBalls(client, AllPlayers, int.Parse(Console.ReadLine()));
 
-                
 
+                // Make a StartGame() function so that everyone waits
+                Console.WriteLine("\n\n Press Enter to start the game...\n\n");
+                Console.ReadLine();
+
+                // Not all balls are given out
+                await StartGame(client, AllPlayers);
 
 
                 Console.WriteLine("Everything has been completed succesfully, bitch!");
@@ -107,6 +113,26 @@ namespace OrleansBasics
         }
 
 
+        // Start the damn game!
+        public static async Task StartGame(IClusterClient client, List<Guid> AllPlayers)
+        {
+            for (int i = 0; i < AllPlayers.Count; i++)
+            {
+                IPlayer player = client.GetGrain<IPlayer>(AllPlayers[i]);
+                List<Guid> ball = await player.GetBallIds();
+                Console.WriteLine("The player {0} had {1} balls", AllPlayers[i], ball.Count);
+                if (ball.Count != 0)
+                {
+                    Console.WriteLine("HOLD OR PASS _ with ball {0}", ball[0]);
+                    player.HoldOrPassBallTruelyRandom(ball[0]);
+                }
+                else
+                {
+                    continue;
+                }
+            }
+        }
+
 
         static List<Guid> SpawnPlayers(IClusterClient client, int number_of_players)
         {
@@ -115,14 +141,12 @@ namespace OrleansBasics
             {
                 var player = client.GetGrain<IPlayer>(Guid.NewGuid());
                 ListID.Add(player.GetPrimaryKey());
-
             }
 
             for (int i = 0; i < number_of_players; i++)
             {
                 var player = client.GetGrain<IPlayer>(ListID[i]);
                 player.Initialize(ListID, false);
-
             }
 
             Console.WriteLine("PLAYERS: \n\n");
@@ -175,18 +199,18 @@ namespace OrleansBasics
                 Console.WriteLine(AllPlayers[i]);
             }
 
+            Console.WriteLine("\n\nAmount of balls {0}", ballsList.Count);
+
             // K balls
             for (int i = 0; i < ballsList.Count; i++)
             {
-                Console.WriteLine("PLAYER {0} has ID {1}",i, AllPlayers[i]);
+                //Console.WriteLine("PLAYER {0} has ID {1}",i, AllPlayers[i]);
                 var player = client.GetGrain<IPlayer>(AllPlayers[i]);
-                Console.WriteLine("PLAYER {0} gets ball {1}", i, ballsList[i]);
 
-                await player.ReceiveBall(ballsList[i]);
+                //Console.WriteLine("PLAYER {0} gets ball {1}", i, ballsList[i]);
+                await player.GiveBallToPlayer(ballsList[i]);
 
             }
-
-
         }
     }
 }
