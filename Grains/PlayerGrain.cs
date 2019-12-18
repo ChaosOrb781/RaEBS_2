@@ -13,9 +13,27 @@ namespace Grains
     {
         public List<Guid> PlayerIds { set; get; } = new List<Guid>();
         public List<Guid> BallIds { set; get; } = new List<Guid>();
-        public List<object> MessagesReceived { set; get; } = new List<object>();
         public Guid LatestBallReceived { set; get; } = Guid.Empty;
+        public StateSnapShot SnapShot = null;
+        public bool Marked { get; set; } = false;
+
+        public void TakeSnapshot()
+        {
+            SnapShot = new StateSnapShot()
+            {
+                PlayerIds = this.PlayerIds,
+                BallIds = this.BallIds,
+                LatestBallReceived = this.LatestBallReceived
+            };
+        }
+
+        public void ResetMarking()
+        {
+            Marked = false;
+            SnapShot = null;
+        }
     }
+
 
 
     [StorageProvider]
@@ -23,6 +41,7 @@ namespace Grains
     {
 
         private IDisposable Reminder = null;
+        //private
 
         public async override Task OnActivateAsync()
         {
@@ -40,6 +59,8 @@ namespace Grains
             Console.WriteLine("Now we are DEactivating {0}", this.GetPrimaryKey());
             await base.OnDeactivateAsync();
         }
+
+
 
         public async Task Initialize(IEnumerable<Guid> playerIds, bool isHoldingBall)
         {
@@ -202,64 +223,42 @@ namespace Grains
         }
 
 
-
-
-
-
-        // We want to figure out who has which 
-        // First we want to initialize a snapshot if the player has not sent a "Snapshot" of what balls he has
-        public async Task InitializeSnapshot(Guid FromPlayerID)
+        public async Task PrimaryMark()
         {
-            
-
-            Guid thisPlayer = GrainFactory.GetGrain<IPlayer>(FromPlayerID).GetPrimaryKey();
-
-            List<Guid> Players = State.PlayerIds;
-            foreach (Guid player in Players)
+            await ReadStateAsync();
+            State.Marked = true;
+            State.TakeSnapshot();
+            await WriteStateAsync();
+            foreach (Guid otherId in State.PlayerIds)
             {
-                if (player != thisPlayer)
-                {
-                    object message = this.SendMarkerMessage(player);
-                    bool alreadyExists = State.MessagesReceived.Contains(message);
-                    if (!alreadyExists)
-                    {
-                        State.MessagesReceived.Add(message);
-                        Console.WriteLine("Message Received for player {0}: {1}", player ,message);
-                    }
-                }
-                else
-                {
+                if (this.GetPrimaryKey() == otherId)
                     continue;
-                }
+                IPlayer otherPlayer = GrainFactory.GetGrain<IPlayer>(otherId);
+                await otherPlayer.Mark();
             }
-            return;
         }
 
-        // Right after initializing the Snapshot, the player has to send a marker message out of each of its outgoing channels
-        // So, an actor - in this case a player - is playing with 10 other players, the player has 10 outgoing channels and 10 incoming channels
-        public async Task<object> SendMarkerMessage(Guid player)
+        public async Task Mark()
         {
-            
-
-            IPlayer ReceivingPlayer = GrainFactory.GetGrain<IPlayer>(player);
-
-            //Console.WriteLine("Getting the Guid of the player");
-            Guid ID = ReceivingPlayer.GetPrimaryKey();
-
-            //Console.WriteLine("Getting ball(s) of the player");
-            List<Guid> BallIDs = await ReceivingPlayer.GetBallIds();
-
-
-            /*
-            for(int i = 0; i < BallIDs.Count; i++)
+            await ReadStateAsync();
+            if (State.Marked)
             {
-                Console.WriteLine("Player {0} has ball(s) {1}", ID, BallIDs[i]);
+                State.Marked = true;
+                State.TakeSnapshot();
             }
-            */
+            await WriteStateAsync();
+        }
 
-            object message = ("Player (Channel) {0} has ball(s) {1}", ID, BallIDs[0]);
+        public async Task<bool> IsMarked()
+        {
+            await ReadStateAsync();
+            return State.Marked;
+        }
 
-            return message;
+        public async Task<StateSnapShot> GetSnapShot()
+        {
+            await ReadStateAsync();
+            return State.SnapShot;
         }
 
         /*

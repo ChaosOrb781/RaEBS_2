@@ -4,6 +4,12 @@ using System.Threading.Tasks;
 
 namespace GrainInterfaces
 {
+    public class StateSnapShot
+    {
+        public List<Guid> PlayerIds;
+        public List<Guid> BallIds;
+        public Guid LatestBallReceived;
+    }
    
     public interface IPlayer: Orleans.IGrainWithGuidKey //, Orleans.IRemindable
     {
@@ -38,6 +44,14 @@ namespace GrainInterfaces
         /// Get the balls held by the player
         /// </summary>
         Task<List<Guid>> GetBallIds();
+
+        Task Mark();
+
+        Task PrimaryMark();
+
+        Task<StateSnapShot> GetSnapShot();
+
+        Task<bool> IsMarked();
 
     }
 }

@@ -21,13 +21,13 @@ namespace XUnitTests
 
         public void Dispose()
         {
-            //this.Cluster.StopAllSilos();
+            this.Cluster.StopAllSilos();
         }
 
         public TestCluster Cluster { get; private set; }
     }
 
-    class MySiloBuilderConfigurator : ISiloBuilderConfigurator
+    public class MySiloBuilderConfigurator : ISiloBuilderConfigurator
     {
         public void Configure(ISiloHostBuilder hostBuilder)
         {
@@ -50,4 +50,7 @@ namespace XUnitTests
                .UseInMemoryReminderService();
         }
     }
+
+    [CollectionDefinition(Statics.Values.ClusterCollection)]
+    public class ClusterCollection : ICollectionFixture<ClusterFixture> { }
 }

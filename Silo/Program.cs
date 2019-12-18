@@ -8,6 +8,7 @@ using Orleans.Configuration;
 using Orleans.Hosting;
 using System.Collections.Generic;
 using System.Linq;
+using Statics;
 
 namespace OrleansBasics
 {
@@ -22,6 +23,7 @@ namespace OrleansBasics
         {
             try
             {
+                
                 Console.WriteLine("\n\n Press Enter to start process...\n\n");
                 Console.ReadLine();
 
@@ -30,7 +32,7 @@ namespace OrleansBasics
                 var client = await ConnectClient();
 
 
-                
+
                 Console.WriteLine("\n\n How many players do you want in the game? :");
 
                 List<Guid> AllPlayers = SpawnPlayers(client, int.Parse(Console.ReadLine()));
@@ -53,6 +55,7 @@ namespace OrleansBasics
 
                 Console.WriteLine("Everything has been completed succesfully, bitch!");
                 Console.ReadLine();
+                
 
                 await host.StopAsync();
 
@@ -86,7 +89,7 @@ namespace OrleansBasics
                     options.ConnectionString = "host=localhost;database=OrleansStorage;password=postgres;username=postgres";
                     options.UseJsonFormat = true;
                 })
-               .UseInMemoryReminderService(); 
+               .UseInMemoryReminderService();
 
             var host = builder.Build();
             await host.StartAsync();
@@ -160,7 +163,7 @@ namespace OrleansBasics
 
 
         private static async Task GiveRandomPlayersBalls(IClusterClient client, List<Guid> AllPlayers, int number_of_balls)
-        { 
+        {
             Random rng = new Random();
 
             List<Guid> ballsList = new List<Guid>();
@@ -211,6 +214,7 @@ namespace OrleansBasics
                 await player.GiveBallToPlayer(ballsList[i]);
 
             }
+
         }
     }
 }
