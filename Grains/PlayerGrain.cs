@@ -40,7 +40,8 @@ namespace Grains
     {
         public override async Task OnActivateAsync()
         {
-            Print("Activated");
+            //During custom games, the player id has yet to be fetched
+            //Print("Activated");
             await ReadStateAsync(); //Should be called on activation automatically
             await base.OnActivateAsync();
         }
@@ -76,7 +77,7 @@ namespace Grains
             await ReadStateAsync(); //Update state; Should be unnecessary as recovered OnActivation
             State.BallIds.Add(ballId); //Write to state
             State.LatestBallReceived = ballId; // Write to state
-            Print("Received ball {0}", Statics.Values.Balls.ToList().IndexOf(ballId) + 1);
+            Print("Received ball {0}", (Statics.Values.Balls.ToList().IndexOf(ballId) == -1) ? "" + ballId : "" + (Statics.Values.Balls.ToList().IndexOf(ballId) + 1));
             await WriteStateAsync(); //Save state
             return State.Marked;
         }   
@@ -127,7 +128,7 @@ namespace Grains
 
                 IPlayer otherPlayer = GrainFactory.GetGrain<IPlayer>(State.PlayerIds[otherPlayerIndex]);
 
-                Print("HoldOrPass, tossing ball {0} to player {1}", Statics.Values.Balls.ToList().IndexOf(State.LatestBallReceived) + 1, otherPlayerIndex + 1);
+                Print("HoldOrPass, tossing ball {0} to player {1}", Statics.Values.Balls.ToList().IndexOf(State.LatestBallReceived) == -1 ? ""+State.LatestBallReceived : ""+(Statics.Values.Balls.ToList().IndexOf(State.LatestBallReceived) + 1), otherPlayerIndex + 1);
 
                 bool debug_prevmark = State.Marked;
                 //Always keep updated snapshot in memory 
@@ -150,13 +151,13 @@ namespace Grains
         private async Task PassOtherBalls()
         {
             await ReadStateAsync();
-            Print("PassOtherBalls, started and my latest received {0}", Statics.Values.Balls.ToList().IndexOf(State.LatestBallReceived) + 1);
+            Print("PassOtherBalls, started and my latest received {0}", Statics.Values.Balls.ToList().IndexOf(State.LatestBallReceived) == -1 ? "" + State.LatestBallReceived : "" + (Statics.Values.Balls.ToList().IndexOf(State.LatestBallReceived) + 1));
 
             foreach (Guid otherBall in new List<Guid>(State.BallIds)) {
-                Print("Torsing ball {0}", Statics.Values.Balls.ToList().IndexOf(otherBall) + 1);
+                Print("Torsing ball {0}", (Statics.Values.Balls.ToList().IndexOf(otherBall) == -1) ? "" + otherBall : "" + (Statics.Values.Balls.ToList().IndexOf(otherBall) + 1));
                 if (State.LatestBallReceived == otherBall)
                 {
-                    Print("Skipping ball {0} since it was equal to ball {1}", Statics.Values.Balls.ToList().IndexOf(otherBall) + 1, Statics.Values.Balls.ToList().IndexOf(State.LatestBallReceived) + 1);
+                    Print("Skipping ball {0} since it was equal to ball {1}", (Statics.Values.Balls.ToList().IndexOf(otherBall) == -1) ? "" + otherBall : "" + (Statics.Values.Balls.ToList().IndexOf(otherBall) + 1), Statics.Values.Balls.ToList().IndexOf(State.LatestBallReceived) == -1 ? "" + State.LatestBallReceived : "" + (Statics.Values.Balls.ToList().IndexOf(State.LatestBallReceived) + 1));
                     continue;
                 }
 
@@ -169,7 +170,7 @@ namespace Grains
 
                 IPlayer otherPlayer = GrainFactory.GetGrain<IPlayer>(State.PlayerIds[otherPlayerIndex]);
 
-                Print("PassOtherBalls, tossing ball {0} to player {1}", Statics.Values.Balls.ToList().IndexOf(otherBall) + 1, otherPlayerIndex + 1);
+                Print("PassOtherBalls, tossing ball {0} to player {1}", (Statics.Values.Balls.ToList().IndexOf(otherBall) == -1) ? "" + otherBall : "" + (Statics.Values.Balls.ToList().IndexOf(otherBall) + 1), otherPlayerIndex + 1);
 
                 bool debug_prevmark = State.Marked;
                 //Always keep updated snapshot in memory 
@@ -186,7 +187,7 @@ namespace Grains
                     Print("PassOtherBalls, I HAVE BEEN INFECTED!");
                 }
             }
-            Print("PassOtherBalls, has {0} balls remaining after torses", State.BallIds.Count);
+            Print("PassOtherBalls, has {0} balls remaining after tosses", State.BallIds.Count);
             //If some asynchronous task dealt the latestball out (such as hold or receive) then set first as most recent
             if (!State.BallIds.Contains(State.LatestBallReceived))
             {
@@ -246,21 +247,32 @@ namespace Grains
 
         private void Print(string message, params object[] args)
         {
-            Console.WriteLine("Player " + (Statics.Values.Players.ToList().IndexOf(this.GetPrimaryKey()) + 1) + ": " + message, args);
+            Console.WriteLine("Player " + (State.PlayerIds.ToList().IndexOf(this.GetPrimaryKey()) + 1) + ": " + message, args);
         }
 
         private string BallListToString(List<Guid> list)
         {
             string s = "";
-            s += "[";
-            if (list.Count > 0) {
-                foreach (Guid o in list)
+            if (list.Count > 0)
+            {
+                if (Statics.Values.Balls.Contains(list[0]))
                 {
-                    s += (Statics.Values.Balls.ToList().IndexOf(o) + 1) + ", ";
+                    s += "[";
+                    if (list.Count > 0)
+                    {
+                        foreach (Guid o in list)
+                        {
+                            s += (Statics.Values.Balls.ToList().IndexOf(o) + 1) + ", ";
+                        }
+                        s = s.Substring(0, s.Length - 1);
+                    }
+                    s += "]";
+                } 
+                else
+                {
+                    s += "# of balls: " + list.Count;
                 }
-                s = s.Substring(0, s.Length - 1);
             }
-            s += "]";
             return s;
         }
     }

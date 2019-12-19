@@ -29,30 +29,81 @@ namespace OrleansBasics
                 Console.WriteLine("\n\n Press Enter to start process...\n\n");
                 Console.ReadLine();
 
-                Console.WriteLine("Initializing players with no balls...");
+                bool runStaticExample = false;
+                while (true)
+                {
+                    Console.Write("Run custom game (Y) or static game with integer enumerated players (spawns 10)(N): ");
+                    string input = Console.ReadLine();
+                    if (input.ToLower() == "y") {
+                        runStaticExample = false;
+                        break;
+                    }
+                    if (input.ToLower() == "n")
+                    {
+                        runStaticExample = true;
+                        break;
+                    }
+                    Console.WriteLine("Invalid answer, expected Y or N");
+                }
+
+                List<Guid> players = new List<Guid>(Statics.Values.Players);
+                List<Guid> balls = new List<Guid>(Statics.Values.Balls);
                 int amountOfPlayers = 10, amountOfBalls = 9;
-                List<Guid> limitedPlayers = Statics.Values.Players.ToList().GetRange(0, amountOfPlayers);
+                if (!runStaticExample)
+                {
+                    while (true)
+                    {
+                        Console.Write("Enter amount of players (N): ");
+                        string input = Console.ReadLine();
+                        bool success = Int32.TryParse(input, out amountOfPlayers);
+                        if (success)
+                            break;
+                        else
+                            Console.WriteLine("Invalid player amount, try again");
+                    }
+
+                    while (true)
+                    {
+                        Console.Write("Enter amount of balls (K, K < N): ");
+                        string input = Console.ReadLine();
+                        bool success = Int32.TryParse(input, out amountOfBalls);
+                        if (success && amountOfBalls < amountOfPlayers)
+                            break;
+                        else
+                            Console.WriteLine("Invalid ball amount, needs to be less than players, try again");
+                    }
+
+                    players.Clear();
+                    balls.Clear();
+
+                    for(int i = 0; i < amountOfPlayers; i++)
+                        players.Add(Guid.NewGuid());
+                    for (int i = 0; i < amountOfBalls; i++)
+                        balls.Add(Guid.NewGuid());
+                }
+
+                Console.WriteLine("Initializing players with no balls...");
                 List<Task> initialize = new List<Task>();
                 for (int i = 0; i < amountOfPlayers; i++)
                 {
-                    IPlayer player = client.GetGrain<IPlayer>(Statics.Values.Players[i]);
-                    initialize.Add(player.Initialize(limitedPlayers, false));
+                    IPlayer player = client.GetGrain<IPlayer>(players[i]);
+                    initialize.Add(player.Initialize(players, false));
                 }
                 await Task.WhenAll(initialize);
 
-                Console.WriteLine("Giving all balls to the first player...");
+                Console.WriteLine("Giving all balls to the random players...");
                 List<Task> balltosses = new List<Task>();
                 for (int i = 0; i < amountOfBalls; i++)
                 {
-                    IPlayer player = client.GetGrain<IPlayer>(Statics.Values.Players[0]);
-                    balltosses.Add(player.ReceiveBall(Statics.Values.Balls[i]));
+                    IPlayer player = client.GetGrain<IPlayer>(players[Statics.Values.Randomizer.Next(0,amountOfBalls - 1)]);
+                    balltosses.Add(player.ReceiveBall(balls[i]));
                 }
                 await Task.WhenAll(balltosses);
 
-                Console.WriteLine("Press enter to take snapshot...");
+                Console.WriteLine("Press enter to take snapshot (at any point!)...");
                 Console.ReadLine();
 
-                IPlayer player1 = client.GetGrain<IPlayer>(limitedPlayers[0]);
+                IPlayer player1 = client.GetGrain<IPlayer>(players[0]);
                 await player1.PrimaryMark();
 
                 bool allmarked;
@@ -60,7 +111,7 @@ namespace OrleansBasics
                 {
                     allmarked = true;
                     await Task.Delay(TimeSpan.FromSeconds(1));
-                    foreach (Guid playerid in limitedPlayers)
+                    foreach (Guid playerid in players)
                     {
                         IPlayer player = client.GetGrain<IPlayer>(playerid);
                         allmarked &= await player.IsMarked();
@@ -68,7 +119,7 @@ namespace OrleansBasics
                 } while (!allmarked);
 
                 List<Task<StateSnapShot>> allSnapshots = new List<Task<StateSnapShot>>();
-                foreach (Guid playerid in limitedPlayers)
+                foreach (Guid playerid in players)
                 {
                     IPlayer player = client.GetGrain<IPlayer>(playerid);
                     allSnapshots.Add(player.GetSnapShot());
@@ -80,12 +131,13 @@ namespace OrleansBasics
                 for (int i = 0; i < amountOfPlayers; i++)
                 {
                     numBalls += allSnapshots[i].Result.BallIds.Count;
-                    Console.WriteLine("Player {0} had {1} balls", i + 1, allSnapshots[i].Result.BallIds.Count);
+                    if (runStaticExample)
+                        Console.WriteLine("Player {0} had {1} balls", i + 1, allSnapshots[i].Result.BallIds.Count);
                 }
 
-                Console.WriteLine("Players had {0} balls, expected {1}", numBalls, amountOfBalls);
-
                 await host.StopAsync();
+
+                Console.WriteLine("Players had {0} balls, expected {1}, validates: {2}", numBalls, amountOfBalls, numBalls == amountOfBalls);
 
                 Console.WriteLine("Press to terminate program...");
                 Console.ReadLine();

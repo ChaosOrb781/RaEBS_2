@@ -237,5 +237,73 @@ namespace XUnitTests
             }
             Assert.Equal(Statics.Values.Kmax, numBalls);
         }
+
+        [Fact]
+        public async void HundredPlayersEightyBalls()
+        {
+            List<Guid> players = new List<Guid>();
+            for (int i = 0; i < 100; i++)
+            {
+                players.Add(Guid.NewGuid());
+            }
+
+            List<Guid> balls = new List<Guid>();
+            for (int i = 0; i < 80; i++)
+            {
+                balls.Add(Guid.NewGuid());
+            }
+
+            IPlayer player;
+            List<Task> initializers = new List<Task>();
+            foreach (Guid playerId in players)
+            {
+                player = _cluster.Client.GetGrain<IPlayer>(playerId);
+                initializers.Add(player.Initialize(players, false));
+            }
+            await Task.WhenAll(initializers);
+
+            List<Task> tosses = new List<Task>();
+            for (int i = 0; i < Statics.Values.Kmax; i++)
+            {
+                player = _cluster.Client.GetGrain<IPlayer>(players[Statics.Values.Randomizer.Next(0, 79)]);
+                tosses.Add(player.ReceiveBall(balls[i]));
+            }
+            await Task.WhenAll(tosses);
+
+            await Task.Delay(TimeSpan.FromSeconds(240));
+
+            player = _cluster.Client.GetGrain<IPlayer>(players[0]);
+            await player.PrimaryMark();
+
+            bool allmarked;
+            do
+            {
+                allmarked = true;
+                await Task.Delay(TimeSpan.FromSeconds(1));
+                foreach (Guid playerid in players)
+                {
+                    player = _cluster.Client.GetGrain<IPlayer>(playerid);
+                    allmarked &= await player.IsMarked();
+                }
+            } while (!allmarked);
+
+            List<Task<StateSnapShot>> allSnapshots = new List<Task<StateSnapShot>>();
+            foreach (Guid playerid in players)
+            {
+                player = _cluster.Client.GetGrain<IPlayer>(playerid);
+                allSnapshots.Add(player.GetSnapShot());
+            }
+            await Task.WhenAll(allSnapshots);
+
+            _testOutputHelper.WriteLine("Right after statistics:");
+            //Check immidially after
+            int numBalls = 0;
+            for (int i = 0; i < 100; i++)
+            {
+                numBalls += allSnapshots[i].Result.BallIds.Count;
+                _testOutputHelper.WriteLine("Player {0} had {1} balls", i + 1, allSnapshots[i].Result.BallIds.Count);
+            }
+            Assert.Equal(80, numBalls);
+        }
     }
 }
