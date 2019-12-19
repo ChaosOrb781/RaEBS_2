@@ -163,10 +163,6 @@ namespace Grains
         {
             await ReadStateAsync();
             Print("PassOtherBalls, started and my latest received {0}", Statics.Values.Balls.ToList().IndexOf(State.LatestBallReceived) + 1);
-            foreach (Guid ball in State.BallIds)
-            {
-                Print("Contains: Ball {0}", Statics.Values.Balls.ToList().IndexOf(ball) + 1);
-            }
 
             foreach (Guid otherBall in new List<Guid>(State.BallIds)) {
                 Print("Torsing ball {0}", Statics.Values.Balls.ToList().IndexOf(otherBall) + 1);
