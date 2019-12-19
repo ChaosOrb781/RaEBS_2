@@ -115,18 +115,6 @@ namespace Grains
         private async Task HoldOrPassBall()
         {
             await ReadStateAsync();
-            //Cannot toss if no ball
-            if (State.BallIds.Count < 1)
-            {
-                Print("HoldOrPass, insufficient amount of balls");
-                return;
-            }
-            else if (State.BallIds.Count > 1)
-            {
-                Print("HoldOrPass, too many balls, calling pass rest");
-                await PassOtherBalls();
-            }
-            await ReadStateAsync();
             int tossChoice = Statics.Values.Randomizer.Next(Statics.Values.MinChange, Statics.Values.MaxChance);
             if (tossChoice <= Statics.Values.TossChange)
             {
@@ -172,7 +160,6 @@ namespace Grains
                     continue;
                 }
 
-                //Check from 0 to N - 2 (removing this player from the list)
                 int otherPlayerIndex = Statics.Values.Randomizer.Next(0, State.PlayerIds.Count - 1);
                 while (otherPlayerIndex == State.PlayerIds.IndexOf(this.GetPrimaryKey()))
                 {
