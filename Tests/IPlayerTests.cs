@@ -263,14 +263,14 @@ namespace XUnitTests
             await Task.WhenAll(initializers);
 
             List<Task> tosses = new List<Task>();
-            for (int i = 0; i < Statics.Values.Kmax; i++)
+            for (int i = 0; i < 80; i++)
             {
-                player = _cluster.Client.GetGrain<IPlayer>(players[Statics.Values.Randomizer.Next(0, 79)]);
+                player = _cluster.Client.GetGrain<IPlayer>(players[Statics.Values.Randomizer.Next(0, 99)]);
                 tosses.Add(player.ReceiveBall(balls[i]));
             }
             await Task.WhenAll(tosses);
 
-            await Task.Delay(TimeSpan.FromSeconds(240));
+            await Task.Delay(TimeSpan.FromSeconds(130));
 
             player = _cluster.Client.GetGrain<IPlayer>(players[0]);
             await player.PrimaryMark();
